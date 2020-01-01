@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Dec 31 14:49:10 PST 2019
+#Tue Dec 31 18:37:01 PST 2019
 56.path=lib/armeabi-v7a/libnative-filters.so
 5.base=/Users/vanyawill/Desktop/Projects/MobileApps/MacroManager/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
 42.base=/Users/vanyawill/Desktop/Projects/MobileApps/MacroManager/android/app/build/intermediates/transforms/mergeJniLibs/debug/0

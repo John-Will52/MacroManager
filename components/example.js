@@ -4,7 +4,7 @@ import {name as appName} from '../app.json';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class Example extends Component{
-    constructor() {
+    constructor(props) {
         super()
         this.state = {
             // var:'it displays by using state.var'

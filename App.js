@@ -6,7 +6,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import Question from './components/question';
+import SurveyPage from './pages/surveyPage';
 import Example from './components/example';
 
 
@@ -17,12 +17,7 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-            <View>
-              <Text>This is working</Text>
-            </View>
-            <Question asked="What is your name?" multipleChoice="false"></Question>
-            <Question asked="Are you Male or Female?" multipleChoice="true" optionOne="Male" optionTwo="Female"></Question>
-            <Example></Example>
+            <SurveyPage></SurveyPage>
         </ScrollView>
       </SafeAreaView>
     </>

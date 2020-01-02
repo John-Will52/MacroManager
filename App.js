@@ -26,7 +26,7 @@ const App: () => React$Node = () => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: '#fc4',
+    backgroundColor: '#f9a',
   },
   
 });

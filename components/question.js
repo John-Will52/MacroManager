@@ -8,8 +8,12 @@ export default class Question extends Component{
     constructor(props) {
         super()
         this.state = {
-            // var:'it displays by using state.var'
+            name : null,
         }
+    }
+
+    getInput = input =>{
+        this.setState({name: input});
     }
     render(){
         if(this.props.testType === "Dilemma"){
@@ -18,10 +22,10 @@ export default class Question extends Component{
                     <Text style={styles.text}>{this.props.asked}</Text>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button1} title={this.props.optionOne}></Button>
+                                <Button color={Colors.button1} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.optionOne)}></Button>
                             </View>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button2} title={this.props.optionTwo}></Button>
+                                <Button color={Colors.button2} title={this.props.optionTwo} onPress={()=>this.props.buttonPress(this.props.optionTwo)}></Button>
                             </View>
                         </View>
                 </View>
@@ -31,43 +35,46 @@ export default class Question extends Component{
             return(
                 <View>
                     <Text style={styles.text}>{this.props.asked}</Text>
-                    <TextInput style={styles.input} keyboardType="default"></TextInput>
+                    <TextInput style={styles.input} value={this.state.name} onChangeText={text => this.getInput(text)} keyboardType="default"></TextInput>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button1} title="Submit"></Button>
+                                <Button color={Colors.button1} title="Submit" onPress={()=>this.props.buttonPress(this.state.name)}></Button>
                             </View>
                     </View>
                 </View>
             )
         } 
-        else if(this.props.testType === "BMI"){
+        else if(this.props.testType === "BMI" && this.props.units ==="Metric"){
             return(
                 <View>
                     <Text style={styles.text}>Let's get your BMI</Text>
-                    <Text style={styles.smallText}>Height</Text>
+                    <Text style={styles.smallText}>Height (cm.)</Text>
                     <View style={styles.vertAlign}>
                         <TextInput style={styles.numInput} keyboardType="number-pad"></TextInput>
-                        <View style={styles.verticalButtonContainer}>
-                            <View style={styles.verticalButtonBox}>
-                                <Button color={Colors.button1} title="inches (in.)"></Button>
-                            </View>
-                            <View style={styles.verticalButtonBox}>
-                                <Button color={Colors.button2} title="centimeters (cm.)"></Button>
-                            </View>
-                        </View>
+                        <Button color={Colors.button2} title="Submit"></Button>
                     </View>
                     <View>
-                        <Text style={styles.smallText}>Weight</Text>
+                        <Text style={styles.smallText}>Weight (kg.)</Text>
                         <View style={styles.vertAlign}>
                             <TextInput style={styles.numInput} keyboardType="decimal-pad"></TextInput>
-                            <View style={styles.verticalButtonContainer}>
-                                <View style={styles.verticalButtonBox}>
-                                    <Button color={Colors.button1} title="pounds (lbs.)"></Button>
-                                </View>
-                                <View style={styles.verticalButtonBox}>
-                                    <Button color={Colors.button2} title="kilograms (kg.)"></Button>
-                                </View>
-                            </View>
+                        </View>
+                    </View>
+                </View>
+            )
+        }  
+        else if(this.props.testType === "BMI" && this.props.units ==="Imperial"){
+            return(
+                <View>
+                    <Text style={styles.text}>Let's get your BMI</Text>
+                    <Text style={styles.smallText}>Height (in.)</Text>
+                    <View style={styles.vertAlign}>
+                        <TextInput style={styles.numInput} keyboardType="number-pad"></TextInput>
+                        <Button color={Colors.button1} title="Submit"></Button>
+                    </View>
+                    <View>
+                        <Text style={styles.smallText}>Weight (lbs.)</Text>
+                        <View style={styles.vertAlign}>
+                            <TextInput style={styles.numInput} keyboardType="decimal-pad"></TextInput>
                         </View>
                     </View>
                 </View>
@@ -78,9 +85,10 @@ export default class Question extends Component{
 const styles=StyleSheet.create({
     input:{
         backgroundColor: 'white',
-        height: 30,
+        height: 50,
         borderColor:'black',
         borderWidth: 2,
+        // width: '80%',
     },
     text:{
         fontSize: 50,
@@ -94,7 +102,7 @@ const styles=StyleSheet.create({
     numInput:{
         width: 100,
         backgroundColor: 'white',
-        height: 30,
+        height: 50,
         borderColor:'black',
         borderWidth: 2,
     },

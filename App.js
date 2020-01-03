@@ -10,14 +10,15 @@ import SurveyPage from './pages/surveyPage';
 import Example from './components/example';
 
 
+
+
 const App: () => React$Node = () => {
+
   return (
     <>
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-            <SurveyPage></SurveyPage>
+        <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+          <SurveyPage></SurveyPage>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -27,6 +28,7 @@ const App: () => React$Node = () => {
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: '#f9a',
+    height: '100%'
   },
   
 });

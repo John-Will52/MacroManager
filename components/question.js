@@ -8,12 +8,21 @@ export default class Question extends Component{
     constructor(props) {
         super()
         this.state = {
-            name : null,
+            input : null,
+            height: null,
+            weight: null,
+            BMI: null
         }
     }
 
     getInput = input =>{
-        this.setState({name: input});
+        this.setState({input: input});
+    }
+    getHeight = input =>{
+        this.setState({height: input});
+    }
+    getWeight = input =>{
+        this.setState({weight: input});
     }
     render(){
         if(this.props.testType === "Dilemma"){
@@ -35,10 +44,10 @@ export default class Question extends Component{
             return(
                 <View>
                     <Text style={styles.text}>{this.props.asked}</Text>
-                    <TextInput style={styles.input} value={this.state.name} onChangeText={text => this.getInput(text)} keyboardType="default"></TextInput>
+                    <TextInput style={styles.input} value={this.state.input} onChangeText={text => this.getInput(text)} keyboardType="default"></TextInput>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button1} title="Submit" onPress={()=>this.props.buttonPress(this.state.name)}></Button>
+                                <Button color={Colors.button1} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
                             </View>
                     </View>
                 </View>
@@ -50,15 +59,16 @@ export default class Question extends Component{
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height (cm.)</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.numInput} keyboardType="number-pad"></TextInput>
-                        <Button color={Colors.button2} title="Submit"></Button>
+                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => this.getHeight(text)} keyboardType="number-pad"></TextInput>
+                        <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)}></Button>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight (kg.)</Text>
                         <View style={styles.vertAlign}>
-                            <TextInput style={styles.numInput} keyboardType="decimal-pad"></TextInput>
+                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => this.getWeight(text)} keyboardType="decimal-pad"></TextInput>
                         </View>
                     </View>
+                    <Text>Your BMI is: {this.state.BMI} Weight:{this.state.weight} Height: {this.state.height}</Text>
                 </View>
             )
         }  
@@ -68,15 +78,16 @@ export default class Question extends Component{
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height (in.)</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.numInput} keyboardType="number-pad"></TextInput>
-                        <Button color={Colors.button1} title="Submit"></Button>
+                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => this.getHeight(text)} keyboardType="number-pad"></TextInput>
+                        <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress(this.state.height, this.state.weight)}></Button>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight (lbs.)</Text>
                         <View style={styles.vertAlign}>
-                            <TextInput style={styles.numInput} keyboardType="decimal-pad"></TextInput>
+                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => this.getWeight(text)} keyboardType="decimal-pad"></TextInput>
                         </View>
                     </View>
+                    <Text>Your BMI is: {this.state.BMI} Weight:{this.state.weight} Height: {this.state.height}</Text>
                 </View>
             )
         }  
@@ -88,7 +99,8 @@ const styles=StyleSheet.create({
         height: 50,
         borderColor:'black',
         borderWidth: 2,
-        // width: '80%',
+        width: '80%',
+        alignSelf: 'center'
     },
     text:{
         fontSize: 50,
@@ -97,7 +109,7 @@ const styles=StyleSheet.create({
     },
     smallText:{
         fontSize: 30,
-        textDecorationLine: 'underline',
+        // textDecorationLine: 'underline',
     },
     numInput:{
         width: 100,
@@ -125,7 +137,7 @@ const styles=StyleSheet.create({
         flexDirection:'row',
         width:'100%',
         justifyContent:'space-between'
-    }
+    },
 
 }); 
 

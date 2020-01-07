@@ -68,7 +68,6 @@ export default class Question extends Component{
                             <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => this.getWeight(text)} keyboardType="decimal-pad"></TextInput>
                         </View>
                     </View>
-                    <Text>Your BMI is: {this.state.BMI} Weight:{this.state.weight} Height: {this.state.height}</Text>
                 </View>
             )
         }  
@@ -87,7 +86,6 @@ export default class Question extends Component{
                             <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => this.getWeight(text)} keyboardType="decimal-pad"></TextInput>
                         </View>
                     </View>
-                    <Text>Your BMI is: {this.state.BMI} Weight:{this.state.weight} Height: {this.state.height}</Text>
                 </View>
             )
         }  

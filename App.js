@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,23 +7,65 @@ import {
   Text,
 } from 'react-native';
 import SurveyPage from './pages/surveyPage';
-import Example from './components/example';
+import CalorieCounterPage from './pages/calorieCounterPage';
 
 
 
 
-const App: () => React$Node = () => {
 
-  return (
-    <>
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-          <SurveyPage></SurveyPage>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+export default class App extends Component{
+  constructor(props) {
+      super()
+      this.state = {
+        name : null,
+        sex : null,
+        goal : null,
+        units:null,
+        height : null,
+        weight : null,
+        BMI : null,
+        carbs : null,
+        proteins : null,
+        fats : null,
+        overallCalories : null
+      }
+    }
+
+    surveyPageStateTransfer = (n, s, g, u, h, w, BMI) =>{
+      this.setState({
+        name: n,
+        sex: s,
+        goal: g,
+        units: u,
+        height: h,
+        weight: w,
+        BMI: BMI,
+      })
+    }
+
+  render(){
+    if(this.state.BMI == null){
+      return(
+        <SafeAreaView>
+          <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+            <SurveyPage transferState={this.surveyPageStateTransfer}></SurveyPage>
+          </ScrollView>
+        </SafeAreaView>
+      );
+    }
+    else if(this.state.BMI != null){
+      return(
+        <SafeAreaView>
+          <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+            <CalorieCounterPage></CalorieCounterPage>
+          </ScrollView>
+        </SafeAreaView>
+      );
+    }
+  }
+}
+  
+
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -32,5 +74,3 @@ const styles = StyleSheet.create({
   },
   
 });
-
-export default App;

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, AppState,StyleSheet, Button} from 'react-native';
+import {AppRegistry, View, Text, AppState,StyleSheet, Button, ScrollView} from 'react-native';
 import {name as appName} from '../app.json';
 import Question from '../components/question';
+import Colors from '../styling/colors'
+
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class SurveyPage extends Component{
@@ -30,8 +32,8 @@ export default class SurveyPage extends Component{
         this.setState({units:input});
     }
     getBMI = (h, w) =>{
-        this.setState({height: h});
-        this.setState({weight: w});
+        this.setState({height: parseInt(h)});
+        this.setState({weight: parseInt(w)});
         if(this.state.units === "Imperial"){
             let weight = parseInt(w);
             let height = parseInt(h);
@@ -47,13 +49,16 @@ export default class SurveyPage extends Component{
             this.setState({BMI : value});
         }
     }
-    confirmDetails = input =>{
-        if(input == "Yes"){
-            return Hooray
-        }
-        else{
-            return Boo
-        }
+    wrongDetails = () => {
+        this.setState({
+            name : null,
+            sex : null,
+            goal : null,
+            units:null,
+            height : null,
+            weight : null,
+            BMI : null,})
+        
     }
 
     render(){
@@ -102,14 +107,29 @@ export default class SurveyPage extends Component{
             
             return(
                 <>
-                <Question asked="Are these details correct?" testType="Dilemma" optionOne="Yes" optionTwo="No" buttonPress = {this.confirmDetails}></Question>
-                <Text>Name: {this.state.name}</Text>
-                <Text>Sex: {this.state.sex}</Text>
-                <Text>Goal: {this.state.goal} weight</Text>
-                <Text>Units: You measure with the {this.state.units} system</Text>
-                <Text>Height: {this.state.height}</Text>
-                <Text>Weight: {this.state.weight}</Text>
-                <Text>Your BMI is: {this.state.BMI}</Text>
+                
+                <ScrollView>
+                    <View>
+
+                        <Text style={styles.text}>Is this information correct?</Text>
+                        <View style={styles.horizontalButtonContainer}>
+                            <View style={styles.horizontalButtonBox}>
+                                <Button color={Colors.button1} title="Yes" onPress={()=>this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI)}></Button>
+                            </View>
+                            <View style={styles.horizontalButtonBox}>
+                                <Button color={Colors.button2} title="No" onPress={()=>this.wrongDetails()}></Button>
+                            </View>
+                        </View>
+                    </View>
+                    <Text style={styles.text}>Name: {this.state.name}</Text>
+                    <Text style={styles.text}>Sex: {this.state.sex}</Text>
+                    <Text style={styles.text}>Goal: {this.state.goal} weight</Text>
+                    <Text style={styles.text}>Units: You measure with the {this.state.units} system</Text>
+                    <Text style={styles.text}>Height: {this.state.height}</Text>
+                    <Text style={styles.text}>Weight: {this.state.weight}</Text>
+                    <Text style={styles.text}>Your BMI is: {this.state.BMI}</Text>
+                </ScrollView>
+                    
                 </>
             );   
         }
@@ -117,9 +137,17 @@ export default class SurveyPage extends Component{
 }
 
 const styles=StyleSheet.create({
-    question:{
-        flex: 1,
-    }
+    text:{
+        fontSize: 30,
+        textAlign:'left',  
+    },
+    horizontalButtonContainer:{
+        flexDirection: 'row',
+        justifyContent:'space-evenly',
+    },
+    horizontalButtonBox:{
+        width:'30%'
+    },
 
 }); 
 

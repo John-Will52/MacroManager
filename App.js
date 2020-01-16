@@ -3,8 +3,6 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  View,
-  Text,
 } from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
@@ -20,16 +18,21 @@ export default class App extends Component{
         name : null,
         sex : null,
         goal : null,
-        units:null,
+        units : null,
         height : null,
         weight : null,
         BMI : null,
-        carbs : null,
-        proteins : null,
-        fats : null,
+        allottedCarbs : null,
+        allottedProteins : null,
+        allottedFats : null,
+        allottedTotal : null,
+        currentCarbs : null,
+        currentProteins : null,
+        currentFats : null,
+        currentTotal : null,
         overallCalories : null
-      }
     }
+  }
 
     surveyPageStateTransfer = (n, s, g, u, h, w, BMI) =>{
       this.setState({

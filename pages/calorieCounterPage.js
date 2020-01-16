@@ -8,11 +8,11 @@ export default class CalorieCounterPage extends Component{
     constructor(props) {
         super()
         this.state = {
-            servings: null,
-            carbCalorieAmount: null,
-            proteinCalorieAmount: null,
-            fatCalorieAmount: null,
-            totalCalorieAmount: null,
+            servings: 0,
+            carbCalorieAmount: 0,
+            proteinCalorieAmount: 0,
+            fatCalorieAmount: 0,
+            totalCalorieAmount: 0,
         }
     }
 
@@ -51,20 +51,20 @@ export default class CalorieCounterPage extends Component{
         return(
             <View style={styles.pageContainer}>
                 <View style={styles.counterContainer}>
-                    <Counter calorieType="Carbs"></Counter>
-                    <Counter calorieType="Protein"></Counter>
-                    <Counter calorieType="Fats"></Counter>
-                    <Counter calorieType="Total"></Counter>
+                    <Counter calorieType="Carbs" carbs={this.state.carbCalorieAmount}></Counter>
+                    <Counter calorieType="Protein" proteins={this.state.proteinCalorieAmount}></Counter>
+                    <Counter calorieType="Fats" fats={this.state.fatCalorieAmount}></Counter>
+                    <Counter calorieType="Total" total={this.state.totalCalorieAmount}></Counter>
                 </View>
                 <Text style={styles.text}>Add the amounts of each in grams</Text>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.inputs} value={this.state.servings} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
-                    <TextInput style={styles.inputs} value={this.state.carbCalorieAmount} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs"></TextInput>
-                    <TextInput style={styles.inputs} value={this.state.proteinCalorieAmount} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
-                    <TextInput style={styles.inputs} value={this.state.fatCalorieAmount} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
+                    <TextInput style={styles.inputs} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
+                    <TextInput style={styles.inputs} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs"></TextInput>
+                    <TextInput style={styles.inputs} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
+                    <TextInput style={styles.inputs} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
                 </View>
-                <Text>{this.state.totalCalorieAmount}+{this.state.carbCalorieAmount}+{this.state.proteinCalorieAmount}+{this.state.fatCalorieAmount}</Text>
                 <Button  color="blue" title="Add Calories" onPress={()=> this.addCalories(this.state.servings, this.state.carbCalorieAmount, this.state.proteinCalorieAmount, this.state.fatCalorieAmount)}></Button>
+                <Text>{this.state.totalCalorieAmount}+{this.state.carbCalorieAmount}+{this.state.proteinCalorieAmount}+{this.state.fatCalorieAmount}</Text>
             </View>
         );
     }
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderColor: 'black',
         borderWidth: 2,
-        height: 250
+        height: 60
     },
     counterContainer:{
         flexDirection: 'row',

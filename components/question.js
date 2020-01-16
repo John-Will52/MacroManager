@@ -27,7 +27,7 @@ export default class Question extends Component{
     render(){
         if(this.props.testType === "Dilemma"){
             return(
-                <View>
+                <View style={styles.container}>
                     <Text style={styles.text}>{this.props.asked}</Text>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
@@ -42,7 +42,7 @@ export default class Question extends Component{
         }
         else if(this.props.testType === "Input"){
             return(
-                <View>
+                <View style={styles.container}>
                     <Text style={styles.text}>{this.props.asked}</Text>
                     <TextInput style={styles.input} value={this.state.input} onChangeText={text => this.getInput(text)} keyboardType="default"></TextInput>
                     <View style={styles.horizontalButtonContainer}>
@@ -55,7 +55,7 @@ export default class Question extends Component{
         } 
         else if(this.props.testType === "BMI" && this.props.units ==="Metric"){
             return(
-                <View>
+                <View style={styles.container}>
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height (cm.)</Text>
                     <View style={styles.vertAlign}>
@@ -73,7 +73,7 @@ export default class Question extends Component{
         }  
         else if(this.props.testType === "BMI" && this.props.units ==="Imperial"){
             return(
-                <View>
+                <View style={styles.container}>
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height (in.)</Text>
                     <View style={styles.vertAlign}>
@@ -101,7 +101,7 @@ const styles=StyleSheet.create({
         alignSelf: 'center'
     },
     text:{
-        fontSize: 50,
+        fontSize: 40,
         textDecorationLine: 'underline',
         textAlign:'center',  
     },
@@ -136,6 +136,12 @@ const styles=StyleSheet.create({
         width:'100%',
         justifyContent:'space-between'
     },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+
+      },
+    
 
 }); 
 

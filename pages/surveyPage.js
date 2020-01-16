@@ -17,6 +17,10 @@ export default class SurveyPage extends Component{
             height : null,
             weight : null,
             BMI : null,
+            allottedCarbs : null,
+            allottedProteins : null,
+            allottedFats : null,
+            allottedTotal : null,
         }
     }
     setName = input => {
@@ -32,23 +36,48 @@ export default class SurveyPage extends Component{
         this.setState({units:input});
     }
     getBMI = (h, w) =>{
-        this.setState({height: parseInt(h)});
-        this.setState({weight: parseInt(w)});
+        this.setState({height: parseInt(h), weight: parseInt(w)});
         if(this.state.units === "Imperial"){
             let weight = parseInt(w);
             let height = parseInt(h);
             let BMI = (703 * weight)/((height)**2);
-            let value = parseInt(BMI);
-            this.setState({BMI : value});
+            this.setState({BMI : parseInt(BMI)});
+            let leanBodyMass = weight * ((100 - BMI)/100);
+            if(this.state.goal === "Lose" && this.state.sex === "Male"){
+                let allottedCarbGrams = leanBodyMass * .7;
+                let allottedProteinGrams = leanBodyMass * 1.5;
+                let allottedFatGrams =  leanBodyMass * .5;
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams)})
+            }
+            if(this.state.goal === "Lose" && this.state.sex === "Female"){
+                let allottedCarbGrams = leanBodyMass * .6;
+                let allottedProteinGrams = leanBodyMass * 1.5;
+                let allottedFatGrams =  leanBodyMass * .6;
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams)})
+
+            }
+            if(this.state.goal === "Gain" && this.state.sex === "Male"){
+                let allottedCarbGrams = leanBodyMass * 2;
+                let allottedProteinGrams = leanBodyMass * 1.25;
+                let allottedFatGrams = leanBodyMass * .4;
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams)})
+
+            }
+            if(this.state.goal === "Gain" && this.state.sex === "Female"){
+                let allottedCarbGrams = leanBodyMass * 1.5;
+                let allottedProteinGrams = leanBodyMass * 1.25;
+                let allottedFatGrams = leanBodyMass * .5;
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams)})
+            }
         }
         else if(this.state.units === "Metric"){
             let weight = parseInt(w);
             let height = parseInt(h);
             let BMI = (weight)/((height/100)**2);
-            let value = parseInt(BMI);
-            this.setState({BMI : value});
+            this.setState({BMI : parseInt(BMI)});
         }
     }
+
     wrongDetails = () => {
         this.setState({
             name : null,
@@ -58,16 +87,13 @@ export default class SurveyPage extends Component{
             height : null,
             weight : null,
             BMI : null,})
-        
     }
 
     render(){
         if(this.state.name === null){
 
             return(
-                <>
-                <Question asked="What is your name?" testType="Input" buttonPress={this.setName}></Question>
-                </>
+                <Question style={styles.container} asked="What is your name?" testType="Input" buttonPress={this.setName}></Question>
             );
         }
         else if(this.state.sex === null){
@@ -82,7 +108,7 @@ export default class SurveyPage extends Component{
             
             return(
                 <>
-                <Question asked="Are you trying to gain, or lose?" testType="Dilemma" optionOne="Gain" optionTwo="Lose" buttonPress ={this.setGoal}></Question>
+                <Question asked="Are you trying to GAIN MUSCLE, or LOSE FAT?" testType="Dilemma" optionOne="Gain" optionTwo="Lose" buttonPress ={this.setGoal}></Question>
                 </>
             );   
         }
@@ -110,7 +136,6 @@ export default class SurveyPage extends Component{
                 
                 <ScrollView>
                     <View>
-
                         <Text style={styles.text}>Is this information correct?</Text>
                         <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
@@ -127,7 +152,10 @@ export default class SurveyPage extends Component{
                     <Text style={styles.text}>Units: You measure with the {this.state.units} system</Text>
                     <Text style={styles.text}>Height: {this.state.height}</Text>
                     <Text style={styles.text}>Weight: {this.state.weight}</Text>
-                    <Text style={styles.text}>Your BMI is: {this.state.BMI}</Text>
+                    <Text style={styles.text}>BMI: {this.state.BMI}</Text>
+                    <Text style={styles.text}>Your recommended carb limit is: {this.state.allottedCarbs} grams</Text>
+                    <Text style={styles.text}>Your recommended protein limit is: {this.state.allottedProteins} grams</Text>
+                    <Text style={styles.text}>Your recommended fat limit is: {this.state.allottedFats} grams</Text>
                 </ScrollView>
                     
                 </>
@@ -148,6 +176,7 @@ const styles=StyleSheet.create({
     horizontalButtonBox:{
         width:'30%'
     },
+
 
 }); 
 

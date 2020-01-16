@@ -47,27 +47,31 @@ export default class SurveyPage extends Component{
                 let allottedCarbGrams = leanBodyMass * .7;
                 let allottedProteinGrams = leanBodyMass * 1.5;
                 let allottedFatGrams =  leanBodyMass * .5;
-                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams)})
+                let allottedTotalCalories = (allottedCarbGrams * 4) + (allottedProteinGrams * 4) + (allottedFatGrams *9);
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams), allottedTotal: parseInt(allottedTotalCalories)})
             }
             if(this.state.goal === "Lose" && this.state.sex === "Female"){
                 let allottedCarbGrams = leanBodyMass * .6;
                 let allottedProteinGrams = leanBodyMass * 1.5;
                 let allottedFatGrams =  leanBodyMass * .6;
-                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams)})
+                let allottedTotalCalories = (allottedCarbGrams * 4) + (allottedProteinGrams * 4) + (allottedFatGrams *9);
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams), allottedTotal: parseInt(allottedTotalCalories)})
 
             }
             if(this.state.goal === "Gain" && this.state.sex === "Male"){
                 let allottedCarbGrams = leanBodyMass * 2;
                 let allottedProteinGrams = leanBodyMass * 1.25;
                 let allottedFatGrams = leanBodyMass * .4;
-                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams)})
+                let allottedTotalCalories = (allottedCarbGrams * 4) + (allottedProteinGrams * 4) + (allottedFatGrams *9);
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams), allottedTotal: parseInt(allottedTotalCalories)})
 
             }
             if(this.state.goal === "Gain" && this.state.sex === "Female"){
                 let allottedCarbGrams = leanBodyMass * 1.5;
                 let allottedProteinGrams = leanBodyMass * 1.25;
                 let allottedFatGrams = leanBodyMass * .5;
-                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams)})
+                let allottedTotalCalories = (allottedCarbGrams * 4) + (allottedProteinGrams * 4) + (allottedFatGrams *9);
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams), allottedTotal: parseInt(allottedTotalCalories)})
             }
         }
         else if(this.state.units === "Metric"){
@@ -75,6 +79,38 @@ export default class SurveyPage extends Component{
             let height = parseInt(h);
             let BMI = (weight)/((height/100)**2);
             this.setState({BMI : parseInt(BMI)});
+            let imperialWeight = weight * 2.20462262185;
+            let leanBodyMass = imperialWeight * ((100 - BMI)/100);
+            if(this.state.goal === "Lose" && this.state.sex === "Male"){
+                let allottedCarbGrams = leanBodyMass * .7;
+                let allottedProteinGrams = leanBodyMass * 1.5;
+                let allottedFatGrams =  leanBodyMass * .5;
+                let allottedTotalCalories = (allottedCarbGrams * 4) + (allottedProteinGrams * 4) + (allottedFatGrams *9);
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams), allottedTotal: parseInt(allottedTotalCalories)})
+            }
+            if(this.state.goal === "Lose" && this.state.sex === "Female"){
+                let allottedCarbGrams = leanBodyMass * .6;
+                let allottedProteinGrams = leanBodyMass * 1.5;
+                let allottedFatGrams =  leanBodyMass * .6;
+                let allottedTotalCalories = (allottedCarbGrams * 4) + (allottedProteinGrams * 4) + (allottedFatGrams *9);
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams), allottedTotal: parseInt(allottedTotalCalories)})
+
+            }
+            if(this.state.goal === "Gain" && this.state.sex === "Male"){
+                let allottedCarbGrams = leanBodyMass * 2;
+                let allottedProteinGrams = leanBodyMass * 1.25;
+                let allottedFatGrams = leanBodyMass * .4;
+                let allottedTotalCalories = (allottedCarbGrams * 4) + (allottedProteinGrams * 4) + (allottedFatGrams *9);
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams), allottedTotal: parseInt(allottedTotalCalories)})
+
+            }
+            if(this.state.goal === "Gain" && this.state.sex === "Female"){
+                let allottedCarbGrams = leanBodyMass * 1.5;
+                let allottedProteinGrams = leanBodyMass * 1.25;
+                let allottedFatGrams = leanBodyMass * .5;
+                let allottedTotalCalories = (allottedCarbGrams * 4) + (allottedProteinGrams * 4) + (allottedFatGrams *9);
+                this.setState({allottedCarbs: parseInt(allottedCarbGrams), allottedProteins: parseInt(allottedProteinGrams), allottedFats: parseInt(allottedFatGrams), allottedTotal: parseInt(allottedTotalCalories)})
+            }
         }
     }
 
@@ -156,6 +192,7 @@ export default class SurveyPage extends Component{
                     <Text style={styles.text}>Your recommended carb limit is: {this.state.allottedCarbs} grams</Text>
                     <Text style={styles.text}>Your recommended protein limit is: {this.state.allottedProteins} grams</Text>
                     <Text style={styles.text}>Your recommended fat limit is: {this.state.allottedFats} grams</Text>
+                    <Text style={styles.text}>Your recommended daily calorie total is: {this.state.allottedTotal} calories</Text>
                 </ScrollView>
                     
                 </>

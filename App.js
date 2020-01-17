@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
+  Text
 } from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
@@ -34,7 +35,7 @@ export default class App extends Component{
     }
   }
 
-    surveyPageStateTransfer = (n, s, g, u, h, w, BMI) =>{
+    surveyPageStateTransfer = (n, s, g, u, h, w, BMI, carbs, proteins, fats, total) =>{
       this.setState({
         name: n,
         sex: s,
@@ -43,11 +44,15 @@ export default class App extends Component{
         height: h,
         weight: w,
         BMI: BMI,
+        allottedCarbs: carbs,
+        allottedProteins: proteins,
+        allottedFats: fats,
+        allottedTotal: total,
       })
     }
 
   render(){
-    if(this.state.BMI == null){
+    if(this.state.allottedTotal == null){
       return(
         <SafeAreaView>
           <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
@@ -56,11 +61,15 @@ export default class App extends Component{
         </SafeAreaView>
       );
     }
-    else if(this.state.BMI != null){
+    else if(this.state.allottedTotal != null){
       return(
         <SafeAreaView>
           <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
             <CalorieCounterPage></CalorieCounterPage>
+            <Text>{this.state.allottedCarbs}</Text>
+            <Text>{this.state.allottedProteins}</Text>
+            <Text>{this.state.allottedFats}</Text>
+            <Text>{this.state.allottedTotal}</Text>
           </ScrollView>
         </SafeAreaView>
       );

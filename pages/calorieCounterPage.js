@@ -8,18 +8,10 @@ export default class CalorieCounterPage extends Component{
     constructor(props) {
         super()
         this.state = {
-            servings: null,
-            carbInput: null,
-            proteinInput: null,
-            fatInput: null,
-            carbCalorieAmount: 0,
-            proteinCalorieAmount: 0,
-            fatCalorieAmount: 0,
-            totalCalorieAmount: 0,
-            percentOfCarbs: 0,
-            percentOfProteins: 0,
-            percentOfFats: 0,
-            percentOfTotalCalories: 0,
+            servings: 0,
+            carbInput: 0,
+            proteinInput: 0,
+            fatInput: 0,
         }
     }
 
@@ -47,31 +39,26 @@ export default class CalorieCounterPage extends Component{
     render(){
         return(
             <View style={styles.pageContainer}>
-                <View style={styles.counterContainer}>
-                    <Counter calorieType="Carbs"  currentAmounts={this.state.carbCalorieAmount}></Counter>
-                    <Counter calorieType="Proteins" currentAmounts={this.state.proteinCalorieAmount}></Counter>
-                    <Counter calorieType="Fats"  currentAmounts={this.state.fatCalorieAmount}></Counter>
-                    <Counter calorieType="Total" total={this.state.totalCalorieAmount}></Counter>
-                </View>
+                
                 <Text style={styles.text}>Add the amounts of each in grams</Text>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.inputs} ref={input => { this.servingInput = input }} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
                     <TextInput style={styles.inputs} ref={input => { this.carbInput = input }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs"></TextInput>
                     <TextInput style={styles.inputs} ref={input => { this.proteinInput = input }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
                     <TextInput style={styles.inputs} ref={input => { this.fatInput = input }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
+                    <TextInput style={styles.inputs} ref={input => { this.servingInput = input }} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
                 </View>
                 <Button  ref={this.addCaloriesButton} color="blue" title="Add Calories" onPress={()=> this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput)}></Button>
-                <View>
-                    <Text>{this.state.servings}({this.state.carbInput}+{this.state.proteinInput}+{this.state.fatInput})</Text>
-                    <Text>{this.state.carbCalorieAmount}+{this.state.proteinCalorieAmount}+{this.state.fatCalorieAmount} = {this.state.totalCalorieAmount}</Text>
-                    <Text style={styles.text}>{this.props.carbPercentage}+{this.props.proteinPercentage}+{this.props.fatPercentage} = {this.props.totalPercentage}</Text>
+                <View style={styles.counterContainer}>
+                    <Counter calorieType="Carbs" percentages={this.props.carbPercentage}></Counter>
+                    <Counter calorieType="Proteins" percentages={this.props.proteinPercentage}></Counter>
+                    <Counter calorieType="Fats" percentages={this.props.fatPercentage}></Counter>
+                    <Counter calorieType="Total" percentages={this.props.totalPercentage}></Counter>
                 </View>
-                <View>
-                    <Text>Visual evidence of data being passed</Text>
-                    <Text>{this.props.carbPercentage}</Text>
-                    <Text>{this.props.proteinPercentage}</Text>
-                    <Text>{this.props.fatPercentage}</Text>
-                    <Text>{this.props.totalPercentage}</Text>
+                <View style={styles.labelContainer}>
+                    <Text style={styles.labels}>Carbs</Text>
+                    <Text style={styles.labels}>Proteins</Text>
+                    <Text style={styles.labels}>Fats</Text>
+                    <Text style={styles.labels}>Total</Text>
                 </View>
             </View>
         );
@@ -90,27 +77,38 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         flex: 1,
-        borderColor: 'black',
-        borderWidth: 2,
-        height: 60
+        height: 60,
+    },
+    labelContainer:{
+        flexDirection: 'row',
+        width: '100%',
+        flex: 1,
+        height: 60,
     },
     counterContainer:{
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '100%',
         flex: 1,
-        borderColor: 'black',
-        borderWidth: 2,
-        height: 300,
+        height: 350,
         alignItems: "flex-end",
+        marginTop:50,
     },
     text:{
-        fontSize: 50,
+        fontSize: 35,
         textAlign: "center",
-
     },
     pageContainer:{
-        padding: 1,
+        padding: 5,
+    },
+    labels:{
+        color: 'white',
+        width: '25%',
+        fontSize: 18,
+        textDecorationLine: 'underline',
+        justifyContent: 'space-evenly',
+        textAlign: "center",
+        fontWeight: 'bold',
     }
 })
 

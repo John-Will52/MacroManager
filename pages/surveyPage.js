@@ -41,7 +41,7 @@ export default class SurveyPage extends Component{
             let weight = parseInt(w);
             let height = parseInt(h);
             let BMI = (703 * weight)/((height)**2);
-            this.setState({BMI : parseInt(BMI)});
+            this.setState({BMI : BMI});
             let leanBodyMass = weight * ((100 - BMI)/100);
             if(this.state.goal === "Lose" && this.state.sex === "Male"){
                 let allottedCarbCalories = (leanBodyMass * .7) * 4;
@@ -78,7 +78,7 @@ export default class SurveyPage extends Component{
             let weight = parseInt(w);
             let height = parseInt(h);
             let BMI = (weight)/((height/100)**2);
-            this.setState({BMI : parseInt(BMI)});
+            this.setState({BMI : BMI});
             let imperialWeight = weight * 2.20462262185;
             let leanBodyMass = imperialWeight * ((100 - BMI)/100);
             if(this.state.goal === "Lose" && this.state.sex === "Male"){
@@ -188,7 +188,7 @@ export default class SurveyPage extends Component{
                     <Text style={styles.text}>Units: You measure with the {this.state.units} system</Text>
                     <Text style={styles.text}>Height: {this.state.height}</Text>
                     <Text style={styles.text}>Weight: {this.state.weight}</Text>
-                    <Text style={styles.text}>BMI: {this.state.BMI}</Text>
+                    <Text style={styles.text}>BMI: {parseInt(this.state.BMI)}</Text>
                     <Text style={styles.text}>Your recommended carb limit is: {this.state.allottedCarbs} calories</Text>
                     <Text style={styles.text}>Your recommended protein limit is: {this.state.allottedProteins} calories</Text>
                     <Text style={styles.text}>Your recommended fat limit is: {this.state.allottedFats} calories</Text>

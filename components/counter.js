@@ -7,25 +7,18 @@ export default class Counter extends Component{
     constructor(props) {
         super()
         this.state = {
-            percent: '45%',
+            percent: "0%",
         }
     }
 
-    // THis is the area that you put your JS logic for functions and stuff at.
-    percentCalculator = () => {
-        let heightPercent = this.props.currentAmounts/this.props.allottedAmounts;
-        this.setState({percent: parseInt(heightPercent)});
-   
-     }
-
     
     render(){
+        
         return(
             <View>
-                <View style={[styles.box, {height: this.state.percent}]}>
-                    <Text style={styles.labels}>{this.state.percent}</Text>
+                <View style={[styles.box, {height: `${parseInt(this.props.percentages)}%`}]}>
+                    <Text style={styles.labels}>{parseInt(this.props.percentages)}%</Text>
                 </View>
-                <Text style={styles.labels}>{this.props.calorieType}</Text>
             </View>
         );
     }
@@ -33,7 +26,6 @@ export default class Counter extends Component{
 
 const styles = StyleSheet.create({
     box:{
-        height: 100,
         backgroundColor: 'red',
         width: 75,
         paddingBottom: 20,

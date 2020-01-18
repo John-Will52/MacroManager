@@ -49,32 +49,31 @@ export default class App extends Component{
       })
     }
     calorieCounterStateTransfer = (servings, carbs, proteins, fats) => {
-      if(servings === null || carbs === null || proteins === null || fats === null){
-          Alert.alert(Error, "You haven't added any food");
-      }
-      else{
-        let addedCarbs= carbs * servings * 4;
-        let addedProteins= proteins * servings * 4;
-        let addedFats= fats * servings * 9;
-        let totalCalories = addedCarbs + addedProteins + addedFats;
-        this.setState({
-            currentCarbs: this.state.currentCarbs + addedCarbs,
-            currentProteins: this.state.currentProteins + addedProteins,
-            currentFats: this.state.currentFats + addedFats,
-            currentTotal: this.state.currentTotal + totalCalories,
-        })
-      }
-      let carbPercentage=parseInt((this.state.currentCarbs/this.state.allottedCarbs) * 100);
-      let proteinPercentage=parseInt((this.state.currentProteins/this.state.allottedProteins) * 100);
-      let fatPercentage=parseInt((this.state.currentFats/this.state.allottedFats) * 100);
-      let totalPercentage=parseInt((this.state.currentTotal/this.state.allottedTotal) * 100);
+      let addedCarbs= carbs * servings * 4;
+      let addedProteins= proteins * servings * 4;
+      let addedFats= fats * servings * 9;
+      let totalCalories = addedCarbs + addedProteins + addedFats;
       this.setState({
-        percentOfCarbs: this.state.percentOfCarbs + carbPercentage,
-        percentOfProteins: this.state.percentOfProteins + proteinPercentage,
-        percentOfFats: this.state.percentOfFats + fatPercentage,
-        percentOfTotalCalories: this.state.percentOfTotalCalories + totalPercentage,
-    })
+        currentCarbs: this.state.currentCarbs + addedCarbs,
+        currentProteins: this.state.currentProteins + addedProteins,
+        currentFats: this.state.currentFats + addedFats,
+        currentTotal: this.state.currentTotal + totalCalories,
+      });
+      this.percentCalculator();
     }
+    percentCalculator = () =>{
+      let carbPercentage=(this.state.currentCarbs/this.state.allottedCarbs) * 100;
+      let proteinPercentage=(this.state.currentProteins/this.state.allottedProteins) * 100;
+      let fatPercentage=(this.state.currentFats/this.state.allottedFats) * 100;
+      let totalPercentage=(this.state.currentTotal/this.state.allottedTotal) * 100;
+      this.setState({
+        percentOfCarbs: carbPercentage,
+        percentOfProteins: proteinPercentage,
+        percentOfFats: fatPercentage,
+        percentOfTotalCalories: totalPercentage,
+      })
+    }
+
     
 
 
@@ -93,6 +92,10 @@ export default class App extends Component{
         <SafeAreaView>
           <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
             <CalorieCounterPage addCalories={this.calorieCounterStateTransfer} carbPercentage={this.state.percentOfCarbs} proteinPercentage={this.state.percentOfProteins} fatPercentage={this.state.percentOfFats} totalPercentage={this.state.percentOfTotalCalories}></CalorieCounterPage>
+            <Text>Current Calories: Carbs - {this.state.currentCarbs} Proteins - {this.state.currentProteins} Fats - {this.state.currentFats} Total - {this.state.currentTotal}</Text>
+            <Text>Allotted Calories: Carbs - {this.state.allottedCarbs} Proteins - {this.state.allottedProteins} Fats - {this.state.allottedFats} Total - {this.state.allottedTotal}</Text>
+            <Text>Percents: Carbs - {this.state.percentOfCarbs} Proteins - {this.state.percentOfProteins} Fats - {this.state.percentOfFats} Total - {this.state.percentOfTotalCalories}</Text>
+
           </ScrollView>
         </SafeAreaView>
       );

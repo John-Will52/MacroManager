@@ -16,56 +16,32 @@ export default class CalorieCounterPage extends Component{
             proteinCalorieAmount: 0,
             fatCalorieAmount: 0,
             totalCalorieAmount: 0,
+            percentOfCarbs: 0,
+            percentOfProteins: 0,
+            percentOfFats: 0,
+            percentOfTotalCalories: 0,
         }
     }
 
     // THis is the area that you put your JS logic for functions and stuff at.
     addServings = input =>{
         this.setState({servings: parseInt(input)});
+        // this.servingInput.clear();
     }
     addCarbs = input =>{
         this.setState({carbInput: parseInt(input)});
+        // this.carbInput.clear();
     }
     addProteins = input =>{
         this.setState({proteinInput: parseInt(input)});
+        // this.proteinInput.clear();
     }
     addFats = input =>{
         this.setState({fatInput: parseInt(input)});
+        // this.fatInput.clear();
     }
-    addCalories = (servings, carbs, proteins, fats) => {
-        if(servings === null || carbs === null || proteins === null || fats === null){
-            this.servingInput = 0;
-            this.carbInput = 0;
-            this.proteinInput = 0;
-            this.fatInput = 0;
-        }
-        else{
+    
 
-            let addedCarbs= carbs * servings * 4;
-            let addedProteins= proteins * servings * 4;
-            let addedFats= fats * servings * 9;
-            let totalCalories = addedCarbs + addedProteins + addedFats;
-            this.setState({
-                carbCalorieAmount: this.state.carbCalorieAmount + addedCarbs,
-                proteinCalorieAmount: this.state.proteinCalorieAmount + addedProteins,
-                fatCalorieAmount: this.state.fatCalorieAmount + addedFats,
-                totalCalorieAmount: this.state.totalCalorieAmount + totalCalories,
-                servings: 0,
-                carbInput: null,
-                proteinInput: null,
-                fatInput: null,
-            })
-            this.servingInput.clear();
-            this.carbInput.clear();
-            this.proteinInput.clear();
-            this.fatInput.clear();
-
-
-        }
-    }
-    percentageCalculator = () =>{
-
-    }
 
 
     render(){
@@ -84,23 +60,23 @@ export default class CalorieCounterPage extends Component{
                     <TextInput style={styles.inputs} ref={input => { this.proteinInput = input }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
                     <TextInput style={styles.inputs} ref={input => { this.fatInput = input }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
                 </View>
-                <Button  ref={this.addCaloriesButton} color="blue" title="Add Calories" onPress={()=> this.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput)} disabled={false}></Button>
+                <Button  ref={this.addCaloriesButton} color="blue" title="Add Calories" onPress={()=> this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput)}></Button>
                 <View>
                     <Text>{this.state.servings}({this.state.carbInput}+{this.state.proteinInput}+{this.state.fatInput})</Text>
                     <Text>{this.state.carbCalorieAmount}+{this.state.proteinCalorieAmount}+{this.state.fatCalorieAmount} = {this.state.totalCalorieAmount}</Text>
+                    <Text style={styles.text}>{this.props.carbPercentage}+{this.props.proteinPercentage}+{this.props.fatPercentage} = {this.props.totalPercentage}</Text>
                 </View>
                 <View>
                     <Text>Visual evidence of data being passed</Text>
-                    <Text>{this.props.allottedCarbs}</Text>
-                    <Text>{this.props.allottedProteins}</Text>
-                    <Text>{this.props.allottedFats}</Text>
-                    <Text>{this.props.allottedTotal}</Text>
+                    <Text>{this.props.carbPercentage}</Text>
+                    <Text>{this.props.proteinPercentage}</Text>
+                    <Text>{this.props.fatPercentage}</Text>
+                    <Text>{this.props.totalPercentage}</Text>
                 </View>
             </View>
         );
     }
 }
-
 
 const styles = StyleSheet.create({
     inputs:{

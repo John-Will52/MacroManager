@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  Text
-} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, Text, Alert} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 
@@ -27,10 +22,14 @@ export default class App extends Component{
         allottedProteins : null,
         allottedFats : null,
         allottedTotal : null,
-        currentCarbs : null,
-        currentProteins : null,
-        currentFats : null,
-        currentTotal : null,
+        currentCarbs : 0,
+        currentProteins : 0,
+        currentFats : 0,
+        currentTotal : 0,
+        percentOfCarbs: 0,
+        percentOfProteins: 0,
+        percentOfFats: 0,
+        percentOfTotalCalories: 0,
     }
   }
 
@@ -49,6 +48,35 @@ export default class App extends Component{
         allottedTotal: total,
       })
     }
+    calorieCounterStateTransfer = (servings, carbs, proteins, fats) => {
+      if(servings === null || carbs === null || proteins === null || fats === null){
+          Alert.alert(Error, "You haven't added any food");
+      }
+      else{
+        let addedCarbs= carbs * servings * 4;
+        let addedProteins= proteins * servings * 4;
+        let addedFats= fats * servings * 9;
+        let totalCalories = addedCarbs + addedProteins + addedFats;
+        this.setState({
+            currentCarbs: this.state.currentCarbs + addedCarbs,
+            currentProteins: this.state.currentProteins + addedProteins,
+            currentFats: this.state.currentFats + addedFats,
+            currentTotal: this.state.currentTotal + totalCalories,
+        })
+      }
+      let carbPercentage=parseInt((this.state.currentCarbs/this.state.allottedCarbs) * 100);
+      let proteinPercentage=parseInt((this.state.currentProteins/this.state.allottedProteins) * 100);
+      let fatPercentage=parseInt((this.state.currentFats/this.state.allottedFats) * 100);
+      let totalPercentage=parseInt((this.state.currentTotal/this.state.allottedTotal) * 100);
+      this.setState({
+        percentOfCarbs: this.state.percentOfCarbs + carbPercentage,
+        percentOfProteins: this.state.percentOfProteins + proteinPercentage,
+        percentOfFats: this.state.percentOfFats + fatPercentage,
+        percentOfTotalCalories: this.state.percentOfTotalCalories + totalPercentage,
+    })
+    }
+    
+
 
   render(){
     if(this.state.allottedTotal == null){
@@ -64,7 +92,7 @@ export default class App extends Component{
       return(
         <SafeAreaView>
           <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-            <CalorieCounterPage allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedFats={this.state.allottedFats} allottedTotal={this.state.allottedTotal}></CalorieCounterPage>
+            <CalorieCounterPage addCalories={this.calorieCounterStateTransfer} carbPercentage={this.state.percentOfCarbs} proteinPercentage={this.state.percentOfProteins} fatPercentage={this.state.percentOfFats} totalPercentage={this.state.percentOfTotalCalories}></CalorieCounterPage>
           </ScrollView>
         </SafeAreaView>
       );

@@ -31,7 +31,6 @@ export default class App extends Component{
         currentProteins : null,
         currentFats : null,
         currentTotal : null,
-        overallCalories : null
     }
   }
 
@@ -65,11 +64,7 @@ export default class App extends Component{
       return(
         <SafeAreaView>
           <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-            <CalorieCounterPage></CalorieCounterPage>
-            <Text>{this.state.allottedCarbs}</Text>
-            <Text>{this.state.allottedProteins}</Text>
-            <Text>{this.state.allottedFats}</Text>
-            <Text>{this.state.allottedTotal}</Text>
+            <CalorieCounterPage allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedFats={this.state.allottedFats} allottedTotal={this.state.allottedTotal}></CalorieCounterPage>
           </ScrollView>
         </SafeAreaView>
       );

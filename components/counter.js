@@ -7,16 +7,14 @@ export default class Counter extends Component{
     constructor(props) {
         super()
         this.state = {
-            h: '35%',
-            color: 'green',
-            percent: 35
+            percent: '45%',
         }
     }
 
     // THis is the area that you put your JS logic for functions and stuff at.
-    exampleFunction = () => {
-
-        this.setState({exampleVariable:''})
+    percentCalculator = () => {
+        let heightPercent = this.props.currentAmounts/this.props.allottedAmounts;
+        this.setState({percent: parseInt(heightPercent)});
    
      }
 
@@ -24,8 +22,8 @@ export default class Counter extends Component{
     render(){
         return(
             <View>
-                <View style={[styles.box, {height: this.state.percent, backgroundColor: this.state.color}]}>
-                    <Text style={styles.labels}>{this.state.percent}%</Text>
+                <View style={[styles.box, {height: this.state.percent}]}>
+                    <Text style={styles.labels}>{this.state.percent}</Text>
                 </View>
                 <Text style={styles.labels}>{this.props.calorieType}</Text>
             </View>
@@ -36,11 +34,12 @@ export default class Counter extends Component{
 const styles = StyleSheet.create({
     box:{
         height: 100,
-        backgroundColor: 'white',
+        backgroundColor: 'red',
         width: 75,
+        paddingBottom: 20,
     },
     labels:{
-        fontSize: 20,
+        fontSize: 18,
         color: 'white',
         fontWeight: 'bold',
         alignSelf: 'center',

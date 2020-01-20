@@ -16,7 +16,7 @@ export default class Counter extends Component{
         
         return(
             <View>
-                <View style={[styles.box, {height: `${parseInt(this.props.percentages)}%`}]}>
+                <View style={[styles.box, {height: `${parseInt(this.props.percentages)}%`}, {maxHeight: '100%'}]}>
                     <Text style={styles.labels}>{parseInt(this.props.percentages)}%</Text>
                 </View>
             </View>

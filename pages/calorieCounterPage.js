@@ -18,19 +18,22 @@ export default class CalorieCounterPage extends Component{
     // THis is the area that you put your JS logic for functions and stuff at.
     addServings = input =>{
         this.setState({servings: parseInt(input)});
-        // this.servingInput.clear();
     }
     addCarbs = input =>{
         this.setState({carbInput: parseInt(input)});
-        // this.carbInput.clear();
+        
     }
     addProteins = input =>{
         this.setState({proteinInput: parseInt(input)});
-        // this.proteinInput.clear();
     }
     addFats = input =>{
         this.setState({fatInput: parseInt(input)});
-        // this.fatInput.clear();
+    }
+    clearInputs = () =>{
+        this.servingInput.clear();
+        this.carbInput.clear();
+        this.proteinInput.clear();
+        this.fatInput.clear();
     }
     
 
@@ -49,10 +52,7 @@ export default class CalorieCounterPage extends Component{
                 </View>
                 <Button  ref={this.addCaloriesButton} color="blue" title="Add Calories" onPress={()=> this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput)}></Button>
                 <View style={styles.counterContainer}>
-                    <Counter calorieType="Carbs" percentages={this.props.carbPercentage}></Counter>
-                    <Counter calorieType="Proteins" percentages={this.props.proteinPercentage}></Counter>
-                    <Counter calorieType="Fats" percentages={this.props.fatPercentage}></Counter>
-                    <Counter calorieType="Total" percentages={this.props.totalPercentage}></Counter>
+                    {this.props.children}
                 </View>
                 <View style={styles.labelContainer}>
                     <Text style={styles.labels}>Carbs</Text>
@@ -93,6 +93,8 @@ const styles = StyleSheet.create({
         height: 350,
         alignItems: "flex-end",
         marginTop:50,
+        borderColor: 'black',
+        borderWidth: 2,
     },
     text:{
         fontSize: 35,
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         textAlign: "center",
         fontWeight: 'bold',
+        alignSelf: 'flex-start'
     }
 })
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, Animated, StyleSheet} from 'react-native';
+import {AppRegistry, View, Text, Animated, StyleSheet, Platform} from 'react-native';
 import {name as appName} from '../app.json';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
@@ -27,11 +27,12 @@ export default class Counter extends Component{
 const styles = StyleSheet.create({
     box:{
         backgroundColor: 'red',
-        width: 75,
+        width: 85,
         paddingBottom: 20,
+        minHeight: Platform.OS === 'ios' ? '12%' : '0%',
     },
     labels:{
-        fontSize: 18,
+        fontSize: 20,
         color: 'white',
         fontWeight: 'bold',
         alignSelf: 'center',

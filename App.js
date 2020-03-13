@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, Text, Alert} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
-import Counter from './components/counter';
+import SavedMealsPage from './pages/savedMealsPage';
+import Colors from './styling/colors';
 
 
 
@@ -30,8 +31,14 @@ export default class App extends Component{
         percentOfProteins: 0,
         percentOfFats: 0,
         percentOfTotalCalories: 0,
+        pageNumber: 0,
     }
   }
+    navigator = pageNum =>{
+      this.setState({
+        pageNumber: pageNum,
+      })
+    }
 
     surveyPageStateTransfer = (n, s, g, u, h, w, BMI, carbs, proteins, fats, total) =>{
       this.setState({
@@ -85,20 +92,20 @@ export default class App extends Component{
         </SafeAreaView>
       );
     }
-    else if(this.state.allottedTotal != null){
+    else if(this.state.allottedTotal != null && this.state.pageNumber === 0){
       return(
         <SafeAreaView>
           <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-            <CalorieCounterPage addCalories={this.calorieCounterStateTransfer}>
-              <Counter percentages={this.state.percentOfCarbs}></Counter>
-              <Counter percentages={this.state.percentOfProteins}></Counter>
-              <Counter percentages={this.state.percentOfFats}></Counter>
-              <Counter percentages={this.state.percentOfTotalCalories}></Counter>
-            </CalorieCounterPage>
-            <Text>Current Calories: Carbs - {this.state.currentCarbs} Proteins - {this.state.currentProteins} Fats - {this.state.currentFats} Total - {this.state.currentTotal}</Text>
-            <Text>Allotted Calories: Carbs - {this.state.allottedCarbs} Proteins - {this.state.allottedProteins} Fats - {this.state.allottedFats} Total - {this.state.allottedTotal}</Text>
-            <Text>Percents: Carbs - {this.state.percentOfCarbs} Proteins - {this.state.percentOfProteins} Fats - {this.state.percentOfFats} Total - {this.state.percentOfTotalCalories}</Text>
-
+            <CalorieCounterPage changePage={this.navigator} addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
+          </ScrollView>
+        </SafeAreaView>
+      );
+    }
+    else if(this.state.allottedTotal != null && this.state.pageNumber === 1){
+      return(
+        <SafeAreaView>
+          <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+            <SavedMealsPage changePage={this.navigator}></SavedMealsPage>
           </ScrollView>
         </SafeAreaView>
       );
@@ -110,7 +117,7 @@ export default class App extends Component{
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: '#f9a',
+    backgroundColor: Colors.background,
     height: '100%'
   },
   

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, AppState, Button, TextInput, StyleSheet, Platform} from 'react-native';
+import {AppRegistry, View, Text, Alert, Button, TextInput, StyleSheet, Platform} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors'
 // AppRegistry is the JS entry point for all ReactNative apps. 
@@ -16,13 +16,26 @@ export default class Question extends Component{
     }
 
     getInput = input =>{
-        this.setState({input: input});
+        if(input.length < 1){
+        }
+        else{
+            this.setState({input: input});
+        }
     }
     getHeight = input =>{
-        this.setState({height: input});
+        if(input.length < 1){
+        }
+        else{
+            this.setState({height: input});
+        }
+        
     }
     getWeight = input =>{
-        this.setState({weight: input});
+        if(input.length < 1){
+        }
+        else{
+            this.setState({weight: input});
+        }
     }
     render(){
         if(this.props.testType === "Dilemma"){
@@ -47,7 +60,7 @@ export default class Question extends Component{
                     <TextInput style={styles.input} value={this.state.input} onChangeText={text => this.getInput(text)} keyboardType="default"></TextInput>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button1} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
+                                <Button color={Colors.operationButtons} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
                             </View>
                     </View>
                 </View>
@@ -101,16 +114,16 @@ const styles=StyleSheet.create({
         alignSelf: 'center'
     },
     text:{
-        fontSize: 40,
+        fontSize: 45,
         textDecorationLine: 'underline',
-        textAlign:'center',  
+        textAlign:'center',
+        color: Colors.text,
     },
     smallText:{
         fontSize: 30,
-        // textDecorationLine: 'underline',
     },
     numInput:{
-        width: 100,
+        width: 150,
         backgroundColor: 'white',
         height: 50,
         borderColor:'black',
@@ -139,7 +152,6 @@ const styles=StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-
       },
     
 

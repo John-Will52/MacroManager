@@ -6,40 +6,6 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>428ADE03-B8FD-4BAB-B720-9F0062597DE4</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>428ADE03-B8FD-4BAB-B720-9F0062597DE4.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>W</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>MacroManager project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>MacroManager</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building workspace MacroManager with scheme MacroManager and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>602367428.41659904</real>
-			<key>timeStoppedRecording</key>
-			<real>602367429.65359402</real>
-			<key>title</key>
-			<string>Building workspace MacroManager with scheme MacroManager and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>428ADE03-B8FD-4BAB-B720-9F0062597DE4</string>
-		</dict>
 		<key>6BE04F12-4EF0-4F92-90C0-988143B5199B</key>
 		<dict>
 			<key>className</key>
@@ -73,6 +39,40 @@
 			<string>Building workspace MacroManager with scheme MacroManager and configuration Debug</string>
 			<key>uniqueIdentifier</key>
 			<string>6BE04F12-4EF0-4F92-90C0-988143B5199B</string>
+		</dict>
+		<key>A5FC5FAF-C54B-4FAE-8DEC-D5A6976EB332</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>A5FC5FAF-C54B-4FAE-8DEC-D5A6976EB332.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MacroManager project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MacroManager</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building workspace MacroManager with scheme MacroManager and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>605914095.71699202</real>
+			<key>timeStoppedRecording</key>
+			<real>605914096.62421799</real>
+			<key>title</key>
+			<string>Building workspace MacroManager with scheme MacroManager and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>A5FC5FAF-C54B-4FAE-8DEC-D5A6976EB332</string>
 		</dict>
 	</dict>
 </dict>

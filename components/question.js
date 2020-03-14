@@ -143,6 +143,7 @@ const styles=StyleSheet.create({
     horizontalButtonContainer:{
         flexDirection: 'row',
         justifyContent:'space-evenly',
+        marginTop: 20,
     },
     vertAlign:{
         flexDirection:'row',

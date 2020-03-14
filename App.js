@@ -3,7 +3,6 @@ import {SafeAreaView, StyleSheet, ScrollView, Text, Alert} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
-import SavedSnacksAndMealsPage from './pages/savedSnacksAndMealsPage';
 
 import Colors from './styling/colors';
 
@@ -108,13 +107,6 @@ export default class App extends Component{
       );
     }
     else if(this.state.allottedTotal != null && this.state.pageNumber === 1){
-      return(
-        <SafeAreaView style={styles.background}>
-            <SavedSnacksAndMealsPage></SavedSnacksAndMealsPage>
-        </SafeAreaView>
-      );
-    }
-    else if(this.state.allottedTotal != null && this.state.pageNumber === 2){
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">

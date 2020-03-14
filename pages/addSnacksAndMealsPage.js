@@ -4,6 +4,7 @@ import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import Ingredients from '../components/ingredients';
 import Question from '../components/question';
+
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class AddSnacksAndMealsPage extends Component{
@@ -64,8 +65,12 @@ export default class AddSnacksAndMealsPage extends Component{
 
             return(
                 <View>
-                    <Question testType="Dilemma" asked="Are you saving a snack item, or a meal?" optionOne="Snack" optionTwo="Meal" buttonPress ={this.setItemType}></Question>
-                    <Button title="Return to Calorie Counter" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                    <View style={styles.split}>
+                        <Question testType="Dilemma" asked="Are you saving a snack item, or a meal?" optionOne="Snack" optionTwo="Meal" buttonPress ={this.setItemType}></Question>
+                    </View>
+                    <View style={styles.split}>
+                        <Button title="Return to Calorie Counter" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                    </View>
                 </View>
 
             );
@@ -112,8 +117,6 @@ export default class AddSnacksAndMealsPage extends Component{
                             <TextInput style={styles.numInputs} ref={input => { this.snackServings = input }} onChangeText={num => this.addSnackServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
                         </View>
                         <Button title="Save Snack" color={Colors.operationButtons} onPress={()=>this.props.saveSnack(this.state.item, this.state.snackName, this.state.snackCarbs, this.state.snackProteins, this.state.snackFats, this.state.snackServings)}></Button>
-                        
-
                     </View>
                     <Button title="Return to Calorie Counter" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
                 </View>
@@ -162,6 +165,9 @@ const styles = StyleSheet.create({
         height: 60,
         padding: 5,
     },
+    split:{
+        marginTop: 20,
+    }
 })
 
 AppRegistry.registerComponent(appName, () => AddSnacksAndMealsPage);

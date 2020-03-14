@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         width: 85,
         paddingBottom: 20,
-        minHeight: Platform.OS === 'ios' ? '12%' : '0%',
+        minHeight: Platform.OS === 'ios' ? '12%' : '7%',
     },
     labels:{
         fontSize: 20,

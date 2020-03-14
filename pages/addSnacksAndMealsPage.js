@@ -1,18 +1,27 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, TextInput, StyleSheet, Button} from 'react-native';
+import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import Ingredients from '../components/ingredients';
 import Question from '../components/question';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
-export default class SavedMealsPage extends Component{
+export default class AddSnacksAndMealsPage extends Component{
     constructor(props) {
         super()
         this.state = {
             item: null,
-            mealName: null,
             ingredientCounter:2,
+            snackName: null,
+            snackCarbs: null,
+            snackProteins: null,
+            snackFats: null,
+            snackServings: null,
+            mealName: null,
+            mealCarbs: null,
+            mealProteins: null,
+            mealFats: null,
+            mealServings: null,
         }
     }
 
@@ -24,6 +33,29 @@ export default class SavedMealsPage extends Component{
     }
     setItemType = input => {
         this.setState({item:input});
+    }
+    saveSnack = () =>{
+        Alert.alert("Save Snack worked!", "Just a temporary test function for this button's functionality.")
+
+    }
+    saveMeal = () =>{
+        Alert.alert("Save Meal worked!", "Just a temporary test function for this button's functionality.")
+
+    }
+    addSnackName = input =>{
+        this.setState({snackName: input})
+    }
+    addSnackCarbs = input =>{
+        this.setState({snackCarbs: parseInt(input)})
+    }
+    addSnackProteins = input =>{
+        this.setState({snackProteins: parseInt(input)})
+    }
+    addSnackFats = input =>{
+        this.setState({snackFats: parseInt(input)})
+    }
+    addSnackServings = input =>{
+        this.setState({snackServings: parseInt(input)})
     }
 
 
@@ -71,15 +103,16 @@ export default class SavedMealsPage extends Component{
                     <Text style={styles.text}>Save a Snack</Text>
                     <View style={styles.mealBox}>
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Snack Name"></TextInput>
+                            <TextInput style={styles.nameInputs} ref={input => { this.snackName = input }} onChangeText={name => this.addSnackName(name)} keyboardType="default" placeholder="Snack Name"></TextInput>
                         </View>
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.numInputs} ref={input => { this.ingredientCarbs = input }} onChangeText={num => this.addIngredientCarbs(num)} keyboardType="number-pad" placeholder="Carbs"></TextInput>
-                            <TextInput style={styles.numInputs} ref={input => { this.ingredientProteins = input }} onChangeText={num => this.addIngredientProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
-                            <TextInput style={styles.numInputs} ref={input => { this.ingredientFats = input }} onChangeText={num => this.addIngredientFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
-                            <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={num => this.addIngredientServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
+                            <TextInput style={styles.numInputs} ref={input => { this.snackCarbs = input }} onChangeText={num => this.addSnackCarbs(num)} keyboardType="number-pad" placeholder="Carbs"></TextInput>
+                            <TextInput style={styles.numInputs} ref={input => { this.snackProteins = input }} onChangeText={num => this.addSnackProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
+                            <TextInput style={styles.numInputs} ref={input => { this.snackFats = input }} onChangeText={num => this.addSnackFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
+                            <TextInput style={styles.numInputs} ref={input => { this.snackServings = input }} onChangeText={num => this.addSnackServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
                         </View>
-                        <Button title="Save Snack" color={Colors.operationButtons} onPress={()=>this.saveSnack()}></Button>
+                        <Button title="Save Snack" color={Colors.operationButtons} onPress={()=>this.props.saveSnack(this.state.item, this.state.snackName, this.state.snackCarbs, this.state.snackProteins, this.state.snackFats, this.state.snackServings)}></Button>
+                        
 
                     </View>
                     <Button title="Return to Calorie Counter" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
@@ -131,4 +164,4 @@ const styles = StyleSheet.create({
     },
 })
 
-AppRegistry.registerComponent(appName, () => SavedMealsPage);
+AppRegistry.registerComponent(appName, () => AddSnacksAndMealsPage);

@@ -9,8 +9,10 @@ export default class Question extends Component{
         super()
         this.state = {
             input : null,
-            height: null,
+            height: 0,
             weight: null,
+            inches:null,
+            feet:null,
             BMI: null
         }
     }
@@ -22,13 +24,12 @@ export default class Question extends Component{
             this.setState({input: input});
         }
     }
-    getHeight = input =>{
+    metricGetHeight = input =>{
         if(input.length < 1){
         }
         else{
             this.setState({height: input});
-        }
-        
+        } 
     }
     getWeight = input =>{
         if(input.length < 1){
@@ -70,15 +71,15 @@ export default class Question extends Component{
             return(
                 <View style={styles.container}>
                     <Text style={styles.text}>Let's get your BMI</Text>
-                    <Text style={styles.smallText}>Height (cm.)</Text>
+                    <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => this.getHeight(text)} keyboardType="number-pad"></TextInput>
+                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => {this.setState({height: parseInt(text)})}} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad"></TextInput>
                         <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)}></Button>
                     </View>
                     <View>
-                        <Text style={styles.smallText}>Weight (kg.)</Text>
+                        <Text style={styles.smallText}>Weight</Text>
                         <View style={styles.vertAlign}>
-                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => this.getWeight(text)} keyboardType="decimal-pad"></TextInput>
+                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => {this.setState({weight: parseInt(text)})}}placeholder="kg." placeholderTextColor='black' keyboardType="number-pad"></TextInput>
                         </View>
                     </View>
                 </View>
@@ -88,17 +89,18 @@ export default class Question extends Component{
             return(
                 <View style={styles.container}>
                     <Text style={styles.text}>Let's get your BMI</Text>
-                    <Text style={styles.smallText}>Height (in.)</Text>
+                    <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => this.getHeight(text)} keyboardType="number-pad"></TextInput>
-                        <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress(this.state.height, this.state.weight)}></Button>
+                        <TextInput style={styles.imperialNumInput} value={this.state.feet} onChangeText= {(feet) =>{this.setState({height: (parseInt(this.state.height) + (parseInt(feet) * 12))})}} placeholder ="Feet" placeholderTextColor='black' keyboardType="number-pad"></TextInput>
+                        <TextInput style={styles.imperialNumInput}  value={this.state.inches} onChangeText= {(inches) =>{this.setState({height : (parseInt(this.state.height) + parseInt(inches))})}} placeholder ="Inches" placeholderTextColor='black' keyboardType="number-pad"></TextInput>
                     </View>
                     <View>
-                        <Text style={styles.smallText}>Weight (lbs.)</Text>
+                        <Text style={styles.smallText}>Weight</Text>
                         <View style={styles.vertAlign}>
-                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => this.getWeight(text)} keyboardType="decimal-pad"></TextInput>
+                        <TextInput style={styles.numInput} onChangeText={text => {this.setState({weight: parseInt(text)})}} placeholder="Lbs." placeholderTextColor='black' keyboardType="number-pad"></TextInput>
                         </View>
                     </View>
+                    <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress(this.state.height, this.state.weight)}></Button>
                 </View>
             )
         }  
@@ -129,6 +131,13 @@ const styles=StyleSheet.create({
         borderColor:'black',
         borderWidth: 2,
     },
+    imperialNumInput:{
+        width: 75,
+        backgroundColor: 'white',
+        height: 50,
+        borderColor:'black',
+        borderWidth: 2,
+    },
     verticalButtonBox:{
         width:'100%'
     },
@@ -147,7 +156,7 @@ const styles=StyleSheet.create({
     },
     vertAlign:{
         flexDirection:'row',
-        width:'100%',
+        width:'40%',
         justifyContent:'space-between'
     },
     container: {

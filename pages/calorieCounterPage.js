@@ -31,10 +31,16 @@ export default class CalorieCounterPage extends Component{
         this.setState({fatInput: parseInt(input)});
     }
     clearInputs = () =>{
-        this.servingInput.clear();
-        this.carbInput.clear();
-        this.proteinInput.clear();
-        this.fatInput.clear();
+       this.servingInput.clear();
+       this.carbInput.clear();
+       this.proteinInput.clear();
+       this.fatInput.clear();
+       this.setState({
+            servings: 0,
+            carbInput: 0,
+            proteinInput: 0,
+            fatInput: 0
+       });
     }
     
 
@@ -51,7 +57,8 @@ export default class CalorieCounterPage extends Component{
                     <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
                     <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
                 </View>
-                <Button ref={this.addCaloriesButton} color={Colors.operationButtons} title="Add Calories" onPress={()=> this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput)}></Button>
+                <Button ref={this.addCaloriesButton} color={Colors.button1} title="Add Calories" onPress={()=> this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput)}></Button>
+                <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.clearInputs()}></Button>
                 <View style={styles.counterContainer}>
                     <Counter percentages={this.props.percentOfCarbs}></Counter>
                     <Counter percentages={this.props.percentOfProteins}></Counter>
@@ -83,6 +90,7 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         height: 60,
+        marginTop: 20,
     },
     labelContainer:{
         flexDirection: 'row',

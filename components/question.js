@@ -58,7 +58,7 @@ export default class Question extends Component{
             return(
                 <View style={styles.container}>
                     <Text style={styles.text}>{this.props.asked}</Text>
-                    <TextInput style={styles.input} value={this.state.input} onChangeText={text => this.getInput(text)} keyboardType="default"></TextInput>
+                    <TextInput style={styles.input} value={this.state.input} onChangeText={text => this.getInput(text)} placeholder={this.props.placehold} placeholderTextColor='black' keyboardType="default"></TextInput>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
                                 <Button color={Colors.operationButtons} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>

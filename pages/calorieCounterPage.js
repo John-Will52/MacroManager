@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, TextInput, StyleSheet, Button} from 'react-native';
+import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert} from 'react-native';
 import {name as appName} from '../app.json';
 import Counter from '../components/counter';
 import Colors from '../styling/colors';
@@ -19,16 +19,36 @@ export default class CalorieCounterPage extends Component{
     // THis is the area that you put your JS logic for functions and stuff at.
     
     addServings = input =>{
-        this.setState({servings: parseInt(input)});
+        if(input > 0){
+            this.setState({servings: parseInt(input)});
+        }
+        else{
+            this.setState({servings: 0});
+        }
     }
     addCarbs = input =>{
-        this.setState({carbInput: parseInt(input)});  
+        if(input > 0){
+            this.setState({carbInput: parseInt(input)});
+        }
+        else{
+            this.setState({carbInput: 0});
+        }
     }
     addProteins = input =>{
-        this.setState({proteinInput: parseInt(input)});
+        if(input > 0){
+            this.setState({proteinInput: parseInt(input)});
+        }
+        else{
+            this.setState({proteinInput: 0});
+        }
     }
     addFats = input =>{
-        this.setState({fatInput: parseInt(input)});
+        if(input > 0){
+            this.setState({fatInput: parseInt(input)});
+        }
+        else{
+            this.setState({fatInput: 0});
+        }
     }
     clearInputs = () =>{
        this.servingInput.clear();
@@ -52,10 +72,10 @@ export default class CalorieCounterPage extends Component{
                 
                 <Text style={styles.text}>Add the amounts of each in grams</Text>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs"></TextInput>
-                    <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
-                    <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
-                    <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
+                    <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                 </View>
                 <Button ref={this.addCaloriesButton} color={Colors.button1} title="Add Calories" onPress={()=> this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput)}></Button>
                 <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.clearInputs()}></Button>

@@ -140,7 +140,7 @@ export default class SurveyPage extends Component{
         if(this.state.name === null){
 
             return(
-                <Question style={styles.container} asked="What is your name?" testType="Input" buttonPress={this.setName}></Question>
+                <Question style={styles.container} asked="What is your name?" testType="Input" buttonPress={this.setName} placehold="Name"></Question>
             );
         }
         else if(this.state.sex === null){

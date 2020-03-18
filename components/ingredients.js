@@ -37,13 +37,13 @@ export default class Ingredients extends Component{
             <View style={styles.border}>
                 <Text>Ingredient {this.props.count}</Text>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Ingredient Name"></TextInput>
+                    <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Ingredient Name" placeholderTextColor='black'></TextInput>
                 </View>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientCarbs = input }} onChangeText={num => this.addIngredientCarbs(num)} keyboardType="number-pad" placeholder="Carbs"></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientProteins = input }} onChangeText={num => this.addIngredientProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientFats = input }} onChangeText={num => this.addIngredientFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={num => this.addIngredientServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
+                    <TextInput style={styles.numInputs} ref={input => { this.ingredientCarbs = input }} onChangeText={num => this.addIngredientCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInputs} ref={input => { this.ingredientProteins = input }} onChangeText={num => this.addIngredientProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInputs} ref={input => { this.ingredientFats = input }} onChangeText={num => this.addIngredientFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={num => this.addIngredientServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                 </View>
             </View>
         );

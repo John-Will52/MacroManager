@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert} from 'react-native';
+import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert, ScrollView} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import Ingredients from '../components/ingredients';
@@ -86,7 +86,7 @@ export default class AddSnacksAndMealsPage extends Component{
                 <View style={styles.pageContainer}>
                 <Text style={styles.text}>Save a Meal</Text>
                 <View style= {styles.mealBox}>
-                    <TextInput style={styles.nameInputs} ref={input => { this.mealName = input }} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name"></TextInput>
+                    <TextInput style={styles.nameInputs} ref={input => { this.mealName = input }} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black'></TextInput>
                     {recipe}
                     <View style={styles.horizontalButtonContainer}>
                         <View style={styles.horizontalButtonBox}>
@@ -108,13 +108,13 @@ export default class AddSnacksAndMealsPage extends Component{
                     <Text style={styles.text}>Save a Snack</Text>
                     <View style={styles.mealBox}>
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.nameInputs} ref={input => { this.snackName = input }} onChangeText={name => this.addSnackName(name)} keyboardType="default" placeholder="Snack Name"></TextInput>
+                            <TextInput style={styles.nameInputs} ref={input => { this.snackName = input }} onChangeText={name => this.addSnackName(name)} keyboardType="default" placeholder="Snack Name" placeholderTextColor='black'></TextInput>
                         </View>
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.numInputs} ref={input => { this.snackCarbs = input }} onChangeText={num => this.addSnackCarbs(num)} keyboardType="number-pad" placeholder="Carbs"></TextInput>
-                            <TextInput style={styles.numInputs} ref={input => { this.snackProteins = input }} onChangeText={num => this.addSnackProteins(num)} keyboardType="number-pad" placeholder="Proteins"></TextInput>
-                            <TextInput style={styles.numInputs} ref={input => { this.snackFats = input }} onChangeText={num => this.addSnackFats(num)} keyboardType="number-pad" placeholder="Fats"></TextInput>
-                            <TextInput style={styles.numInputs} ref={input => { this.snackServings = input }} onChangeText={num => this.addSnackServings(num)} keyboardType="number-pad" placeholder="Servings"></TextInput>
+                            <TextInput style={styles.numInputs} ref={input => { this.snackCarbs = input }} onChangeText={num => this.addSnackCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
+                            <TextInput style={styles.numInputs} ref={input => { this.snackProteins = input }} onChangeText={num => this.addSnackProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
+                            <TextInput style={styles.numInputs} ref={input => { this.snackFats = input }} onChangeText={num => this.addSnackFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
+                            <TextInput style={styles.numInputs} ref={input => { this.snackServings = input }} onChangeText={num => this.addSnackServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                         </View>
                         <Button title="Save Snack" color={Colors.operationButtons} onPress={()=>this.props.saveSnack(this.state.item, this.state.snackName, this.state.snackCarbs, this.state.snackProteins, this.state.snackFats, this.state.snackServings)}></Button>
                     </View>

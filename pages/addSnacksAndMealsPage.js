@@ -44,19 +44,29 @@ export default class AddSnacksAndMealsPage extends Component{
 
     }
     addSnackName = input =>{
+        if(input.length > 0){
         this.setState({snackName: input})
+        }
     }
     addSnackCarbs = input =>{
+        if(input > 0){
         this.setState({snackCarbs: parseInt(input)})
+        }
     }
     addSnackProteins = input =>{
+        if(input > 0){
         this.setState({snackProteins: parseInt(input)})
+        }
     }
     addSnackFats = input =>{
+        if(input > 0){
         this.setState({snackFats: parseInt(input)})
-    }
+
+}    }
     addSnackServings = input =>{
+        if(input > 0){
         this.setState({snackServings: parseInt(input)})
+        }
     }
 
 

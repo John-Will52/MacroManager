@@ -17,19 +17,29 @@ export default class Ingredients extends Component{
     // THis is the area that you put your JS logic for functions and stuff at.
 
     addIngredientName = input =>{
-        this.setState({name: input});
+        if(input.length > 0){
+            this.setState({name: input});
+        }
     }
     addIngredientCarbs = input =>{
+        if(input > 0){
         this.setState({carbs: parseInt(input)});
+        }
     }
     addIngredientProteins = input =>{
+        if(input > 0){
         this.setState({proteins: parseInt(input)});
+        }
     }
     addIngredientFats = input =>{
+        if(input > 0){
         this.setState({fats: parseInt(input)});
+        }
     }
     addIngredientServings = input =>{
+        if(input > 0){
         this.setState({fats: parseInt(input)});
+        }
     }
 
     render(){

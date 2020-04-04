@@ -69,7 +69,6 @@ export default class CalorieCounterPage extends Component{
     render(){
         return(
             <View style={styles.pageContainer}>
-                
                 <Text style={styles.text}>Add the amounts of each in grams</Text>
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
@@ -77,7 +76,7 @@ export default class CalorieCounterPage extends Component{
                     <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
                     <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                 </View>
-                <Button ref={this.addCaloriesButton} color={Colors.button1} title="Add Calories" onPress={()=> this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput)}></Button>
+                <Button ref={this.addCaloriesButton} color={Colors.button1} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())}></Button>
                 <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.clearInputs()}></Button>
                 <View style={styles.counterContainer}>
                     <Counter percentages={this.props.percentOfCarbs}></Counter>

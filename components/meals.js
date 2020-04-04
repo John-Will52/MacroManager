@@ -10,11 +10,12 @@ export default class Meals extends Component{
     constructor(props) {
         super()
         this.state = {
-            ingredientCounter:2,
+            ingredientCounter:1,
             name: null,
             carbs: 0,
             proteins: 0,
             fats: 0,
+            servings:1
 
         }
     }
@@ -26,7 +27,7 @@ export default class Meals extends Component{
         });
     }
     
-    saveMeal = (servings, carbs, proteins, fats) => {
+    addIngredients = (servings, carbs, proteins, fats) => {
         let addedCarbs= carbs * servings;
         let addedProteins= proteins * servings;
         let addedFats= fats * servings;
@@ -35,8 +36,23 @@ export default class Meals extends Component{
             carbs: this.state.carbs + addedCarbs,
             proteins: this.state.proteins + addedProteins,
             fats: this.state.fats + addedFats,
+            ingredientCounter: this.state.ingredientCounter + 1,
         })
-   
+     }
+     saveMeal = (servings, carbs, proteins, fats) => {
+        let addedCarbs= carbs * servings;
+        let addedProteins= proteins * servings;
+        let addedFats= fats * servings;
+
+        this.setState({
+            carbs: this.state.carbs + addedCarbs,
+            proteins: this.state.proteins + addedProteins,
+            fats: this.state.fats + addedFats,
+        })      
+    // Change the "Save Items" parts BACK to "Save Snacks/Meals" They must be handled differently
+
+        return this.props.saveItem(this.state.name, this.state.carbs, this.state.proteins, this.state.fats, this.state.servings);
+
      }
 
 
@@ -44,7 +60,7 @@ export default class Meals extends Component{
         var recipe = [];
         for(let i=0; i<this.state.ingredientCounter; i++){
             recipe.push(
-                <Ingredients key={i} count={i + 1}></Ingredients>
+                <Ingredients key={i} count={i + 1} counter={this.state.ingredientCounter} addCalories={this.addIngredients} saveMeal={this.saveMeal}></Ingredients>
                 )
         }
         return(
@@ -53,17 +69,12 @@ export default class Meals extends Component{
             <View style= {styles.mealBox}>
                 <TextInput style={styles.nameInputs} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black'></TextInput>
                 {recipe}
-                <View style={styles.horizontalButtonContainer}>
-                    <View style={styles.horizontalButtonBox}>
-                        <Button title="+" color={Colors.button1} onPress={()=> this.setState({ingredientCounter: (this.state.ingredientCounter + 1)})}></Button>
-                    </View>
-                    <View style={styles.horizontalButtonBox}>
-                        <Button title="-" color={Colors.button2} onPress={()=>this.setState({ingredientCounter: (this.state.ingredientCounter - 1)})}></Button>
-                    </View>
-                </View>
-                <Button title="Save Meal" color={Colors.operationButtons} onPress={()=>this.saveMeal()}></Button>
+                {/* <Button title="Save Meal" color={Colors.operationButtons} onPress={()=>this.props.addIngredients()}></Button> */}
             </View>
             {this.props.children}
+            <Text>{this.state.carbs}</Text>
+            <Text>{this.state.proteins}</Text>
+            <Text>{this.state.fats}</Text>
         </View>
         );
     }

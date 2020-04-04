@@ -97,10 +97,6 @@ export default class App extends Component{
         percentOfTotalCalories: (t/this.state.allottedTotal) * 100 + this.state.percentOfTotalCalories,
       })
     }
-    saveAMeal = () =>{
-      let newMealArray = this.state.savedMeals.map(meal => (meal.name==='name'? {...meal, key: (this.state.savedMeals.length)}: meal))
-      this.setState({savedMeals: newMealArray})
-    }
     saveItems = (item) =>{
       this.setState(state =>{
         const savedItems = [...state.savedItems, item];
@@ -159,6 +155,7 @@ export default class App extends Component{
         </SafeAreaView>
       );
     }
+    // Change the "Save Items" parts BACK to "Save Snacks/Meals" They must be handled differently
     else if(this.state.allottedTotal != null && this.state.pageNumber === 1){
       return(
         <SafeAreaView style={styles.background}>

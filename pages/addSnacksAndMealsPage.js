@@ -17,7 +17,7 @@ export default class AddSnacksAndMealsPage extends Component{
         }
     }
 
-    // THis is the area that you put your JS logic for functions and stuff at.
+    // Change the "Save Items" parts BACK to "Save Snacks/Meals" They must be handled differently
     setItemType = input => {
         this.setState({item:input});
     }
@@ -36,10 +36,7 @@ export default class AddSnacksAndMealsPage extends Component{
             this.props.changePage(2)
         );
     }
-    saveMeal = (mealName, mealCarbs) =>{
-        Alert.alert("Save Meal worked!", "Just a temporary test function for this button's functionality.")
 
-    }
     
     
  

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {AppRegistry, View, Text, TextInput, StyleSheet, Button} from 'react-native';
 import {name as appName} from '../app.json';
+import Colors from '../styling/colors';
+
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class Ingredients extends Component{
@@ -56,20 +58,43 @@ export default class Ingredients extends Component{
  
 
     render(){
-        return(
-            <View style={styles.border}>
-                <Text>Ingredient {this.props.count}</Text>
-                <View style={styles.inputContainer}>
-                    <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Ingredient Name" placeholderTextColor='black'></TextInput>
+        if(this.props.count == this.props.counter){
+            return(
+                <View style={styles.border}>
+                    <Text>Ingredient {this.props.count}</Text>
+                    <View style={styles.inputContainer}>
+                        <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Ingredient Name" placeholderTextColor='black'></TextInput>
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <TextInput style={styles.numInputs} ref={input => { this.ingredientCarbs = input }} onChangeText={carbs => this.addIngredientCarbs(carbs)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.numInputs} ref={input => { this.ingredientProteins = input }} onChangeText={proteins => this.addIngredientProteins(proteins)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.numInputs} ref={input => { this.ingredientFats = input }} onChangeText={fats => this.addIngredientFats(fats)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={servings => this.addIngredientServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <Button title="Add Ingredient" color={Colors.button1} onPress={()=> this.props.addCalories(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)}></Button>
+                        <Button title="Submit Meal" color={Colors.button2} onPress={()=> this.props.saveMeal(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)}></Button>
+                    </View>
+
                 </View>
-                <View style={styles.inputContainer}>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientCarbs = input }} onChangeText={carbs => this.addIngredientCarbs(carbs)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientProteins = input }} onChangeText={proteins => this.addIngredientProteins(proteins)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientFats = input }} onChangeText={fats => this.addIngredientFats(fats)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={servings => this.addIngredientServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
+            );
+        }
+        else{
+            return(
+                <View style={styles.border}>
+                    <Text>Ingredient {this.props.count}</Text>
+                    <View style={styles.inputContainer}>
+                        <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Ingredient Name" placeholderTextColor='black'></TextInput>
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <TextInput style={styles.numInputs} ref={input => { this.ingredientCarbs = input }} onChangeText={carbs => this.addIngredientCarbs(carbs)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.numInputs} ref={input => { this.ingredientProteins = input }} onChangeText={proteins => this.addIngredientProteins(proteins)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.numInputs} ref={input => { this.ingredientFats = input }} onChangeText={fats => this.addIngredientFats(fats)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={servings => this.addIngredientServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
     }
 }
 
@@ -94,15 +119,14 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 60,
         padding: 5,
+        justifyContent: 'space-evenly'
     },
     border:{
         borderBottomWidth: 2,
         borderBottomColor: "black",
         marginBottom: 10,
         marginTop: 10,
-    }
-
-    
+    },    
 })
 
 AppRegistry.registerComponent(appName, () => Ingredients);

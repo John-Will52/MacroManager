@@ -23,7 +23,7 @@ export default class Ingredients extends Component{
     }
     addIngredientCarbs = input =>{
         if(input >= 0  && input != null){
-        this.setState({mealCarbs: parseInt(input)});
+        this.setState({carbs: parseInt(input)});
         }
         else{
             Alert.alert("Error", "Please put a number in the Carbs box.")
@@ -31,7 +31,7 @@ export default class Ingredients extends Component{
     }
     addIngredientProteins = input =>{
         if(input >= 0  && input != null){
-        this.setState({mealProteins: parseInt(input)});
+        this.setState({proteins: parseInt(input)});
         }
         else{
             Alert.alert("Error", "Please put a number in the Proteins box.")
@@ -39,7 +39,7 @@ export default class Ingredients extends Component{
     }
     addIngredientFats = input =>{
         if(input >= 0 && input != null){
-        this.setState({mealFats: parseInt(input)});
+        this.setState({fats: parseInt(input)});
         }
         else{
             Alert.alert("Error", "Please put a number in the Fats box.")
@@ -47,7 +47,7 @@ export default class Ingredients extends Component{
     }
     addIngredientServings = input =>{
         if(input >= 0  && input != null){
-        this.setState({ervings: parseInt(input)});
+        this.setState({servings: parseInt(input)});
         }
         else{
             Alert.alert("Error", "Please put a number in the Servings box.")

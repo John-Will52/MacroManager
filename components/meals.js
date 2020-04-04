@@ -11,18 +11,31 @@ export default class Meals extends Component{
         super()
         this.state = {
             ingredientCounter:2,
-            mealName: null,
-            mealCarbs: 0,
-            mealProteins: 0,
-            mealFats: 0,
-            mealServings: 0,
+            name: null,
+            carbs: 0,
+            proteins: 0,
+            fats: 0,
+
         }
     }
 
     // THis is the area that you put your JS logic for functions and stuff at.
-    MealsFunction = () => {
+    addMealName = input => {
+        this.setState({
+            name: input,
+        });
+    }
+    
+    saveMeal = (servings, carbs, proteins, fats) => {
+        let addedCarbs= carbs * servings;
+        let addedProteins= proteins * servings;
+        let addedFats= fats * servings;
 
-        this.setState({MealsVariable:''})
+        this.setState({
+            carbs: this.state.carbs + addedCarbs,
+            proteins: this.state.proteins + addedProteins,
+            fats: this.state.fats + addedFats,
+        })
    
      }
 
@@ -31,14 +44,14 @@ export default class Meals extends Component{
         var recipe = [];
         for(let i=0; i<this.state.ingredientCounter; i++){
             recipe.push(
-                <Ingredients key={i} count={i + 1} addIngredientName={this.addIngredientName} addIngredientCarbs={this.addIngredientCarbs} addIngredientProteins={this.addIngredientProteins} addIngredientFats={this.addIngredientFats} addIngredientServings={this.addIngredientServings}></Ingredients>
+                <Ingredients key={i} count={i + 1}></Ingredients>
                 )
         }
         return(
             <View style={styles.pageContainer}>
             <Text style={styles.text}>Save a Meal</Text>
             <View style= {styles.mealBox}>
-                <TextInput style={styles.nameInputs} ref={input => { this.mealName = input }} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black'></TextInput>
+                <TextInput style={styles.nameInputs} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black'></TextInput>
                 {recipe}
                 <View style={styles.horizontalButtonContainer}>
                     <View style={styles.horizontalButtonBox}>
@@ -50,7 +63,7 @@ export default class Meals extends Component{
                 </View>
                 <Button title="Save Meal" color={Colors.operationButtons} onPress={()=>this.saveMeal()}></Button>
             </View>
-            <Button title="Return to Calorie Counter" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+            {this.props.children}
         </View>
         );
     }

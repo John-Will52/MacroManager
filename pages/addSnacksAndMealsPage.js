@@ -63,7 +63,12 @@ export default class AddSnacksAndMealsPage extends Component{
         }
         else if(this.state.item === "Meal"){
             return(
-                <Meals saveMeal={this.saveMeal}></Meals>
+                <View>
+                    <Meals saveItem={this.saveItem}>
+                        <Button title="Calorie Counter Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                        <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
+                    </Meals>
+                </View>
             );
         }
         else if(this.state.item === "Snack"){

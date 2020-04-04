@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert} from 'react-native';
 import {name as appName} from '../app.json';
-import Ingredients from './ingredients';
 import Colors from '../styling/colors';
 
 // AppRegistry is the JS entry point for all ReactNative apps. 
@@ -37,8 +36,8 @@ export default class Snacks extends Component{
     addSnackFats = input =>{
         if(input > 0){
         this.setState({snackFats: parseInt(input)})
-
-}    }
+        }    
+    }
     addSnackServings = input =>{
         if(input > 0){
         this.setState({snackServings: parseInt(input)})
@@ -62,11 +61,6 @@ export default class Snacks extends Component{
                     </View>
                     <Button title="Save Snack" color={Colors.operationButtons} onPress={()=>this.props.saveItem(this.state.snackName, this.state.snackCarbs, this.state.snackProteins, this.state.snackFats, this.state.snackServings)}></Button>
                 </View>
-                <Text>{this.state.snackName}</Text>
-                <Text>{this.state.snackCarbs}</Text>
-                <Text>{this.state.snackProteins}</Text>
-                <Text>{this.state.snackFats}</Text>
-                <Text>{this.state.snackServings}</Text>
             </View>
         );
     }

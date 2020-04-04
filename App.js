@@ -109,11 +109,11 @@ export default class App extends Component{
         };
       });  
     }
-
+    
     list = () => {
-      return this.state.savedItems.map(element => {
+      return this.state.savedItems.map((element, index) => {
         return (
-          <View key={this.state.savedItems.length} style={styles.itemBox}>
+          <View key={index} style={styles.itemBox}>
             <Text>Item type: {element.item}</Text>
             <Text style={styles.itemName}>{element.name}</Text>
             <View style={styles.macroFactsBox}>
@@ -129,11 +129,10 @@ export default class App extends Component{
                 <Text>Fats: {element.fats} grams</Text>
               </View>
               <View style={styles.macroFacts}>
-                <Text>Servings: {element.servings} grams</Text>
+                <Text>Servings: {element.servings}</Text>
               </View>
             </View>
             <Button color={Colors.button1} title="+" onPress={()=> this.addItemCalories(element.servings, element.carbs, element.proteins, element.fats)}></Button>
-
           </View>
         );
       });

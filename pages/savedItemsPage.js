@@ -26,7 +26,7 @@ export default class SavedItemsPage extends Component{
     render(){
         return(
             <View>
-                {this.props.snackList}
+                {this.props.itemList}
                 <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
                 <Button title="Add a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
             </View>

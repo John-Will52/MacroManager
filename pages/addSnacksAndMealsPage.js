@@ -22,21 +22,21 @@ export default class AddSnacksAndMealsPage extends Component{
         this.setState({item:input});
     }
 
-    saveSnack = (snackName, snackCarbs, snackProteins, snackFats, snackServings) =>{
-        newSnack={
+    saveItem = (itemName, itemCarbs, itemProteins, itemFats, itemServings) =>{
+        newItem={
             item: this.state.item,
-            name: snackName,
-            carbs: snackCarbs,
-            proteins: snackProteins,
-            fats: snackFats,
-            servings: snackServings
+            name: itemName,
+            carbs: itemCarbs,
+            proteins: itemProteins,
+            fats: itemFats,
+            servings: itemServings
         }
         return (
-            this.props.saveSnack(newSnack),
+            this.props.saveItem(newItem),
             this.props.changePage(2)
         );
     }
-    saveMeal = () =>{
+    saveMeal = (mealName, mealCarbs) =>{
         Alert.alert("Save Meal worked!", "Just a temporary test function for this button's functionality.")
 
     }
@@ -69,7 +69,7 @@ export default class AddSnacksAndMealsPage extends Component{
         else if(this.state.item === "Snack"){
             return(
                 <View>
-                    <Snacks saveSnack={this.saveSnack}></Snacks>
+                    <Snacks saveItem={this.saveItem}></Snacks>
                     <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
                     <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
                 </View>

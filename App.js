@@ -101,9 +101,9 @@ export default class App extends Component{
       let newMealArray = this.state.savedMeals.map(meal => (meal.name==='name'? {...meal, key: (this.state.savedMeals.length)}: meal))
       this.setState({savedMeals: newMealArray})
     }
-    saveSnacks = (snack) =>{
+    saveItems = (item) =>{
       this.setState(state =>{
-        const savedItems = [...state.savedItems, snack];
+        const savedItems = [...state.savedItems, item];
         return {
           savedItems
         };
@@ -113,7 +113,7 @@ export default class App extends Component{
     list = () => {
       return this.state.savedItems.map(element => {
         return (
-          <View style={styles.itemBox}>
+          <View key={this.state.savedItems.length} style={styles.itemBox}>
             <Text>Item type: {element.item}</Text>
             <Text style={styles.itemName}>{element.name}</Text>
             <View style={styles.macroFactsBox}>
@@ -164,7 +164,7 @@ export default class App extends Component{
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <AddSnacksAndMealsPage saveSnack={this.saveSnacks} saveMeal={this.saveMeals} changePage={this.navigator}></AddSnacksAndMealsPage>
+            <AddSnacksAndMealsPage saveItem={this.saveItems} changePage={this.navigator}></AddSnacksAndMealsPage>
           </ScrollView>
         </SafeAreaView>
       );
@@ -173,7 +173,7 @@ export default class App extends Component{
       return(
         <SafeAreaView style={styles.background}>
           <View>
-            <SavedItemsPage snackList={this.list()} changePage={this.navigator}></SavedItemsPage>
+            <SavedItemsPage itemList={this.list()} changePage={this.navigator}></SavedItemsPage>
           </View>
         </SafeAreaView>
       );

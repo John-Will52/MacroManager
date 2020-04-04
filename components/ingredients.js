@@ -8,39 +8,52 @@ export default class Ingredients extends Component{
         super()
         this.state = {
             name: null,
-            carbs: null,
-            proteins: null,
-            fats: null
+            carbs: 0,
+            proteins: 0,
+            fats: 0,
+            servings: 0,
         }
     }
 
     // THis is the area that you put your JS logic for functions and stuff at.
-
     addIngredientName = input =>{
         if(input.length > 0){
             this.setState({name: input});
         }
     }
     addIngredientCarbs = input =>{
-        if(input > 0){
-        this.setState({carbs: parseInt(input)});
+        if(input >= 0  && input != null){
+        this.setState({mealCarbs: parseInt(input)});
+        }
+        else{
+            Alert.alert("Error", "Please put a number in the Carbs box.")
         }
     }
     addIngredientProteins = input =>{
-        if(input > 0){
-        this.setState({proteins: parseInt(input)});
+        if(input >= 0  && input != null){
+        this.setState({mealProteins: parseInt(input)});
+        }
+        else{
+            Alert.alert("Error", "Please put a number in the Proteins box.")
         }
     }
     addIngredientFats = input =>{
-        if(input > 0){
-        this.setState({fats: parseInt(input)});
+        if(input >= 0 && input != null){
+        this.setState({mealFats: parseInt(input)});
+        }
+        else{
+            Alert.alert("Error", "Please put a number in the Fats box.")
         }
     }
     addIngredientServings = input =>{
-        if(input > 0){
-        this.setState({fats: parseInt(input)});
+        if(input >= 0  && input != null){
+        this.setState({ervings: parseInt(input)});
+        }
+        else{
+            Alert.alert("Error", "Please put a number in the Servings box.")
         }
     }
+ 
 
     render(){
         return(
@@ -50,10 +63,10 @@ export default class Ingredients extends Component{
                     <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Ingredient Name" placeholderTextColor='black'></TextInput>
                 </View>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientCarbs = input }} onChangeText={num => this.addIngredientCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientProteins = input }} onChangeText={num => this.addIngredientProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientFats = input }} onChangeText={num => this.addIngredientFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={num => this.addIngredientServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInputs} ref={input => { this.ingredientCarbs = input }} onChangeText={carbs => this.addIngredientCarbs(carbs)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInputs} ref={input => { this.ingredientProteins = input }} onChangeText={proteins => this.addIngredientProteins(proteins)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInputs} ref={input => { this.ingredientFats = input }} onChangeText={fats => this.addIngredientFats(fats)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={servings => this.addIngredientServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                 </View>
             </View>
         );

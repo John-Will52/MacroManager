@@ -133,7 +133,8 @@ export default class SurveyPage extends Component{
             units:null,
             height : null,
             weight : null,
-            BMI : null,})
+            BMI : null,
+        })
     }
 
     render(){
@@ -147,7 +148,7 @@ export default class SurveyPage extends Component{
             
             return(
                 <>
-                <Question asked="Are you Male or Female?" testType="Dilemma" optionOne="Male" optionTwo="Female" buttonPress ={this.setSex}></Question>
+                <Question asked="Are you..." testType="Dilemma" optionOne="Male" optionTwo="Female" stateOptionOne="Male" stateOptionTwo="Female" buttonPress ={this.setSex}></Question>
                 </>
             );   
         }
@@ -155,7 +156,7 @@ export default class SurveyPage extends Component{
             
             return(
                 <>
-                <Question asked="Are you trying to GAIN MUSCLE, or LOSE FAT?" testType="Dilemma" optionOne="Gain" optionTwo="Lose" buttonPress ={this.setGoal}></Question>
+                <Question asked="Are you trying to..." testType="Dilemma" optionOne="Gain Mass" optionTwo="Burn Fat" stateOptionOne="Gain" stateOptionTwo="Lose" buttonPress ={this.setGoal}></Question>
                 </>
             );   
         }
@@ -163,7 +164,7 @@ export default class SurveyPage extends Component{
             
             return(
                 <>
-                <Question asked="Do you measure with the metric or imperial system?" testType="Dilemma" optionOne="Metric" optionTwo="Imperial" buttonPress = {this.selectUnits}></Question>
+                <Question asked="Do you measure with..." testType="Dilemma" optionOne="Metric System" optionTwo="Imperial System" stateOptionOne="Metric" stateOptionTwo="Imperial" buttonPress = {this.selectUnits}></Question>
                 </>
             );   
         }
@@ -176,7 +177,7 @@ export default class SurveyPage extends Component{
                 </>
             );   
         }
-        else if (this.state.BMI != null || this.state.BMI != 'NaN'){
+        else if (this.state.BMI != null || this.state.BMI !== NaN){
             
             return(
                 <>

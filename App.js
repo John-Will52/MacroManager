@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, Text, Alert} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, Text, View, Alert, Button} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
-
+import SavedItemsPage from './pages/savedItemsPage';
 import Colors from './styling/colors';
 
 
@@ -33,6 +33,7 @@ export default class App extends Component{
         percentOfFats: 0,
         percentOfTotalCalories: 0,
         pageNumber: 0,
+        savedItems:[],
         
     }
   }
@@ -72,6 +73,22 @@ export default class App extends Component{
       this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
     }
 
+    addItemCalories = (servings, carbs, proteins, fats) => {
+      let addedCarbs= carbs * servings * 4;
+      let addedProteins= proteins * servings * 4;
+      let addedFats= fats * servings * 9;
+      let addedTotal = addedCarbs + addedProteins + addedFats;
+      this.setState({
+        currentCarbs: this.state.currentCarbs + addedCarbs,
+        currentProteins: this.state.currentProteins + addedProteins,
+        currentFats: this.state.currentFats + addedFats,
+        currentTotal: this.state.currentTotal + addedTotal,
+      })
+
+      this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
+      this.navigator(0);
+    }
+
     percentCalculator = (c, p, f, t) =>{
       this.setState({
         percentOfCarbs: (c/this.state.allottedCarbs) * 100 + this.state.percentOfCarbs,
@@ -80,9 +97,47 @@ export default class App extends Component{
         percentOfTotalCalories: (t/this.state.allottedTotal) * 100 + this.state.percentOfTotalCalories,
       })
     }
-    
+    saveAMeal = () =>{
+      let newMealArray = this.state.savedMeals.map(meal => (meal.name==='name'? {...meal, key: (this.state.savedMeals.length)}: meal))
+      this.setState({savedMeals: newMealArray})
+    }
+    saveSnacks = (snack) =>{
+      this.setState(state =>{
+        const savedItems = [...state.savedItems, snack];
+        return {
+          savedItems
+        };
+      });  
+    }
 
+    list = () => {
+      return this.state.savedItems.map(element => {
+        return (
+          <View style={styles.itemBox}>
+            <Text>Item type: {element.item}</Text>
+            <Text style={styles.itemName}>{element.name}</Text>
+            <View style={styles.macroFactsBox}>
+              <View style={styles.macroFacts}>
+                <Text>Carbs: {element.carbs} grams</Text>
+              </View>
+              <View style={styles.macroFacts}>
+                <Text>Proteins: {element.proteins} grams</Text>
+              </View>
+            </View>
+            <View style={styles.macroFactsBox}>
+              <View style={styles.macroFacts}>
+                <Text>Fats: {element.fats} grams</Text>
+              </View>
+              <View style={styles.macroFacts}>
+                <Text>Servings: {element.servings} grams</Text>
+              </View>
+            </View>
+            <Button color={Colors.button1} title="+" onPress={()=> this.addItemCalories(element.servings, element.carbs, element.proteins, element.fats)}></Button>
 
+          </View>
+        );
+      });
+    };
     
 
 
@@ -101,7 +156,6 @@ export default class App extends Component{
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
             <CalorieCounterPage changePage={this.navigator} addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
-            <Text>{this.state.savedSnacks}</Text>
           </ScrollView>
         </SafeAreaView>
       );
@@ -110,8 +164,17 @@ export default class App extends Component{
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <AddSnacksAndMealsPage changePage={this.navigator}></AddSnacksAndMealsPage>
+            <AddSnacksAndMealsPage saveSnack={this.saveSnacks} saveMeal={this.saveMeals} changePage={this.navigator}></AddSnacksAndMealsPage>
           </ScrollView>
+        </SafeAreaView>
+      );
+    }
+    else if(this.state.allottedTotal != null && this.state.pageNumber === 2){
+      return(
+        <SafeAreaView style={styles.background}>
+          <View>
+            <SavedItemsPage snackList={this.list()} changePage={this.navigator}></SavedItemsPage>
+          </View>
         </SafeAreaView>
       );
     }
@@ -125,5 +188,27 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     height: '100%'
   },
+  itemBox:{
+    backgroundColor: 'white',
+    width: '80%',
+    alignSelf: 'center',
+    borderColor: 'black',
+    borderWidth: 2,
+    marginVertical: 10,
+
+  },
+  itemName:{
+    fontSize: 25,
+    fontWeight: 'bold'
+  },
+  macroFactsBox:{
+    width: '50%',
+    flexDirection: 'row',
+  },
+  macroFacts:{
+    marginHorizontal: 20,
+    marginVertical: 5,
+
+  }
   
 });

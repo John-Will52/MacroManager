@@ -92,6 +92,7 @@ export default class CalorieCounterPage extends Component{
                     <Text style={styles.labels}>Total</Text>
                 </View>
                 <Button title="Save a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
+                <Button title="Eat a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
             </View>
         );
     }

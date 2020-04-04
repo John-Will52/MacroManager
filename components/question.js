@@ -45,10 +45,10 @@ export default class Question extends Component{
                     <Text style={styles.text}>{this.props.asked}</Text>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button1} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.optionOne)}></Button>
+                                <Button color={Colors.button1} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.stateOptionOne)}></Button>
                             </View>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button2} title={this.props.optionTwo} onPress={()=>this.props.buttonPress(this.props.optionTwo)}></Button>
+                                <Button color={Colors.button2} title={this.props.optionTwo} onPress={()=>this.props.buttonPress(this.props.stateOptionTwo)}></Button>
                             </View>
                         </View>
                 </View>
@@ -116,13 +116,14 @@ const styles=StyleSheet.create({
         alignSelf: 'center'
     },
     text:{
-        fontSize: 45,
+        fontSize: 50,
         textDecorationLine: 'underline',
         textAlign:'center',
         color: Colors.text,
     },
     smallText:{
         fontSize: 30,
+        color: Colors.text,
     },
     numInput:{
         width: 150,
@@ -132,11 +133,12 @@ const styles=StyleSheet.create({
         borderWidth: 2,
     },
     imperialNumInput:{
-        width: 75,
+        width: 70,
         backgroundColor: 'white',
         height: 50,
         borderColor:'black',
         borderWidth: 2,
+        marginRight: 10,
     },
     verticalButtonBox:{
         width:'100%'
@@ -161,7 +163,8 @@ const styles=StyleSheet.create({
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
+        paddingHorizontal: 37,
+        justifyContent: 'space-evenly'
       },
     
 

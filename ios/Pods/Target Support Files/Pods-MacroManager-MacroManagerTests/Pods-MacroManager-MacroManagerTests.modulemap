@@ -1,0 +1,6 @@
+module Pods_MacroManager_MacroManagerTests {
+  umbrella header "Pods-MacroManager-MacroManagerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

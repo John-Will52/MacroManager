@@ -1,0 +1,6 @@
+module Pods_MacroManager {
+  umbrella header "Pods-MacroManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

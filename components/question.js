@@ -73,13 +73,13 @@ export default class Question extends Component{
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => {this.setState({height: parseInt(text)})}} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad"></TextInput>
+                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => {this.setState({height: parseInt(text)})}} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)}></Button>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight</Text>
                         <View style={styles.vertAlign}>
-                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => {this.setState({weight: parseInt(text)})}}placeholder="kg." placeholderTextColor='black' keyboardType="number-pad"></TextInput>
+                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => {this.setState({weight: parseInt(text)})}}placeholder="kg." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         </View>
                     </View>
                 </View>
@@ -91,13 +91,13 @@ export default class Question extends Component{
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.imperialNumInput} value={this.state.feet} onChangeText= {(feet) =>{this.setState({height: (parseInt(this.state.height) + (parseInt(feet) * 12))})}} placeholder ="Feet" placeholderTextColor='black' keyboardType="number-pad"></TextInput>
-                        <TextInput style={styles.imperialNumInput}  value={this.state.inches} onChangeText= {(inches) =>{this.setState({height : (parseInt(this.state.height) + parseInt(inches))})}} placeholder ="Inches" placeholderTextColor='black' keyboardType="number-pad"></TextInput>
+                        <TextInput style={styles.imperialNumInput} value={this.state.feet} onChangeText= {(feet) =>{this.setState({height: (parseInt(this.state.height) + (parseInt(feet) * 12))})}} placeholder ="Feet" placeholderTextColor='black' keyboardType="number-pad" maxLength={1} ></TextInput>
+                        <TextInput style={styles.imperialNumInput}  value={this.state.inches} onChangeText= {(inches) =>{this.setState({height : (parseInt(this.state.height) + parseInt(inches))})}} placeholder ="Inches" placeholderTextColor='black' keyboardType="number-pad" maxLength={2}></TextInput>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight</Text>
                         <View style={styles.vertAlign}>
-                        <TextInput style={styles.numInput} onChangeText={text => {this.setState({weight: parseInt(text)})}} placeholder="Lbs." placeholderTextColor='black' keyboardType="number-pad"></TextInput>
+                        <TextInput style={styles.numInput} onChangeText={text => {this.setState({weight: parseInt(text)})}} placeholder="Lbs." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         </View>
                     </View>
                     <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress(this.state.height, this.state.weight)}></Button>
@@ -154,7 +154,6 @@ const styles=StyleSheet.create({
     horizontalButtonContainer:{
         flexDirection: 'row',
         justifyContent:'space-evenly',
-        marginTop: 20,
     },
     vertAlign:{
         flexDirection:'row',
@@ -163,8 +162,16 @@ const styles=StyleSheet.create({
     },
     container: {
         flex: 1,
-        paddingHorizontal: 37,
-        justifyContent: 'space-evenly'
+        padding: 5,
+        justifyContent: 'space-evenly',
+        height: 400,
+        borderColor: 'black',
+        backgroundColor: 'rgb(175,175,175)',
+        borderWidth: 3,
+        width: '95%',
+        alignSelf: 'center',
+        marginTop: 100,
+        borderRadius: 25,
       },
     
 

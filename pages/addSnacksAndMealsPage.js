@@ -17,24 +17,56 @@ export default class AddSnacksAndMealsPage extends Component{
         }
     }
 
-    // Change the "Save Items" parts BACK to "Save Snacks/Meals" They must be handled differently
+
     setItemType = input => {
         this.setState({item:input});
     }
 
     saveItem = (itemName, itemCarbs, itemProteins, itemFats, itemServings) =>{
-        newItem={
-            item: this.state.item,
-            name: itemName,
-            carbs: itemCarbs,
-            proteins: itemProteins,
-            fats: itemFats,
-            servings: itemServings
+        if(this.state.item == 'Meal'){
+            newItem={
+                item: this.state.item,
+                name: itemName,
+                carbs: itemCarbs,
+                proteins: itemProteins,
+                fats: itemFats,
+                servings: itemServings
+            }
+            return (
+                this.props.saveItem(newItem),
+                this.props.changePage(2)
+            );
         }
-        return (
-            this.props.saveItem(newItem),
-            this.props.changePage(2)
-        );
+        if(this.state.item == 'Meal' && itemServings > 1){
+            newItem={
+                item: this.state.item,
+                name: itemName,
+                carbs: itemCarbs / itemServings,
+                proteins: itemProteins / itemServings,
+                fats: itemFats / itemServings,
+                servings: itemServings
+            }
+            return (
+                this.props.saveItem(newItem),
+                this.props.changePage(2)
+            );
+        }
+        if(this.state.item == 'Snack'){
+            newItem={
+                item: this.state.item,
+                name: itemName,
+                carbs: itemCarbs,
+                proteins: itemProteins,
+                fats: itemFats,
+                servings: itemServings
+            }
+            return (
+                this.props.saveItem(newItem),
+                this.props.changePage(2)
+            );
+        }
+
+        
     }
 
     

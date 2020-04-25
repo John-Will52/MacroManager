@@ -17,6 +17,7 @@ export default class SurveyPage extends Component{
             height : null,
             weight : null,
             BMI : null,
+            level: null,
             allottedCarbs : null,
             allottedProteins : null,
             allottedFats : null,
@@ -39,6 +40,9 @@ export default class SurveyPage extends Component{
     selectUnits = input =>{
         this.setState({units:input});
     }
+    selectLevel = input =>{
+        this.setState({level:input});
+    }
     getBMI = (h, w) =>{
         if(h === NaN || w === NaN || h === null || w === null){
             Alert.alert("Error", "You must provide your height and weight to calculate your BMI.");
@@ -54,32 +58,32 @@ export default class SurveyPage extends Component{
                 this.setState({BMI : BMI});
                 let leanBodyMass = parseInt(weight * ((100 - BMI)/100));
                 if(this.state.goal === "Lose" && this.state.sex === "Male"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * .7)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.5)) * 4;
-                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.45)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .37)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                 }
                 if(this.state.goal === "Lose" && this.state.sex === "Female"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * .6)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.5)) * 4;
-                    let allottedFatCalories =  parseInt((leanBodyMass * .6)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.12)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.84)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                     
                 }
                 if(this.state.goal === "Gain" && this.state.sex === "Male"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * 2)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.25)) * 4;
-                    let allottedFatCalories = parseInt((leanBodyMass * .4)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                     
                 }
                 if(this.state.goal === "Gain" && this.state.sex === "Female"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * 1.5)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.25)) * 4;
-                    let allottedFatCalories = parseInt((leanBodyMass * .5)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.45)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.84)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * 1.09)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                 }
@@ -164,7 +168,7 @@ export default class SurveyPage extends Component{
             
             return(
                 <>
-                <Question asked="Do you measure with..." testType="Dilemma" optionOne="Metric System" optionTwo="Imperial System" stateOptionOne="Metric" stateOptionTwo="Imperial" buttonPress = {this.selectUnits}></Question>
+                <Question asked="Which do you measure with..." testType="Dilemma" optionOne="Metric System" optionTwo="Imperial System" stateOptionOne="Metric" stateOptionTwo="Imperial" buttonPress = {this.selectUnits}></Question>
                 </>
             );   
         }
@@ -177,34 +181,55 @@ export default class SurveyPage extends Component{
                 </>
             );   
         }
-        else if (this.state.BMI != null || this.state.BMI !== NaN){
-            
+        else if (this.state.level == null){
             return(
                 <>
-                
+                <Question asked="Do you already follow your own caloric regimen?" testType="Dilemma" optionOne="Yes" optionTwo="No" stateOptionOne="Pro" stateOptionTwo="Noob" buttonPress = {this.selectLevel}></Question>
+                </>
+            );   
+        }
+        else if(this.state.level == 'Pro'){    
+            return(
+                <>
                 <ScrollView>
-                    <View>
-                        <Text style={styles.text}>Is this information correct?</Text>
-                        <View style={styles.horizontalButtonContainer}>
-                            <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button1} title="Yes" onPress={()=>this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, this.state.allottedCarbs, this.state.allottedProteins, this.state.allottedFats, this.state.allottedTotal)}></Button>
-                            </View>
-                            <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button2} title="No" onPress={()=>this.wrongDetails()}></Button>
+                    <View style={styles.container}>
+
+                    </View>
+                </ScrollView>
+                    
+                </>
+            );   
+        }
+        else if(this.state.level == 'Noob'){    
+            return(
+                <>
+                <ScrollView>
+                    <View style={styles.container}>
+                        <View>
+                            <Text style={styles.text}>Is this information correct?</Text>
+                            <View style={styles.horizontalButtonContainer}>
+                                <View style={styles.horizontalButtonBox}>
+                                    <Button color={Colors.button1} title="Yes" onPress={()=>this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, this.state.allottedCarbs, this.state.allottedProteins, this.state.allottedFats, this.state.allottedTotal)}></Button>
+                                </View>
+                                <View style={styles.horizontalButtonBox}>
+                                    <Button color={Colors.button2} title="No" onPress={()=>this.wrongDetails()}></Button>
+                                </View>
                             </View>
                         </View>
+                        <View style={styles.info}>
+                            <Text style={styles.text}>Name: {this.state.name}</Text>
+                            <Text style={styles.text}>Sex: {this.state.sex}</Text>
+                            <Text style={styles.text}>Goal: {this.state.goal} weight</Text>
+                            <Text style={styles.text}>Units: You measure with the {this.state.units} system</Text>
+                            <Text style={styles.text}>Height: {this.state.height}</Text>
+                            <Text style={styles.text}>Weight: {this.state.weight}</Text>
+                            <Text style={styles.text}>BMI: {parseInt(this.state.BMI)}</Text>
+                            <Text style={styles.text}>Your recommended carb limit is: {this.state.allottedCarbs} calories</Text>
+                            <Text style={styles.text}>Your recommended protein limit is: {this.state.allottedProteins} calories</Text>
+                            <Text style={styles.text}>Your recommended fat limit is: {this.state.allottedFats} calories</Text>
+                            <Text style={styles.text}>Your recommended daily calorie total is: {this.state.allottedTotal} calories</Text>
+                        </View>
                     </View>
-                    <Text style={styles.text}>Name: {this.state.name}</Text>
-                    <Text style={styles.text}>Sex: {this.state.sex}</Text>
-                    <Text style={styles.text}>Goal: {this.state.goal} weight</Text>
-                    <Text style={styles.text}>Units: You measure with the {this.state.units} system</Text>
-                    <Text style={styles.text}>Height: {this.state.height}</Text>
-                    <Text style={styles.text}>Weight: {this.state.weight}</Text>
-                    <Text style={styles.text}>BMI: {parseInt(this.state.BMI)}</Text>
-                    <Text style={styles.text}>Your recommended carb limit is: {this.state.allottedCarbs} calories or {parseInt(this.state.allottedCarbs / 4)} grams</Text>
-                    <Text style={styles.text}>Your recommended protein limit is: {this.state.allottedProteins} calories or {parseInt(this.state.allottedProteins / 4)} grams</Text>
-                    <Text style={styles.text}>Your recommended fat limit is: {this.state.allottedFats} calories or {parseInt(this.state.allottedFats / 9)} grams</Text>
-                    <Text style={styles.text}>Your recommended daily calorie total is: {this.state.allottedTotal} calories</Text>
                 </ScrollView>
                     
                 </>
@@ -225,6 +250,25 @@ const styles=StyleSheet.create({
     horizontalButtonBox:{
         width:'30%'
     },
+    container: {
+        flex: 1,
+        padding: 15,
+        borderColor: 'black',
+        backgroundColor: 'rgb(175,175,175)',
+        borderWidth: 3,
+        width: '95%',
+        alignSelf: 'center',
+        marginVertical: 20,
+      },
+      info:{
+        borderColor: 'black',
+        backgroundColor: 'rgb(255,255,255)',
+        borderWidth: 2,
+        width: '95%',
+        alignSelf: 'center',
+        padding: 5,
+        marginTop: 10,
+      }
 
 
 }); 

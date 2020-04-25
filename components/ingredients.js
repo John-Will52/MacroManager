@@ -10,10 +10,10 @@ export default class Ingredients extends Component{
         super()
         this.state = {
             name: null,
-            carbs: 0,
-            proteins: 0,
-            fats: 0,
-            servings: 0,
+            carbs: null,
+            proteins: null,
+            fats: null,
+            servings: null,
         }
     }
 
@@ -24,36 +24,17 @@ export default class Ingredients extends Component{
         }
     }
     addIngredientCarbs = input =>{
-        if(input >= 0  && input != null){
         this.setState({carbs: parseInt(input)});
-        }
-        else{
-            Alert.alert("Error", "Please put a number in the Carbs box.")
-        }
     }
     addIngredientProteins = input =>{
-        if(input >= 0  && input != null){
         this.setState({proteins: parseInt(input)});
-        }
-        else{
-            Alert.alert("Error", "Please put a number in the Proteins box.")
-        }
     }
     addIngredientFats = input =>{
-        if(input >= 0 && input != null){
         this.setState({fats: parseInt(input)});
-        }
-        else{
-            Alert.alert("Error", "Please put a number in the Fats box.")
-        }
+
     }
     addIngredientServings = input =>{
-        if(input >= 0  && input != null){
         this.setState({servings: parseInt(input)});
-        }
-        else{
-            Alert.alert("Error", "Please put a number in the Servings box.")
-        }
     }
  
 
@@ -61,7 +42,7 @@ export default class Ingredients extends Component{
         if(this.props.count == this.props.counter){
             return(
                 <View style={styles.border}>
-                    <Text>Ingredient {this.props.count}</Text>
+                    <Text style ={styles.ingredient}>Ingredient {this.props.count}</Text>
                     <View style={styles.inputContainer}>
                         <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Ingredient Name" placeholderTextColor='black'></TextInput>
                     </View>
@@ -72,8 +53,8 @@ export default class Ingredients extends Component{
                         <TextInput style={styles.numInputs} ref={input => { this.ingredientServings = input }} onChangeText={servings => this.addIngredientServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                     </View>
                     <View style={styles.inputContainer}>
-                        <Button title="Add Ingredient" color={Colors.button1} onPress={()=> this.props.addCalories(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)}></Button>
-                        <Button title="Submit Meal" color={Colors.button2} onPress={()=> this.props.saveMeal(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)}></Button>
+                        <Button title="Add Ingredient" color={Colors.button1} onPress={()=> this.props.addCalories(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)} disabled={(this.state.name == null || this.state.carbs == null || this.state.fats == null || this.state.proteins == null || this.state.servings == null) ? true : false}></Button>
+                        <Button title="Submit Meal" color={Colors.button2} onPress={()=> this.props.areYouSure(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)} disabled={(this.props.mealCarbs == null || this.props.mealFats == null || this.props.mealProteins == null || this.props.counter < 2) ? true : false}></Button>
                     </View>
 
                 </View>
@@ -82,7 +63,7 @@ export default class Ingredients extends Component{
         else{
             return(
                 <View style={styles.border}>
-                    <Text>Ingredient {this.props.count}</Text>
+                    <Text style ={styles.ingredient}>Ingredient {this.props.count}</Text>
                     <View style={styles.inputContainer}>
                         <TextInput style={styles.nameInputs} ref={input => { this.ingredientName = input }} onChangeText={name => this.addIngredientName(name)} keyboardType="default" placeholder="Ingredient Name" placeholderTextColor='black'></TextInput>
                     </View>
@@ -127,6 +108,13 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10,
     },    
+    ingredient:{
+        color: 'white',
+        fontWeight: '600',
+        fontSize: 20,
+        paddingHorizontal: 5,
+        // textDecorationLine: 'underline'
+    }
 })
 
 AppRegistry.registerComponent(appName, () => Ingredients);

@@ -73,13 +73,13 @@ export default class Question extends Component{
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => {this.setState({height: parseInt(text)})}} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
+                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => this.metricGetHeight(text)} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)}></Button>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight</Text>
                         <View style={styles.vertAlign}>
-                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => {this.setState({weight: parseInt(text)})}}placeholder="kg." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
+                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => this.getWeight(text)}placeholder="kg." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         </View>
                     </View>
                 </View>

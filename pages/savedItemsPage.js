@@ -30,8 +30,12 @@ export default class SavedItemsPage extends Component{
                     <View style={styles.savedItemsBox}>
                         <Text style={styles.text}>Click the "Add a Snack or Meal" button to add things that you eat often.</Text>
                     </View>
-                    <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
-                    <Button title="Add a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
+                    <View style={Colors.navigationButtonBackground}>
+                        <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                    </View>
+                    <View style={Colors.navigationButtonBackground}>
+                        <Button title="Add a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
+                    </View>
                 </View>
             );
         }
@@ -41,8 +45,12 @@ export default class SavedItemsPage extends Component{
                     <View style={styles.savedItemsBox}>
                         {this.props.itemList}   
                     </View>
-                    <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
-                    <Button title="Add a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
+                    <View style={Colors.navigationButtonBackground}>
+                        <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                    </View>
+                    <View style={Colors.navigationButtonBackground}>
+                        <Button title="Add a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
+                    </View>
                 </View>
             );
         }

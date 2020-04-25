@@ -145,10 +145,6 @@ And, per serving:
                 </View>
             </View>
             {this.props.children}
-            <Text>{this.state.carbs}</Text>
-            <Text>{this.state.proteins}</Text>
-            <Text>{this.state.fats}</Text>
-            <Text>{this.state.servings}</Text>
             </View>
         );
     }

@@ -184,10 +184,6 @@ export default class App extends Component{
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
             <CalorieCounterPage clear={this.reset} changePage={this.navigator} addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
-            <Text>{this.state.currentCarbs}</Text>
-            <Text>{this.state.currentProteins}</Text>
-            <Text>{this.state.currentFats}</Text>
-            <Text>{this.state.currentTotal}</Text>
           </ScrollView>
         </SafeAreaView>
       );

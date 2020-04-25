@@ -209,10 +209,14 @@ export default class SurveyPage extends Component{
                             <Text style={styles.text}>Is this information correct?</Text>
                             <View style={styles.horizontalButtonContainer}>
                                 <View style={styles.horizontalButtonBox}>
-                                    <Button color={Colors.button1} title="Yes" onPress={()=>this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, this.state.allottedCarbs, this.state.allottedProteins, this.state.allottedFats, this.state.allottedTotal)}></Button>
+                                    <View style={Colors.buttonBackground1}>
+                                        <Button color={Colors.button1} title="Yes" onPress={()=>this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, this.state.allottedCarbs, this.state.allottedProteins, this.state.allottedFats, this.state.allottedTotal)}></Button>
+                                    </View>
                                 </View>
                                 <View style={styles.horizontalButtonBox}>
-                                    <Button color={Colors.button2} title="No" onPress={()=>this.wrongDetails()}></Button>
+                                    <View style={Colors.buttonBackground2}>
+                                        <Button color={Colors.button2} title="No" onPress={()=>this.wrongDetails()}></Button>
+                                    </View>
                                 </View>
                             </View>
                         </View>

@@ -59,7 +59,9 @@ export default class Snacks extends Component{
                         <TextInput style={styles.numInputs} ref={input => { this.snackFats = input }} onChangeText={num => this.addSnackFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
                         <TextInput style={styles.numInputs} ref={input => { this.snackServings = input }} onChangeText={num => this.addSnackServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                     </View>
-                    <Button title="Save Snack" color={Colors.operationButtons} onPress={()=>this.props.saveItem(this.state.snackName, this.state.snackCarbs, this.state.snackProteins, this.state.snackFats, this.state.snackServings)}></Button>
+                    <View style={Colors.operationButtonBackground}>
+                        <Button title="Save Snack" color={Colors.operationButtons} onPress={()=>this.props.saveItem(this.state.snackName, this.state.snackCarbs, this.state.snackProteins, this.state.snackFats, this.state.snackServings)}></Button>
+                    </View>
                 </View>
             </View>
         );

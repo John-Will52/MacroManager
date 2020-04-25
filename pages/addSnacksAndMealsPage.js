@@ -83,8 +83,12 @@ export default class AddSnacksAndMealsPage extends Component{
                         <Question testType="Dilemma" asked="Which are you saving?" optionOne="Snack" optionTwo="Meal" stateOptionOne="Snack" stateOptionTwo="Meal" buttonPress ={this.setItemType}></Question>
                     </View>
                     <View style={styles.split}>
-                        <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
-                        <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
+                        <View style={Colors.navigationButtonBackground}>
+                            <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                        </View>
+                        <View style={Colors.navigationButtonBackground}>
+                            <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
+                        </View>
                     </View>
                 </View>
 
@@ -94,8 +98,12 @@ export default class AddSnacksAndMealsPage extends Component{
             return(
                 <View>
                     <Meals saveItem={this.saveItem}>
-                        <Button title="Calorie Counter Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
-                        <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
+                        <View style={Colors.navigationButtonBackground}>
+                            <Button title="Calorie Counter Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                        </View>
+                        <View style={Colors.navigationButtonBackground}>
+                            <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
+                        </View>
                     </Meals>
                 </View>
             );
@@ -104,8 +112,12 @@ export default class AddSnacksAndMealsPage extends Component{
             return(
                 <View>
                     <Snacks saveItem={this.saveItem}></Snacks>
-                    <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
-                    <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
+                    <View style={Colors.navigationButtonBackground}>
+                        <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                    </View>
+                    <View style={Colors.navigationButtonBackground}>
+                        <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
+                    </View>
                 </View>
             ); 
         }

@@ -45,10 +45,14 @@ export default class Question extends Component{
                     <Text style={styles.text}>{this.props.asked}</Text>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button1} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.stateOptionOne)}></Button>
+                                <View style = {Colors.buttonBackground1}>
+                                    <Button color={Colors.button1} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.stateOptionOne)}></Button>
+                                </View>
                             </View>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.button2} title={this.props.optionTwo} onPress={()=>this.props.buttonPress(this.props.stateOptionTwo)}></Button>
+                                <View style = {Colors.buttonBackground2}>
+                                    <Button color={Colors.button2} title={this.props.optionTwo} onPress={()=>this.props.buttonPress(this.props.stateOptionTwo)}></Button>
+                                </View>
                             </View>
                         </View>
                 </View>
@@ -61,7 +65,9 @@ export default class Question extends Component{
                     <TextInput style={styles.input} value={this.state.input} onChangeText={text => this.getInput(text)} placeholder={this.props.placehold} placeholderTextColor='black' keyboardType="default"></TextInput>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <Button color={Colors.operationButtons} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
+                                <View style = {Colors.operationButtonBackground}>
+                                    <Button color={Colors.operationButtons} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
+                                </View>
                             </View>
                     </View>
                 </View>
@@ -74,7 +80,9 @@ export default class Question extends Component{
                     <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
                         <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => this.metricGetHeight(text)} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
-                        <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)}></Button>
+                        <View style={Colors.buttonBackground1}>
+                            <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)}></Button>
+                        </View>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight</Text>
@@ -100,7 +108,9 @@ export default class Question extends Component{
                         <TextInput style={styles.numInput} onChangeText={text => {this.setState({weight: parseInt(text)})}} placeholder="Lbs." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         </View>
                     </View>
-                    <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress(this.state.height, this.state.weight)}></Button>
+                    <View style={Colors.buttonBackground1}>
+                        <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress(this.state.height, this.state.weight)}></Button>
+                    </View>
                 </View>
             )
         }  

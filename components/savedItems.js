@@ -49,7 +49,9 @@ export default class SavedItems extends Component{
                     <Text style={styles.text}>Servings: {this.props.servings}</Text>
                   </View>
                 </View>
-                <Button color={Colors.button1} title={"Add " + this.props.name.toLowerCase()} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
+                <View style={Colors.buttonBackground1}>
+                  <Button color={Colors.button1} title={"Add " + this.props.name.toLowerCase()} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
+                </View>
               </View>
             );
           }
@@ -74,7 +76,9 @@ export default class SavedItems extends Component{
                     <Text style={styles.text}>Servings: {this.props.servings}</Text>
                   </View>
                 </View>
-                <Button color={Colors.button1} title={"Add " + this.props.name.toLowerCase()} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.props.servings, this.props.carbs, this.props.proteins, this.props.fats)}></Button>
+                <View style={Colors.buttonBackground1}>
+                  <Button color={Colors.button1} title={"Add " + this.props.name.toLowerCase()} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.props.servings, this.props.carbs, this.props.proteins, this.props.fats)}></Button>
+                </View>
               </View>
             );
           }

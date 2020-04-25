@@ -1,3 +1,4 @@
+import Colors from './colors';
 const Fonts = {
     titleSize: 50,
     titleDecoration:'',

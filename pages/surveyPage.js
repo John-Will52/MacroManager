@@ -209,12 +209,12 @@ export default class SurveyPage extends Component{
                             <Text style={styles.text}>Is this information correct?</Text>
                             <View style={styles.horizontalButtonContainer}>
                                 <View style={styles.horizontalButtonBox}>
-                                    <View style={Colors.buttonBackground1}>
+                                    <View style={styles.buttons1}>
                                         <Button color={Colors.button1} title="Yes" onPress={()=>this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, this.state.allottedCarbs, this.state.allottedProteins, this.state.allottedFats, this.state.allottedTotal)}></Button>
                                     </View>
                                 </View>
                                 <View style={styles.horizontalButtonBox}>
-                                    <View style={Colors.buttonBackground2}>
+                                    <View style={styles.buttons2}>
                                         <Button color={Colors.button2} title="No" onPress={()=>this.wrongDetails()}></Button>
                                     </View>
                                 </View>
@@ -272,7 +272,32 @@ const styles=StyleSheet.create({
         alignSelf: 'center',
         padding: 5,
         marginTop: 10,
+      },
+      buttons1:{
+        backgroundColor: Colors.buttonBackground1,
+        width: "75%",
+        alignSelf: 'center',
+        marginTop: 10,
+      },
+      buttons2:{
+        backgroundColor: Colors.buttonBackground2,
+        width: "75%",
+        alignSelf: 'center',
+        marginTop: 10,
+      },
+      navigationButtons:{
+        backgroundColor: Colors.navigationButtonBackground,
+        width: "55%",
+        alignSelf: 'center',
+        marginTop: 10,
+      },
+      operationButtons:{
+        backgroundColor: Colors.operationButtonBackground,
+        width: "70%",
+        alignSelf: 'center',
+        marginTop: 10,
       }
+
 
 
 }); 

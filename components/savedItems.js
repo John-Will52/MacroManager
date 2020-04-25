@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, TextInput, Button, Alert} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 // AppRegistry is the JS entry point for all ReactNative apps. 
@@ -49,8 +49,13 @@ export default class SavedItems extends Component{
                     <Text style={styles.text}>Servings: {this.props.servings}</Text>
                   </View>
                 </View>
-                <View style={Colors.buttonBackground1}>
-                  <Button color={Colors.button1} title={"Add " + this.props.name.toLowerCase()} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
+                <View style={styles.buttonBox}>
+                  <View style={styles.buttons1}>
+                    <Button color={Colors.button1} title={"Add"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
+                  </View>
+                  <View style={styles.buttons2}>
+                    <Button color={Colors.button2} title={"Delete"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
+                  </View>
                 </View>
               </View>
             );
@@ -76,8 +81,13 @@ export default class SavedItems extends Component{
                     <Text style={styles.text}>Servings: {this.props.servings}</Text>
                   </View>
                 </View>
-                <View style={Colors.buttonBackground1}>
-                  <Button color={Colors.button1} title={"Add " + this.props.name.toLowerCase()} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.props.servings, this.props.carbs, this.props.proteins, this.props.fats)}></Button>
+                <View style={styles.buttonBox}>
+                  <View style={styles.buttons1}>
+                    <Button color={Colors.button1} title={"Add"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.props.servings, this.props.carbs, this.props.proteins, this.props.fats)}></Button>
+                  </View>
+                  <View style={styles.buttons2}>
+                    <Button color={Colors.button2} title={"Delete"} onPress={()=> Alert.alert("Delete", "Make this go away")}></Button>
+                  </View>
                 </View>
               </View>
             );
@@ -93,6 +103,7 @@ const styles = StyleSheet.create({
       borderColor: 'black',
       borderWidth: 2,
       marginVertical: 10,
+      padding: 5
   
     },
     itemName:{
@@ -125,9 +136,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 5,
     },
-    text:{
-        // fontSize: 20,
+    buttons1:{
+      backgroundColor: Colors.buttonBackground1,
+      width: "30%",
+      alignSelf: 'center',
+      marginTop: 10,
+    },
+    buttons2:{
+      backgroundColor: Colors.buttonBackground2,
+      width: "30%",
+      alignSelf: 'center',
+      marginTop: 10,
+    },
+    buttonBox:{
+      flexDirection:'row',
+      justifyContent: 'space-evenly'
     }
+    
     
   });
   

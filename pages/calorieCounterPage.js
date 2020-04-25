@@ -76,7 +76,7 @@ export default class CalorieCounterPage extends Component{
                     <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
                     <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                 </View>
-                <View style={Colors.buttonBackground1}>
+                <View style={styles.buttons1}>
                     <Button ref={this.addCaloriesButton} color={Colors.button1} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())}></Button>
                 </View>
                 <View style={styles.counterContainer}>
@@ -91,13 +91,13 @@ export default class CalorieCounterPage extends Component{
                     <Text style={styles.labels}>Fats</Text>
                     <Text style={styles.labels}>Total</Text>
                 </View>
-                <View style={Colors.buttonBackground2}>
+                <View style={styles.buttons2}>
                     <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.props.clear()}></Button>
                 </View>
-                <View style={Colors.navigationButtonBackground}>
+                <View style={styles.navigationButtons}>
                     <Button title="Save a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
                 </View>
-                <View style={Colors.navigationButtonBackground}>
+                <View style={styles.navigationButtons}>
                     <Button title="Eat a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
                 </View>
             </View>
@@ -156,7 +156,24 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         alignSelf: 'flex-start'
-    }
+    },
+    buttons1:{
+        backgroundColor: Colors.buttonBackground1,
+        width: "30%",
+        alignSelf: 'center',
+        marginTop: 10,
+      },
+      buttons2:{
+        backgroundColor: Colors.buttonBackground2,
+        width: "15%",
+        alignSelf: 'center',
+      },
+      navigationButtons:{
+        backgroundColor: Colors.navigationButtonBackground,
+        width: "55%",
+        alignSelf: 'center',
+        marginTop: 10,
+      },
 })
 
 AppRegistry.registerComponent(appName, () => CalorieCounterPage);

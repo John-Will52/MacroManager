@@ -83,10 +83,10 @@ export default class AddSnacksAndMealsPage extends Component{
                         <Question testType="Dilemma" asked="Which are you saving?" optionOne="Snack" optionTwo="Meal" stateOptionOne="Snack" stateOptionTwo="Meal" buttonPress ={this.setItemType}></Question>
                     </View>
                     <View style={styles.split}>
-                        <View style={Colors.navigationButtonBackground}>
+                        <View style={styles.navigationButtons}>
                             <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
                         </View>
-                        <View style={Colors.navigationButtonBackground}>
+                        <View style={styles.navigationButtons}>
                             <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
                         </View>
                     </View>
@@ -98,10 +98,10 @@ export default class AddSnacksAndMealsPage extends Component{
             return(
                 <View>
                     <Meals saveItem={this.saveItem}>
-                        <View style={Colors.navigationButtonBackground}>
+                        <View style={styles.navigationButtons}>
                             <Button title="Calorie Counter Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
                         </View>
-                        <View style={Colors.navigationButtonBackground}>
+                        <View style={styles.navigationButtons}>
                             <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
                         </View>
                     </Meals>
@@ -112,10 +112,10 @@ export default class AddSnacksAndMealsPage extends Component{
             return(
                 <View>
                     <Snacks saveItem={this.saveItem}></Snacks>
-                    <View style={Colors.navigationButtonBackground}>
+                    <View style={styles.navigationButtons}>
                         <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
                     </View>
-                    <View style={Colors.navigationButtonBackground}>
+                    <View style={styles.navigationButtons}>
                         <Button title="Saved Snacks and Meals" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
                     </View>
                 </View>
@@ -165,7 +165,14 @@ const styles = StyleSheet.create({
     },
     split:{
         marginTop: 20,
-    }
+    },
+      navigationButtons:{
+        backgroundColor: Colors.navigationButtonBackground,
+        width: "55%",
+        alignSelf: 'center',
+        marginTop: 10,
+      },
+
 })
 
 AppRegistry.registerComponent(appName, () => AddSnacksAndMealsPage);

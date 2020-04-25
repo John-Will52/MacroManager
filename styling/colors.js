@@ -13,26 +13,10 @@ const Colors = {
     button2: Platform.OS === 'ios' ? 'white' : 'red',
     navigatingButtons: Platform.OS === 'ios' ? 'white' : 'purple',
     operationButtons: Platform.OS === 'ios' ? 'white' : 'orange',
-    buttonBackground1: {
-        backgroundColor: Platform.OS === 'ios' ?'blue' : 'transparent',
-        width: '100%',
-        alignSelf: 'center'
-    },
-    buttonBackground2: {
-        backgroundColor: Platform.OS === 'ios' ?'red' : 'transparent',
-        width: '100%',
-        alignSelf: 'center'
-    },
-    navigationButtonBackground: {
-        backgroundColor: Platform.OS === 'ios' ?'purple' : 'transparent',
-        width: '100%',
-        alignSelf: 'center'
-    },
-    operationButtonBackground: {
-        backgroundColor: Platform.OS === 'ios' ?'orange' : 'transparent',
-        width: '100%',
-        alignSelf: 'center'
-    },
+    buttonBackground1:Platform.OS === 'ios' ?'blue' : 'transparent',
+    buttonBackground2:Platform.OS === 'ios' ?'red' : 'transparent',
+    navigationButtonBackground:Platform.OS === 'ios' ?'purple' : 'transparent',
+    operationButtonBackground:Platform.OS === 'ios' ?'orange' : 'transparent',
 }
 
 export default Colors;

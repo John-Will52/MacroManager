@@ -185,7 +185,7 @@ const styles=StyleSheet.create({
       },
       buttons1:{
         backgroundColor: Colors.buttonBackground1,
-        width: "70%",
+        width: "100%",
         alignSelf: 'center',
         marginTop: 10,
       },
@@ -197,7 +197,7 @@ const styles=StyleSheet.create({
       },
       buttons2:{
         backgroundColor: Colors.buttonBackground2,
-        width: "72%",
+        width: "100%",
         alignSelf: 'center',
         marginTop: 10,
       },

@@ -15,6 +15,7 @@ const Colors = {
     operationButtons: Platform.OS === 'ios' ? 'white' : 'orange',
     buttonBackground1:Platform.OS === 'ios' ?'blue' : 'transparent',
     buttonBackground2:Platform.OS === 'ios' ?'red' : 'transparent',
+    disabledButton:Platform.OS === 'ios' ?'gray' : 'transparent',
     navigationButtonBackground:Platform.OS === 'ios' ?'purple' : 'transparent',
     operationButtonBackground:Platform.OS === 'ios' ?'orange' : 'transparent',
 }

@@ -9,19 +9,8 @@ export default class SavedItemsPage extends Component{
     constructor(props) {
         super()
 
-        this.state = {
-            item: null,
-        }
     }
-
-
-    // THis is the area that you put your JS logic for functions and stuff at.
-
-    
-
-
- 
-    
+  
 
     render(){
         if(this.props.itemList.length == 0){

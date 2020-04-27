@@ -68,11 +68,7 @@ export default class AddSnacksAndMealsPage extends Component{
 
         
     }
-
-    
-    
- 
-    
+   
 
     render(){
         if(this.state.item === null){

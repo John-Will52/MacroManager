@@ -35,28 +35,93 @@ export default class App extends Component{
         
     }
   }
-    navigator = pageNum =>{
-      this.setState({
-        pageNumber: pageNum,
-      })
-    }
+  // Sending information to App.js for central management
+    
+  surveyPageStateTransfer = (n, s, g, u, h, w, BMI, carbs, proteins, fats, total) =>{
+    this.setState({
+      name: n,
+      sex: s,
+      goal: g,
+      units: u,
+      height: h,
+      weight: w,
+      BMI: BMI,
+      allottedCarbs: carbs,
+      allottedProteins: proteins,
+      allottedFats: fats,
+      allottedTotal: total,
+    })
+  }
+  calorieCounterStateTransfer = (servings, carbs, proteins, fats) => {
+    let addedCarbs= carbs * servings * 4;
+    let addedProteins= proteins * servings * 4;
+    let addedFats= fats * servings * 9;
+    let addedTotal = addedCarbs + addedProteins + addedFats;
+    this.setState({
+      currentCarbs: this.state.currentCarbs + addedCarbs,
+      currentProteins: this.state.currentProteins + addedProteins,
+      currentFats: this.state.currentFats + addedFats,
+      currentTotal: this.state.currentTotal + addedTotal,
+    })
+    
+    this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
+  }
+  saveItems = (item) =>{
+    this.setState(state =>{
+      const savedItems = [...state.savedItems, item];
+        return {
+          savedItems
+        };
+    });  
+  }
+  
+  // Managed by App.js for navigation and/or verification
+  navigator = pageNum =>{
+    this.setState({
+      pageNumber: pageNum,
+    })
+  }
 
-    surveyPageStateTransfer = (n, s, g, u, h, w, BMI, carbs, proteins, fats, total) =>{
-      this.setState({
-        name: n,
-        sex: s,
-        goal: g,
-        units: u,
-        height: h,
-        weight: w,
-        BMI: BMI,
-        allottedCarbs: carbs,
-        allottedProteins: proteins,
-        allottedFats: fats,
-        allottedTotal: total,
-      })
+
+  areYouSure = (item, name, servings, carbs, proteins, fats) =>{
+    if(item == 'Meal' && servings > 1){
+      Alert.alert(
+        'Alert',
+        `Are you sure that you want to eat ${servings} servings of ${name.toLowerCase()}?`,
+        [
+          {text: 'Yes', onPress: () => this.addItemCalories(servings, carbs, proteins, fats)},
+          {
+            text: "No",
+            onPress: () => this.navigator(2),
+          },
+        ],
+        {cancelable: false},
+      );
     }
-    calorieCounterStateTransfer = (servings, carbs, proteins, fats) => {
+    else{
+      Alert.alert(
+        'Alert',
+        `Are you sure that you want to eat ${name.toLowerCase()}?`,
+        [
+          {text: 'Yes', onPress: () => this.addItemCalories(servings, carbs, proteins, fats)},
+          {
+            text: "No",
+            onPress: () => this.navigator(2),
+          },
+        ],
+        {cancelable: false},
+      );
+    }  
+  }
+
+  // Data sent to CalorieCounterPage
+
+  addItemCalories = (servings, carbs, proteins, fats) => {
+    
+    if(servings == null){
+      Alert.alert("Error", "Please provide provide the amount of servings that you will be eating.");
+    }
+    else{
       let addedCarbs= carbs * servings * 4;
       let addedProteins= proteins * servings * 4;
       let addedFats= fats * servings * 9;
@@ -67,64 +132,11 @@ export default class App extends Component{
         currentFats: this.state.currentFats + addedFats,
         currentTotal: this.state.currentTotal + addedTotal,
       })
-
       this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
+      this.navigator(0);
     }
-
-    areYouSure = (item, name, servings, carbs, proteins, fats) =>{
-      if(item == 'Meal' && servings > 1){
-        Alert.alert(
-          'Alert',
-          `Are you sure that you want to eat ${servings} servings of ${name.toLowerCase()}?`,
-          [
-            {text: 'Yes', onPress: () => this.addItemCalories(servings, carbs, proteins, fats)},
-            {
-              text: "No",
-              onPress: () => this.navigator(2),
-            },
-          ],
-          {cancelable: false},
-        );
-      }
-      else{
-        Alert.alert(
-          'Alert',
-          `Are you sure that you want to eat ${name.toLowerCase()}?`,
-          [
-            {text: 'Yes', onPress: () => this.addItemCalories(servings, carbs, proteins, fats)},
-            {
-              text: "No",
-              onPress: () => this.navigator(2),
-            },
-          ],
-          {cancelable: false},
-        );
-      }
-      
-    }
-
-    addItemCalories = (servings, carbs, proteins, fats) => {
-      
-      if(servings == null){
-        Alert.alert("Error", "Please provide provide the amount of servings that you will be eating.");
-      }
-      else{
-        let addedCarbs= carbs * servings * 4;
-        let addedProteins= proteins * servings * 4;
-        let addedFats= fats * servings * 9;
-        let addedTotal = addedCarbs + addedProteins + addedFats;
-        this.setState({
-          currentCarbs: this.state.currentCarbs + addedCarbs,
-          currentProteins: this.state.currentProteins + addedProteins,
-          currentFats: this.state.currentFats + addedFats,
-          currentTotal: this.state.currentTotal + addedTotal,
-        })
-
-        this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
-        this.navigator(0);
-      }
-      
-    }
+    
+  }
 
     percentCalculator = (c, p, f, t) =>{
       this.setState({
@@ -135,16 +147,6 @@ export default class App extends Component{
       })
     }
 
-    
-
-    saveItems = (item) =>{
-      this.setState(state =>{
-        const savedItems = [...state.savedItems, item];
-        return {
-          savedItems
-        };
-      });  
-    }
     reset = () =>{
       this.setState({
         currentCarbs: 0,
@@ -157,8 +159,9 @@ export default class App extends Component{
         percentOfTotalCalories: 0,
       })
     }
-    
-    
+
+  // Data sent to SavedItemsPage
+
     list = () => {
       return this.state.savedItems.map((item, index) => {
         return(

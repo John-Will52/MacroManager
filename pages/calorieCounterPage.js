@@ -9,17 +9,17 @@ export default class CalorieCounterPage extends Component{
     constructor(props) {
         super()
         this.state = {
-            servings: 0,
-            carbInput: 0,
-            proteinInput: 0,
-            fatInput: 0,
+            servings: null,
+            carbInput: null,
+            proteinInput: null,
+            fatInput: null,
         }
     }
 
     // THis is the area that you put your JS logic for functions and stuff at.
     
     addServings = input =>{
-        if(input > 0){
+        if(input != null){
             this.setState({servings: parseInt(input)});
         }
         else{
@@ -27,7 +27,7 @@ export default class CalorieCounterPage extends Component{
         }
     }
     addCarbs = input =>{
-        if(input > 0){
+        if(input != null){
             this.setState({carbInput: parseInt(input)});
         }
         else{
@@ -35,7 +35,7 @@ export default class CalorieCounterPage extends Component{
         }
     }
     addProteins = input =>{
-        if(input > 0){
+        if(input != null){
             this.setState({proteinInput: parseInt(input)});
         }
         else{
@@ -43,7 +43,7 @@ export default class CalorieCounterPage extends Component{
         }
     }
     addFats = input =>{
-        if(input > 0){
+        if(input != null){
             this.setState({fatInput: parseInt(input)});
         }
         else{
@@ -56,13 +56,30 @@ export default class CalorieCounterPage extends Component{
        this.proteinInput.clear();
        this.fatInput.clear();
        this.setState({
-            servings: 0,
-            carbInput: 0,
-            proteinInput: 0,
-            fatInput: 0
+            servings: null,
+            carbInput: null,
+            proteinInput: null,
+            fatInput: null
        });
     }
 
+    allEntries= () =>{
+        
+        if(this.state.carbInput != null && this.state.proteinInput != null && this.state.fatInput != null && this.state.servings != null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    buttonColor= () =>{
+        if(this.allEntries() == true){
+            return Colors.disabledButton;
+        }
+        else{
+            return Colors.button1;
+        }
+    }
 
 
 
@@ -77,7 +94,7 @@ export default class CalorieCounterPage extends Component{
                     <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                 </View>
                 <View style={styles.buttons1}>
-                    <Button ref={this.addCaloriesButton} color={Colors.button1} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())}></Button>
+                    <Button ref={this.addCaloriesButton} color={this.buttonColor()} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())} disabled={this.allEntries()}></Button>
                 </View>
                 <View style={styles.counterContainer}>
                     <Counter percentages={this.props.percentOfCarbs}></Counter>
@@ -165,7 +182,7 @@ const styles = StyleSheet.create({
       },
       buttons2:{
         backgroundColor: Colors.buttonBackground2,
-        width: "15%",
+        width: "25%",
         alignSelf: 'center',
       },
       navigationButtons:{

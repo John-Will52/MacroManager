@@ -1,0 +1,4 @@
+#Mon Apr 27 13:42:43 PDT 2020
+base.0=/Users/vanyawill/Desktop/Projects/MobileApps/MacroManager/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

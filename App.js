@@ -74,6 +74,16 @@ export default class App extends Component{
         };
     });  
   }
+  deleteItems = (id) =>{
+    let updatedArray = this.state.savedItems.filter((item) =>{
+      return item.id != id;
+    })
+    this.setState({
+      savedItems: updatedArray,
+    })
+  
+  }
+
   
   // Managed by App.js for navigation and/or verification
   navigator = pageNum =>{
@@ -163,13 +173,12 @@ export default class App extends Component{
   // Data sent to SavedItemsPage
 
     list = () => {
-      return this.state.savedItems.map((item, index) => {
+      return this.state.savedItems.map((item) => {
         return(
-          <SavedItems key={index} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
+          <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
         );
       });
     };
-    
 
 
   render(){

@@ -31,6 +31,7 @@ export default class SavedItems extends Component{
                     <TextInput style={styles.numInput} onChangeText={servings => this.eatingServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                     <Text style={styles.text}>/{this.props.servings}</Text>
                   </View>
+  
                 </View>
   
                 <View style={styles.macroFactsBox}>
@@ -54,7 +55,7 @@ export default class SavedItems extends Component{
                     <Button color={Colors.button1} title={"Add"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
                   </View>
                   <View style={styles.buttons2}>
-                    <Button color={Colors.button2} title={"Delete"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
+                    <Button color={Colors.button2} title={"Delete"} onPress={()=> this.props.delete(this.props.id)}></Button>
                   </View>
                 </View>
               </View>
@@ -86,7 +87,7 @@ export default class SavedItems extends Component{
                     <Button color={Colors.button1} title={"Add"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.props.servings, this.props.carbs, this.props.proteins, this.props.fats)}></Button>
                   </View>
                   <View style={styles.buttons2}>
-                    <Button color={Colors.button2} title={"Delete"} onPress={()=> Alert.alert("Delete", "Make this go away")}></Button>
+                  <Button color={Colors.button2} title={"Delete"} onPress={()=> this.props.delete(this.props.id)}></Button>
                   </View>
                 </View>
               </View>

@@ -23,8 +23,12 @@ export default class AddSnacksAndMealsPage extends Component{
     }
 
     saveItem = (itemName, itemCarbs, itemProteins, itemFats, itemServings) =>{
+        let now = new Date();
+        let id = now.toString();
+
         if(this.state.item == 'Meal'){
             newItem={
+                id: id,
                 item: this.state.item,
                 name: itemName,
                 carbs: itemCarbs,
@@ -38,7 +42,9 @@ export default class AddSnacksAndMealsPage extends Component{
             );
         }
         if(this.state.item == 'Meal' && itemServings > 1){
+
             newItem={
+                id: id,
                 item: this.state.item,
                 name: itemName,
                 carbs: itemCarbs / itemServings,
@@ -53,6 +59,7 @@ export default class AddSnacksAndMealsPage extends Component{
         }
         if(this.state.item == 'Snack'){
             newItem={
+                id: id,
                 item: this.state.item,
                 name: itemName,
                 carbs: itemCarbs,

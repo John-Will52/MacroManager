@@ -29,23 +29,23 @@ export default class SavedItems extends Component{
                   <Text style={styles.itemName}>{this.props.name}</Text>
                   <View style={styles.servingInfo}>
                     <TextInput style={styles.numInput} onChangeText={servings => this.eatingServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
-                    <Text style={styles.text}>/{this.props.servings}</Text>
+                    <Text style={styles.text}> /{this.props.servings}</Text>
                   </View>
   
                 </View>
   
+                <View style={styles.macroFactsBox}>
+                  <View style={styles.macroFacts}>
+                    <Text style={styles.text}>Fat: {parseInt(this.props.fats / this.props.servings)} grams</Text>
+                  </View>
+                  <View style={styles.macroFacts}>
+                    <Text style={styles.text}>Protein: {parseInt(this.props.proteins / this.props.servings)} grams</Text>
+                  </View> 
+                </View>
                 <View style={styles.macroFactsBox}>
                   <View style={styles.macroFacts}>
                     <Text style={styles.text}>Carbs: {parseInt(this.props.carbs / this.props.servings)} grams</Text>
-                  </View>
-                  <View style={styles.macroFacts}>
-                    <Text style={styles.text}>Proteins: {parseInt(this.props.proteins / this.props.servings)} grams</Text>
-                  </View>
-                </View>
-                <View style={styles.macroFactsBox}>
-                  <View style={styles.macroFacts}>
-                    <Text style={styles.text}>Fats: {parseInt(this.props.fats / this.props.servings)} grams</Text>
-                  </View>
+                  </View>  
                   <View style={styles.macroFacts}>
                     <Text style={styles.text}>Servings: {this.props.servings}</Text>
                   </View>
@@ -68,15 +68,16 @@ export default class SavedItems extends Component{
                 <Text style={styles.itemName}>{this.props.name}</Text>
                 <View style={styles.macroFactsBox}>
                   <View style={styles.macroFacts}>
-                    <Text style={styles.text}>Carbs: {this.props.carbs} grams</Text>
+                    <Text style={styles.text}>Fat: {this.props.fats} grams</Text>
                   </View>
                   <View style={styles.macroFacts}>
-                    <Text style={styles.text}>Proteins: {this.props.proteins} grams</Text>
+                    <Text style={styles.text}>Protein: {this.props.proteins} grams</Text>
                   </View>
+                  
                 </View>
                 <View style={styles.macroFactsBox}>
                   <View style={styles.macroFacts}>
-                    <Text style={styles.text}>Fats: {this.props.fats} grams</Text>
+                    <Text style={styles.text}>Carbs: {this.props.carbs} grams</Text>
                   </View>
                   <View style={styles.macroFacts}>
                     <Text style={styles.text}>Servings: {this.props.servings}</Text>
@@ -99,7 +100,7 @@ export default class SavedItems extends Component{
 const styles = StyleSheet.create({
     itemBox:{
       backgroundColor: 'white',
-      width: '80%',
+      width: '90%',
       alignSelf: 'center',
       borderColor: 'black',
       borderWidth: 2,
@@ -112,12 +113,16 @@ const styles = StyleSheet.create({
       fontWeight: 'bold'
     },
     macroFactsBox:{
-      width: '50%',
+      width: '90%',
       flexDirection: 'row',
+      justifyContent: 'space-evenly',
+
+
     },
     macroFacts:{
-      marginHorizontal: 20,
+      marginHorizontal: 5,
       marginVertical: 5,
+      width: '45%',
   
     },
     numInput:{
@@ -152,6 +157,10 @@ const styles = StyleSheet.create({
     buttonBox:{
       flexDirection:'row',
       justifyContent: 'space-evenly'
+    },
+    text:{
+      fontSize: 15,
+
     }
     
     

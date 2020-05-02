@@ -63,8 +63,9 @@ export default class SurveyPage extends Component{
         })
     }
     inputSum = (carbs, protein, fats) =>{
+        let total = parseInt(carbs) + parseInt(protein) + parseInt(fats);
         this.setState({
-            inputTotal: parseInt(carbs) + parseInt(protein) + parseInt(fats)
+            inputTotal: total
         })
     }
     // inputCheck= () =>{
@@ -82,26 +83,83 @@ export default class SurveyPage extends Component{
     //     }
     //     else{
     //         if(this.state.goal == 'Lose'){
-    //             if(this.state.inputCarbs < (this.state.inputTotal * .1))
-    //             if(this.state.inputProteins < (this.state.inputTotal * .4))
-    //             if(this.state.inputFats < (this.state.inputTotal * .3))
-    
-    //             if(this.state.inputCarbs > (this.state.inputTotal * .3))
-    //             if(this.state.inputProteins > (this.state.inputTotal * .5))
-    //             if(this.state.inputFats > (this.state.inputTotal * .4))
+    //             if(this.state.inputCarbs < (this.state.inputTotal * .1)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
+    //             if(this.state.inputProteins < (this.state.inputTotal * .4)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
+    //             if(this.state.inputFats < (this.state.inputTotal * .3)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }    
+    //             if(this.state.inputCarbs > (this.state.inputTotal * .3)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
+    //             if(this.state.inputProteins > (this.state.inputTotal * .5)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
+    //             if(this.state.inputFats > (this.state.inputTotal * .4)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
     //         }
-    //         if(this.state.goal == 'Gain'){
-    //             if(this.state.inputCarbs < (this.state.inputTotal * .4))
-    //             if(this.state.inputProteins < (this.state.inputTotal * .25))
-    //             if(this.state.inputFats < (this.state.inputTotal * .15))
+    //         else{
+    //             if(this.state.inputCarbs < (this.state.inputTotal * .4)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
+    //             if(this.state.inputProteins < (this.state.inputTotal * .25)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
+    //             if(this.state.inputFats < (this.state.inputTotal * .15)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
     
-    //             if(this.state.inputCarbs > (this.state.inputTotal * .6))
-    //             if(this.state.inputProteins > (this.state.inputTotal * .35))
-    //             if(this.state.inputFats > (this.state.inputTotal * .25))
+    //             if(this.state.inputCarbs > (this.state.inputTotal * .6)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
+    //             if(this.state.inputProteins > (this.state.inputTotal * .35)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
+    //             if(this.state.inputFats > (this.state.inputTotal * .25)){
+    //                 if(this.state.sex === 'Male'){
+
+    //                 }
+    //                 else{}
+    //             }
     //         }
-    //     }
-        
-        
+    //     }    
     // }
 
     allEntries= () =>{
@@ -117,7 +175,7 @@ export default class SurveyPage extends Component{
 
 
     getBMI = (h, w) =>{
-        if(h === NaN || w === NaN || h === null || w === null){
+        if(h == NaN || w == NaN || h === null || w === null){
             Alert.alert("Error", "You must provide your height and weight to calculate your BMI.");
             this.setState({height: null, weight: null});
         }
@@ -210,6 +268,7 @@ export default class SurveyPage extends Component{
             units:null,
             height : null,
             weight : null,
+            level: null,
             BMI : null,
         })
     }
@@ -272,7 +331,7 @@ export default class SurveyPage extends Component{
                         <View style={styles.buttons1}>
                             <Button  color={Colors.button1} title="Check Numbers" onPress={()=> this.inputSum(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats)} disabled={this.allEntries()}></Button>
                         </View>
-                        <Text>{this.inputSum()}</Text>
+                        <Text>{this.state.inputTotal}</Text>
                     </View>
                 </ScrollView>
                     

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     text:{
         color: 'white',
         fontSize: 30,
-        alignSelf: "center",
+        textAlign: "center",
     },
     navigationButtons:{
         backgroundColor: Colors.navigationButtonBackground,

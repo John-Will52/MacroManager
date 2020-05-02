@@ -9,34 +9,45 @@ export default class Question extends Component{
         super()
         this.state = {
             input : null,
-            height: 0,
+            height: null,
             weight: null,
             inches:null,
             feet:null,
             BMI: null
         }
     }
-
-    getInput = input =>{
-        if(input.length < 1){
+    allEntries= () =>{
+        
+        if((this.state.inches != null && this.state.feet != null && this.state.weight != null) || (this.state.height != null && this.state.weight != null)){
+            return false;
         }
         else{
-            this.setState({input: input});
+            return true;
         }
+    }
+    getInput = input =>{
+        this.setState({input: input});
     }
     metricGetHeight = input =>{
-        if(input.length < 1){
+        this.setState({height: input}); 
+    }
+    getFeet = input =>{
+        let inchConversion = parseInt(input) * 12;
+        this.setState({feet: inchConversion});
+    }
+    getInches = input =>{
+        if(input < 12){
+            this.setState({inches: parseInt(input)});
         }
         else{
-            this.setState({height: input});
-        } 
+            this.inchInput.clear();
+            this.setState({inches: null});
+            Alert.alert('Error', "11 inches is the max that you can put here. If 12+ inches are needed, add an additional foot.");
+
+        }
     }
     getWeight = input =>{
-        if(input.length < 1){
-        }
-        else{
-            this.setState({weight: input});
-        }
+        this.setState({weight: input});
     }
     render(){
         if(this.props.testType === "Dilemma"){
@@ -79,15 +90,15 @@ export default class Question extends Component{
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.numInput} value={this.state.height} onChangeText={text => this.metricGetHeight(text)} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
+                        <TextInput style={styles.numInput} ref={(cm) => { this.cmInput = cm }} onChangeText={text => this.metricGetHeight(text)} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         <View style={styles.BMIbuttons}>
-                            <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)}></Button>
+                            <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)} disabled={this.allEntries()}></Button>
                         </View>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight</Text>
                         <View style={styles.vertAlign}>
-                            <TextInput style={styles.numInput} value={this.state.weight} onChangeText={text => this.getWeight(text)}placeholder="kg." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
+                            <TextInput style={styles.numInput} ref={(weight) => { this.weightInput = weight }} onChangeText={text => this.getWeight(text)}placeholder="kg." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         </View>
                     </View>
                 </View>
@@ -99,17 +110,17 @@ export default class Question extends Component{
                     <Text style={styles.text}>Let's get your BMI</Text>
                     <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
-                        <TextInput style={styles.imperialNumInput} value={this.state.feet} onChangeText= {(feet) =>{this.setState({height: (parseInt(this.state.height) + (parseInt(feet) * 12))})}} placeholder ="Feet" placeholderTextColor='black' keyboardType="number-pad" maxLength={1} ></TextInput>
-                        <TextInput style={styles.imperialNumInput}  value={this.state.inches} onChangeText= {(inches) =>{this.setState({height : (parseInt(this.state.height) + parseInt(inches))})}} placeholder ="Inches" placeholderTextColor='black' keyboardType="number-pad" maxLength={2}></TextInput>
+                        <TextInput style={styles.imperialNumInput} ref={(feet) => { this.footInput = feet }} onChangeText= {(feet) =>{this.getFeet(feet)}} placeholder ="Feet" placeholderTextColor='black' keyboardType="number-pad" maxLength={1} ></TextInput>
+                        <TextInput style={styles.imperialNumInput} ref={(inches) => { this.inchInput = inches }} onChangeText= {(inches) =>{this.getInches(inches)}} placeholder ="Inches" placeholderTextColor='black' keyboardType="number-pad" maxLength={2}></TextInput>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight</Text>
                         <View style={styles.vertAlign}>
-                            <TextInput style={styles.numInput} onChangeText={text => {this.setState({weight: parseInt(text)})}} placeholder="Lbs." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
+                            <TextInput style={styles.numInput} ref={(weight) => { this.weightInput = weight }} onChangeText={text => {this.setState({weight: parseInt(text)})}} placeholder="Lbs." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         </View>
                     </View>
                     <View style={styles.BMIbuttons}>
-                        <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress(this.state.height, this.state.weight)}></Button>
+                        <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress((this.state.feet + this.state.inches), this.state.weight)} disabled={this.allEntries()}></Button>
                     </View>
                 </View>
             )

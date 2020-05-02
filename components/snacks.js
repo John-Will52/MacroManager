@@ -54,9 +54,9 @@ export default class Snacks extends Component{
                         <TextInput style={styles.nameInputs} ref={input => { this.snackName = input }} onChangeText={name => this.addSnackName(name)} keyboardType="default" placeholder="Snack Name" placeholderTextColor='black'></TextInput>
                     </View>
                     <View style={styles.inputContainer}>
+                        <TextInput style={styles.numInputs} ref={input => { this.snackFats = input }} onChangeText={num => this.addSnackFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
                         <TextInput style={styles.numInputs} ref={input => { this.snackCarbs = input }} onChangeText={num => this.addSnackCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
                         <TextInput style={styles.numInputs} ref={input => { this.snackProteins = input }} onChangeText={num => this.addSnackProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
-                        <TextInput style={styles.numInputs} ref={input => { this.snackFats = input }} onChangeText={num => this.addSnackFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
                         <TextInput style={styles.numInputs} ref={input => { this.snackServings = input }} onChangeText={num => this.addSnackServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                     </View>
                     <View style={styles.operationButtons}>

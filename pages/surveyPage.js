@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {AppRegistry, View, Text, Alert,StyleSheet, Button, ScrollView, TextInput} from 'react-native';
 import {name as appName} from '../app.json';
 import Question from '../components/question';
-import Colors from '../styling/colors'
+import Colors from '../styling/colors';
+import ProInput from '../components/proInput';
 
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
@@ -18,10 +19,6 @@ export default class SurveyPage extends Component{
             weight : null,
             BMI : null,
             level: null,
-            inputCarbs: null,
-            inputProteins: null,
-            inputFats: null,
-            inputTotal: null,
             allottedCarbs : null,
             allottedProteins : null,
             allottedFats : null,
@@ -33,7 +30,9 @@ export default class SurveyPage extends Component{
             Alert.alert("Error", "Please provide your name.");
             this.setState({name:null});
         }
-        this.setState({name:input});
+        else{
+            this.setState({name:input});
+        }
     }
     setSex = input => {
         this.setState({sex:input});
@@ -68,99 +67,7 @@ export default class SurveyPage extends Component{
             inputTotal: total
         })
     }
-    // inputCheck= () =>{
-    //     if(this.state.inputTotal < (this.state.allottedTotal * .9)){
-    //         Alert.alert('Warning', 'Your numbers are much lower than recommended by our algorithm. Eating too little can lead to your body "starving" and not shedding weight.', [
-    //             {text: "I know what I'm doing."},
-    //             {text: 'What do you recommend?'},
-    //         ] )
-    //     }
-    //     else if(this.state.inputTotal > (this.state.allottedTotal * 1.1)){
-    //         Alert.alert('Warning', 'Your numbers are much higher than recommended by our algorithm. Eating too much can lead to your body putting on more fat, rather than lean muscle.', [
-    //             {text: "I know what I'm doing."},
-    //             {text: 'What do you recommend?'},
-    //         ] )
-    //     }
-    //     else{
-    //         if(this.state.goal == 'Lose'){
-    //             if(this.state.inputCarbs < (this.state.inputTotal * .1)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputProteins < (this.state.inputTotal * .4)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputFats < (this.state.inputTotal * .3)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }    
-    //             if(this.state.inputCarbs > (this.state.inputTotal * .3)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputProteins > (this.state.inputTotal * .5)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputFats > (this.state.inputTotal * .4)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //         }
-    //         else{
-    //             if(this.state.inputCarbs < (this.state.inputTotal * .4)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputProteins < (this.state.inputTotal * .25)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputFats < (this.state.inputTotal * .15)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    
-    //             if(this.state.inputCarbs > (this.state.inputTotal * .6)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputProteins > (this.state.inputTotal * .35)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputFats > (this.state.inputTotal * .25)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //         }
-    //     }    
-    // }
+  
 
     allEntries= () =>{
         
@@ -325,14 +232,9 @@ export default class SurveyPage extends Component{
                 <>
                 <ScrollView>
                     <View style={styles.container}>
-                        <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carb Calories" placeholderTextColor='black'></TextInput>
-                        <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Protein Calories" placeholderTextColor='black'></TextInput>
-                        <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black'></TextInput>
-                        <View style={styles.buttons1}>
-                            <Button  color={Colors.button1} title="Check Numbers" onPress={()=> this.inputSum(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats)} disabled={this.allEntries()}></Button>
-                        </View>
-                        <Text>{this.state.inputTotal}</Text>
+                        <ProInput></ProInput>
                     </View>
+                    
                 </ScrollView>
                     
                 </>
@@ -442,7 +344,7 @@ const styles=StyleSheet.create({
         borderColor:'black',
         borderWidth: 1,
     },
-
+    
 
 
 }); 

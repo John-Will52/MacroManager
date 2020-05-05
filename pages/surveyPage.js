@@ -166,6 +166,33 @@ export default class SurveyPage extends Component{
             }
         }
     }
+
+    submitInputCalories = (carbs, protein, fat, errors)=>{
+        total = parseInt(carbs) + parseInt(protein) + parseInt(fat);
+        if(errors > 0){
+            Alert.alert(
+                'Warning',
+                `Unless you're a professional, and you know exactly what you're doing, your numbers aren't recommended.
+Are you sure that you want to use them?
+(You can change them later.)`,
+                [
+                  {text: 'Yes', onPress: () => this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, parseInt(carbs), parseInt(protein), parseInt(fat), total)
+                    },
+                  {
+                    text: "No"
+                  },
+                ],
+                {cancelable: false},
+              );
+        }
+        else{
+            this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, parseInt(carbs), parseInt(protein), parseInt(fat), total);
+            this.props.changePage(0);
+            
+        }
+        
+        
+    }
         
     wrongDetails = () => {
         this.setState({
@@ -232,7 +259,7 @@ export default class SurveyPage extends Component{
                 <>
                 <ScrollView>
                     <View style={styles.container}>
-                        <ProInput goal={this.state.goal} sex={this.state.sex} recommendedTotal={this.state.allottedTotal} recommendedCarbs={this.state.allottedCarbs} recommendedProteins={this.state.allottedProteins} recommendedFats={this.state.allottedFats}></ProInput>
+                        <ProInput submit={this.submitInputCalories} goal={this.state.goal} sex={this.state.sex} recommendedTotal={this.state.allottedTotal} recommendedCarbs={this.state.allottedCarbs} recommendedProteins={this.state.allottedProteins} recommendedFats={this.state.allottedFats}></ProInput>
                     </View>
                     
                 </ScrollView>

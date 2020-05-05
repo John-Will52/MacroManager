@@ -186,7 +186,7 @@ export default class App extends Component{
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <SurveyPage transferState={this.surveyPageStateTransfer}></SurveyPage>
+            <SurveyPage transferState={this.surveyPageStateTransfer} changePage={this.navigator}></SurveyPage>
           </ScrollView>
         </SafeAreaView>
       );

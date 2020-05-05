@@ -121,11 +121,12 @@ export default class ProInput extends Component{
                         <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black' maxLength={4}></TextInput>
 
                         <View style={styles.buttons1}>
-                            <Button  color={Colors.button1} title="Check Numbers" onPress={()=> this.inputSum} disabled={this.allEntries()}></Button>
+                            <Button  color={Colors.button1} title="Use These Numbers" onPress={()=> this.props.submit(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats, this.list().length)} disabled={this.allEntries()}></Button>
                         </View>
                     </View>
                     <View style={styles.inputContainer}>
                         {this.list()}
+                        <Text>{this.list().length}</Text>
                     </View> 
                 </View>
             </View>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {AppRegistry, View, Text, StyleSheet, TextInput, Button} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
+import Errors from '../components/errors';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class ProInput extends Component{
@@ -61,12 +62,13 @@ export default class ProInput extends Component{
         if(this.state.inputCarbs != null && this.state.inputProteins != null && this.state.inputFats != null){
 
             if(total < (this.props.recommendedTotal * .9)){
-                errors.push("The total calories that you entered are at least 10% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut.")
-                errors.push(`I would recommend ${this.props.recommendedTotal}`)
+                errors.push(`Your total entered calories, ${total}, is at least 10% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.recommendedTotal} total calories`);
+                return errors;
+
             }
             if(total > (this.props.recommendedTotal * 1.1)){
-                errors.push("The total calories that you entered are at least 10% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk.")
-                errors.push(`I would recommend ${this.props.recommendedTotal}`)  
+                errors.push(`Your total entered calories, ${total}, is at least 10% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.recommendedTotal} total calories`);
+                return errors;
             }
             if(this.props.goal == "Gain"){
                 
@@ -77,9 +79,10 @@ export default class ProInput extends Component{
                     errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .25)} and ${parseInt(total * .35)}`)
                 }
                 if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
-                    errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .15)} and ${parseInt(total * .25)}`)
-                    
+                    errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .15)} and ${parseInt(total * .25)}`)    
                 }
+
+                return errors
             }
             if(this.props.goal == "Lose"){
                 if((this.state.inputCarbs < (total * .1)) || (this.state.inputCarbs > (total * .3))){
@@ -91,6 +94,7 @@ export default class ProInput extends Component{
                 if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
                     errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .3)} and ${parseInt(total * .4)}`)    
                 }
+                return errors;
             }
             
         }
@@ -100,7 +104,7 @@ export default class ProInput extends Component{
     list = () => {
         return this.inputCheck().map((error, index) => {
           return(
-            <Text style={styles.errorMessages} key={index}>* {error}</Text> 
+            <Errors key={index} errorMessage={error}></Errors> 
           );
         });
       };
@@ -108,20 +112,22 @@ export default class ProInput extends Component{
 
     render(){
         return(
-            <View style={styles.container}>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.text}>Enter the calories that you follow</Text>
-                    <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carb Calories" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Protein Calories" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black'></TextInput>
+            <View>
+                <Text style={styles.text}>Enter the calorie amounts that you follow</Text>
+                <View style={styles.container}>
+                    <View style={styles.inputContainer}>
+                        <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carb Calories" placeholderTextColor='black' maxLength={4}></TextInput>
+                        <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Protein Calories" placeholderTextColor='black' maxLength={4}></TextInput>
+                        <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black' maxLength={4}></TextInput>
 
-                    <View style={styles.buttons1}>
-                        <Button  color={Colors.button1} title="Check Numbers" onPress={()=> this.inputSum} disabled={this.allEntries()}></Button>
+                        <View style={styles.buttons1}>
+                            <Button  color={Colors.button1} title="Check Numbers" onPress={()=> this.inputSum} disabled={this.allEntries()}></Button>
+                        </View>
                     </View>
+                    <View style={styles.inputContainer}>
+                        {this.list()}
+                    </View> 
                 </View>
-                <View style={styles.inputContainer}>
-                    {this.list()}
-                </View> 
             </View>
        
         );
@@ -147,29 +153,25 @@ const styles=StyleSheet.create({
         marginTop: 10,
       },
       inputs:{
-        width: '70%',
+        width: '90%',
         backgroundColor: 'white',
         height: 50,
         borderColor:'black',
-        borderWidth: 1,
+        borderWidth: 2,
+        marginVertical: 1
     },
     inputError:{
-        width: '70%',
+        width: '90%',
         backgroundColor: 'yellow',
         height: 50,
         borderColor:'red',
         borderWidth: 2,
     },
     text:{
-        fontSize: 30,
-        textAlign:'left',  
+        fontSize: 25,
+        textAlign:'center',
+        marginBottom: 15  
     },
-    errorMessages:{
-        color: 'red',
-        fontSize: 10,
-        fontWeight: 'bold',
-
-    }
     
 });
 

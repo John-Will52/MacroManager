@@ -91,15 +91,15 @@ export default class Question extends Component{
                     <Text style={styles.smallText}>Height</Text>
                     <View style={styles.vertAlign}>
                         <TextInput style={styles.numInput} ref={(cm) => { this.cmInput = cm }} onChangeText={text => this.metricGetHeight(text)} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
-                        <View style={styles.BMIbuttons}>
-                            <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)} disabled={this.allEntries()}></Button>
-                        </View>
                     </View>
                     <View>
                         <Text style={styles.smallText}>Weight</Text>
                         <View style={styles.vertAlign}>
                             <TextInput style={styles.numInput} ref={(weight) => { this.weightInput = weight }} onChangeText={text => this.getWeight(text)}placeholder="kg." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
                         </View>
+                    </View>
+                    <View style={styles.BMIbuttons}>
+                        <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)} disabled={this.allEntries()}></Button>
                     </View>
                 </View>
             )

@@ -11,7 +11,6 @@ export default class ProInput extends Component{
             inputCarbs: null,
             inputProteins: null,
             inputFats: null,
-            inputTotal: null,
         }
     }
 
@@ -25,99 +24,86 @@ export default class ProInput extends Component{
             return true;
         }
     }
-      // inputCheck= () =>{
-    //     if(this.state.inputTotal < (this.state.allottedTotal * .9)){
-    //         Alert.alert('Warning', 'Your numbers are much lower than recommended by our algorithm. Eating too little can lead to your body "starving" and not shedding weight.', [
-    //             {text: "I know what I'm doing."},
-    //             {text: 'What do you recommend?'},
-    //         ] )
-    //     }
-    //     else if(this.state.inputTotal > (this.state.allottedTotal * 1.1)){
-    //         Alert.alert('Warning', 'Your numbers are much higher than recommended by our algorithm. Eating too much can lead to your body putting on more fat, rather than lean muscle.', [
-    //             {text: "I know what I'm doing."},
-    //             {text: 'What do you recommend?'},
-    //         ] )
-    //     }
-    //     else{
-    //         if(this.state.goal == 'Lose'){
-    //             if(this.state.inputCarbs < (this.state.inputTotal * .1)){
-    //                 if(this.state.sex === 'Male'){
+    addCarbs = input => {
+        this.setState({
+            inputCarbs: parseInt(input)
+        })
+    }
+    addProteins = input => {
+        this.setState({
+            inputProteins: parseInt(input)
+        })
+    }
+    addFats = input => {
+        this.setState({
+            inputFats: parseInt(input)
+        })
+    }
+    suggestion = input =>{
+        this.carbInput = input * .3;
+        this.proteinInput = input * .3;
+        this.fatInput = input * .3;
 
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputProteins < (this.state.inputTotal * .4)){
-    //                 if(this.state.sex === 'Male'){
+    }
 
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputFats < (this.state.inputTotal * .3)){
-    //                 if(this.state.sex === 'Male'){
+    inputSum = () =>{
+        if(this.carbInput != null && this.proteinInput != null && this.fatInput != null){
+            const total = this.state.inputCarbs + this.state.inputProteins + this.state.inputFats;
+            return total
+        }
+    }
 
-    //                 }
-    //                 else{}
-    //             }    
-    //             if(this.state.inputCarbs > (this.state.inputTotal * .3)){
-    //                 if(this.state.sex === 'Male'){
+    inputCheck = () =>{
+        let total = this.state.inputCarbs + this.state.inputProteins + this.state.inputFats;
+        // Error array to show where the problem is. This function will return this array
+        let errors = [];
 
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputProteins > (this.state.inputTotal * .5)){
-    //                 if(this.state.sex === 'Male'){
+        if(this.state.inputCarbs != null && this.state.inputProteins != null && this.state.inputFats != null){
 
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputFats > (this.state.inputTotal * .4)){
-    //                 if(this.state.sex === 'Male'){
+            if(total < (this.props.recommendedTotal * .9)){
+                errors.push("The total calories that you entered are at least 10% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut.")
+                errors.push(`I would recommend ${this.props.recommendedTotal}`)
+            }
+            if(total > (this.props.recommendedTotal * 1.1)){
+                errors.push("The total calories that you entered are at least 10% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk.")
+                errors.push(`I would recommend ${this.props.recommendedTotal}`)  
+            }
+            if(this.props.goal == "Gain"){
+                
+                if((this.state.inputCarbs < (total * .4)) || (this.state.inputCarbs > (total * .6))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .4)} and ${parseInt(total * .6)}`)
+                }
+                if((this.state.inputProteins < (total * .25)) || (this.state.inputProteins > (total * .35))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .25)} and ${parseInt(total * .35)}`)
+                }
+                if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .15)} and ${parseInt(total * .25)}`)
+                    
+                }
+            }
+            if(this.props.goal == "Lose"){
+                if((this.state.inputCarbs < (total * .1)) || (this.state.inputCarbs > (total * .3))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .1)} and ${parseInt(total * .3)}`)
+                }
+                if((this.state.inputProteins < (total * .4)) || (this.state.inputProteins > (total * .5))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .4)} and ${parseInt(total * .5)}`)
+                }
+                if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .3)} and ${parseInt(total * .4)}`)    
+                }
+            }
+            
+        }
+            return errors;
+    }
 
-    //                 }
-    //                 else{}
-    //             }
-    //         }
-    //         else{
-    //             if(this.state.inputCarbs < (this.state.inputTotal * .4)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputProteins < (this.state.inputTotal * .25)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputFats < (this.state.inputTotal * .15)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    
-    //             if(this.state.inputCarbs > (this.state.inputTotal * .6)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputProteins > (this.state.inputTotal * .35)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //             if(this.state.inputFats > (this.state.inputTotal * .25)){
-    //                 if(this.state.sex === 'Male'){
-
-    //                 }
-    //                 else{}
-    //             }
-    //         }
-    //     }    
-    // }
+    list = () => {
+        return this.inputCheck().map((error, index) => {
+          return(
+            <Text style={styles.errorMessages} key={index}>* {error}</Text> 
+          );
+        });
+      };
 
 
     render(){
@@ -128,18 +114,13 @@ export default class ProInput extends Component{
                     <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carb Calories" placeholderTextColor='black'></TextInput>
                     <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Protein Calories" placeholderTextColor='black'></TextInput>
                     <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black'></TextInput>
+
                     <View style={styles.buttons1}>
-                        <Button  color={Colors.button1} title="Check Numbers" onPress={()=> this.inputSum(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats)} disabled={this.allEntries()}></Button>
+                        <Button  color={Colors.button1} title="Check Numbers" onPress={()=> this.inputSum} disabled={this.allEntries()}></Button>
                     </View>
                 </View>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carb Calories" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Protein Calories" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black'></TextInput>
-                    <View style={styles.buttons1}>
-                        <Button  color={Colors.button1} title="Check Numbers" onPress={()=> this.inputSum(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats)} disabled={this.allEntries()}></Button>
-                    </View>
-                    <Text>{this.state.inputTotal}</Text>
+                    {this.list()}
                 </View> 
             </View>
        
@@ -172,10 +153,23 @@ const styles=StyleSheet.create({
         borderColor:'black',
         borderWidth: 1,
     },
+    inputError:{
+        width: '70%',
+        backgroundColor: 'yellow',
+        height: 50,
+        borderColor:'red',
+        borderWidth: 2,
+    },
     text:{
         fontSize: 30,
         textAlign:'left',  
     },
+    errorMessages:{
+        color: 'red',
+        fontSize: 10,
+        fontWeight: 'bold',
+
+    }
     
 });
 

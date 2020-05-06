@@ -200,7 +200,7 @@ export default class App extends Component{
         </SafeAreaView>
       );
     }
-    // Change the "Save Items" parts BACK to "Save Snacks/Meals" They must be handled differently
+
     else if(this.state.allottedTotal != null && this.state.pageNumber === 1){
       return(
         <SafeAreaView style={styles.background}>

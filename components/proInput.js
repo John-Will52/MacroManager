@@ -126,7 +126,6 @@ export default class ProInput extends Component{
                     </View>
                     <View style={styles.inputContainer}>
                         {this.list()}
-                        <Text>{this.list().length}</Text>
                     </View> 
                 </View>
             </View>

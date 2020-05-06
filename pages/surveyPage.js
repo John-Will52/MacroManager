@@ -172,14 +172,28 @@ export default class SurveyPage extends Component{
         if(errors > 0){
             Alert.alert(
                 'Warning',
-                `Unless you're a professional, and you know exactly what you're doing, your numbers aren't recommended.
+                `Unless you're a professional, and you know EXACTLY what you're doing, your numbers aren't recommended.
 Are you sure that you want to use them?
 (You can change them later.)`,
                 [
-                  {text: 'Yes', onPress: () => this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, parseInt(carbs), parseInt(protein), parseInt(fat), total)
+                  {text: "I know what I'm doing", onPress: () => this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, parseInt(carbs), parseInt(protein), parseInt(fat), total)
                     },
                   {
-                    text: "No"
+                    text: "No",
+                    onPress: () => Alert.alert(
+                        "Notice",
+                        `Would you like to use the numbers that I recommended for you?
+Carbs: ${this.state.allottedCarbs} calories,
+Protein: ${this.state.allottedProteins} calories,
+Fat: ${this.state.allottedFats} calories,
+Total: ${this.state.allottedTotal} calories`,
+                        [
+                            {text:'Yes', onPress: () => this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, this.state.allottedCarbs, this.state.allottedProteins, this.state.allottedFats, this.state.allottedTotal)},
+                            {text: "No, I'll try again."}
+                        ],
+                        {cancelable: false},
+                    )
+
                   },
                 ],
                 {cancelable: false},

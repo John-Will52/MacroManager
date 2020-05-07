@@ -147,7 +147,7 @@ const styles=StyleSheet.create({
 
     },
     buttons1:{
-        backgroundColor: Colors.buttonBackground1,
+        backgroundColor: Colors.buttonBackground,
         width: "90%",
         alignSelf: 'center',
         marginTop: 10,

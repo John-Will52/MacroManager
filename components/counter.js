@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'red',
         width: 85,
         paddingBottom: 20,
-        minHeight: Platform.OS === 'ios' ? '12%' : '7%',
+        minHeight: Platform.OS === 'ios' ? '12%' : '8%',
         maxHeight: '100%'
     },
     labels:{

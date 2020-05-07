@@ -52,7 +52,7 @@ export default class SavedItems extends Component{
                 </View>
                 <View style={styles.buttonBox}>
                   <View style={styles.buttons1}>
-                    <Button color={Colors.button1} title={"Add"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
+                    <Button color={Colors.button} title={"Add"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.state.eatenServings, parseInt(this.props.carbs/ this.props.servings), parseInt(this.props.proteins/ this.props.servings), parseInt(this.props.fats/ this.props.servings))}></Button>
                   </View>
                   <View style={styles.buttons2}>
                     <Button color={Colors.button2} title={"Delete"} onPress={()=> this.props.delete(this.props.id)}></Button>
@@ -85,7 +85,7 @@ export default class SavedItems extends Component{
                 </View>
                 <View style={styles.buttonBox}>
                   <View style={styles.buttons1}>
-                    <Button color={Colors.button1} title={"Add"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.props.servings, this.props.carbs, this.props.proteins, this.props.fats)}></Button>
+                    <Button color={Colors.button} title={"Add"} onPress={()=> this.props.areYouSure(this.props.item, this.props.name,this.props.servings, this.props.carbs, this.props.proteins, this.props.fats)}></Button>
                   </View>
                   <View style={styles.buttons2}>
                   <Button color={Colors.button2} title={"Delete"} onPress={()=> this.props.delete(this.props.id)}></Button>
@@ -143,13 +143,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
     },
     buttons1:{
-      backgroundColor: Colors.buttonBackground1,
+      backgroundColor: Colors.buttonBackground,
       width: "30%",
       alignSelf: 'center',
       marginTop: 10,
     },
     buttons2:{
-      backgroundColor: Colors.buttonBackground2,
+      backgroundColor: Colors.buttonBackground,
       width: "30%",
       alignSelf: 'center',
       marginTop: 10,

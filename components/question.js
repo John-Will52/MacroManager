@@ -56,8 +56,8 @@ export default class Question extends Component{
                     <Text style={styles.text}>{this.props.asked}</Text>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <View style = {styles.buttons1}>
-                                    <Button color={Colors.button1} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.stateOptionOne)}></Button>
+                                <View style = {styles.buttons}>
+                                    <Button color={Colors.button} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.stateOptionOne)}></Button>
                                 </View>
                             </View>
                             <View style={styles.horizontalButtonBox}>
@@ -76,8 +76,8 @@ export default class Question extends Component{
                     <TextInput style={styles.input} value={this.state.input} onChangeText={text => this.getInput(text)} placeholder={this.props.placehold} placeholderTextColor='black' keyboardType="default"></TextInput>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <View style = {styles.operationButtons}>
-                                    <Button color={Colors.operationButtons} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
+                                <View style = {styles.navigationButtons}>
+                                    <Button color={Colors.navigatingButtons} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
                                 </View>
                             </View>
                     </View>
@@ -99,7 +99,7 @@ export default class Question extends Component{
                         </View>
                     </View>
                     <View style={styles.BMIbuttons}>
-                        <Button color={Colors.button1} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)} disabled={this.allEntries()}></Button>
+                        <Button color={Colors.button} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)} disabled={this.allEntries()}></Button>
                     </View>
                 </View>
             )
@@ -120,7 +120,7 @@ export default class Question extends Component{
                         </View>
                     </View>
                     <View style={styles.BMIbuttons}>
-                        <Button color={Colors.button1} title="Submit" onPress={ () => this.props.buttonPress((this.state.feet + this.state.inches), this.state.weight)} disabled={this.allEntries()}></Button>
+                        <Button color={Colors.button} title="Submit" onPress={ () => this.props.buttonPress((this.state.feet + this.state.inches), this.state.weight)} disabled={this.allEntries()}></Button>
                     </View>
                 </View>
             )
@@ -194,14 +194,14 @@ const styles=StyleSheet.create({
         marginTop: 100,
         borderRadius: 25,
       },
-      buttons1:{
-        backgroundColor: Colors.buttonBackground1,
+      buttons:{
+        backgroundColor: Colors.buttonBackground,
         width: "100%",
         alignSelf: 'center',
         marginTop: 10,
       },
       BMIbuttons:{
-        backgroundColor: Colors.buttonBackground1,
+        backgroundColor: Colors.buttonBackground,
         width: "25%",
         alignSelf: 'center',
         marginTop: 10,
@@ -215,16 +215,10 @@ const styles=StyleSheet.create({
 
       navigationButtons:{
         backgroundColor: Colors.navigationButtonBackground,
-        width: "60%",
-        alignSelf: 'center',
-        marginTop: 10,
-      },
-      operationButtons:{
-        backgroundColor: Colors.operationButtonBackground,
         width: "70%",
         alignSelf: 'center',
         marginTop: 10,
-      }
+      },
     
 
 }); 

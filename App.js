@@ -5,6 +5,9 @@ import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
 import SavedItemsPage from './pages/savedItemsPage';
 import SavedItems from './components/savedItems';
+import NavBar from './components/navBar';
+import Footer from './components/footer';
+
 import Colors from './styling/colors';
 
 export default class App extends Component{
@@ -195,7 +198,9 @@ export default class App extends Component{
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
-            <CalorieCounterPage clear={this.reset} changePage={this.navigator} addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
+            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
+            <CalorieCounterPage clear={this.reset}  addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
+            <Footer changePage={this.navigator}></Footer>
           </ScrollView>
         </SafeAreaView>
       );
@@ -205,7 +210,8 @@ export default class App extends Component{
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <AddSnacksAndMealsPage saveItem={this.saveItems} changePage={this.navigator}></AddSnacksAndMealsPage>
+            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
+            <AddSnacksAndMealsPage changePage={this.navigator} saveItem={this.saveItems}></AddSnacksAndMealsPage>
           </ScrollView>
         </SafeAreaView>
       );
@@ -214,7 +220,9 @@ export default class App extends Component{
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView>
-            <SavedItemsPage itemList={this.list()} changePage={this.navigator}></SavedItemsPage>
+            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
+            <SavedItemsPage changePage={this.navigator} itemList={this.list()}></SavedItemsPage>
+
           </ScrollView>
         </SafeAreaView>
       );
@@ -227,6 +235,6 @@ export default class App extends Component{
 const styles = StyleSheet.create({
   background: {
     backgroundColor: Colors.background,
-    height: '100%'
+    height: '100%',
   },
 });

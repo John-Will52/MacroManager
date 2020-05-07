@@ -4,6 +4,7 @@ import {name as appName} from '../app.json';
 import Question from '../components/question';
 import Colors from '../styling/colors';
 import ProInput from '../components/proInput';
+import CheckResults from '../components/checkResults';
 
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
@@ -182,7 +183,7 @@ Are you sure that you want to use them?
                     text: "No",
                     onPress: () => Alert.alert(
                         "Notice",
-                        `Would you like to use the numbers that I recommended for you?
+                        `Would you like to use the numbers that I recommended for you as a reference?
 Carbs: ${this.state.allottedCarbs} calories,
 Protein: ${this.state.allottedProteins} calories,
 Fat: ${this.state.allottedFats} calories,
@@ -232,7 +233,8 @@ Total: ${this.state.allottedTotal} calories`,
             
             return(
                 <>
-                <Question asked="Are you..." testType="Dilemma" optionOne="Male" optionTwo="Female" stateOptionOne="Male" stateOptionTwo="Female" buttonPress ={this.setSex}></Question>
+                <Question asked={`Hello ${this.state.name}! 
+Which are you?`} testType="Dilemma" optionOne="Male" optionTwo="Female" stateOptionOne="Male" stateOptionTwo="Female" buttonPress ={this.setSex}></Question>
                 </>
             );   
         }
@@ -248,7 +250,7 @@ Total: ${this.state.allottedTotal} calories`,
             
             return(
                 <>
-                <Question asked="Which do you measure with..." testType="Dilemma" optionOne="Metric System" optionTwo="Imperial System" stateOptionOne="Metric" stateOptionTwo="Imperial" buttonPress = {this.selectUnits}></Question>
+                <Question asked="Which do you measure with?" testType="Dilemma" optionOne="Metric System" optionTwo="Imperial System" stateOptionOne="Metric" stateOptionTwo="Imperial" buttonPress = {this.selectUnits}></Question>
                 </>
             );   
         }
@@ -275,7 +277,6 @@ Total: ${this.state.allottedTotal} calories`,
                     <View style={styles.container}>
                         <ProInput submit={this.submitInputCalories} goal={this.state.goal} sex={this.state.sex} recommendedTotal={this.state.allottedTotal} recommendedCarbs={this.state.allottedCarbs} recommendedProteins={this.state.allottedProteins} recommendedFats={this.state.allottedFats}></ProInput>
                     </View>
-                    
                 </ScrollView>
                     
                 </>
@@ -285,36 +286,18 @@ Total: ${this.state.allottedTotal} calories`,
             return(
                 <>
                 <ScrollView>
-                    <View style={styles.container}>
-                        <View>
-                            <Text style={styles.text}>Is this information correct?</Text>
-                            <View style={styles.horizontalButtonContainer}>
-                                <View style={styles.horizontalButtonBox}>
-                                    <View style={styles.buttons1}>
-                                        <Button color={Colors.button1} title="Yes" onPress={()=>this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, this.state.allottedCarbs, this.state.allottedProteins, this.state.allottedFats, this.state.allottedTotal)}></Button>
-                                    </View>
-                                </View>
-                                <View style={styles.horizontalButtonBox}>
-                                    <View style={styles.buttons2}>
-                                        <Button color={Colors.button2} title="No" onPress={()=>this.wrongDetails()}></Button>
-                                    </View>
-                                </View>
+                    <CheckResults name={this.state.name} sex={this.state.sex} goal={this.state.goal} units={this.state.units} height={this.state.height} weight={this.state.weight} BMI={parseInt(this.state.BMI)} allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedFats={this.state.allottedFats} allottedTotal={this.state.allottedTotal}>
+                        <View style={styles.horizontalButtonBox}>
+                            <View style={styles.buttons1}>
+                                <Button color={Colors.button} title="Yes" onPress={()=>this.props.transferState(this.state.name, this.state.sex, this.state.goal, this.state.units, this.state.height, this.state.weight, this.state.BMI, this.state.allottedCarbs, this.state.allottedProteins, this.state.allottedFats, this.state.allottedTotal)}></Button>
                             </View>
                         </View>
-                        <View style={styles.info}>
-                            <Text style={styles.text}>Name: {this.state.name}</Text>
-                            <Text style={styles.text}>Sex: {this.state.sex}</Text>
-                            <Text style={styles.text}>Goal: {this.state.goal} weight</Text>
-                            <Text style={styles.text}>Units: You measure with the {this.state.units} system</Text>
-                            <Text style={styles.text}>Height: {this.state.height}</Text>
-                            <Text style={styles.text}>Weight: {this.state.weight}</Text>
-                            <Text style={styles.text}>BMI: {parseInt(this.state.BMI)}</Text>
-                            <Text style={styles.text}>Your recommended carb limit is: {this.state.allottedCarbs} calories</Text>
-                            <Text style={styles.text}>Your recommended protein limit is: {this.state.allottedProteins} calories</Text>
-                            <Text style={styles.text}>Your recommended fat limit is: {this.state.allottedFats} calories</Text>
-                            <Text style={styles.text}>Your recommended daily calorie total is: {this.state.allottedTotal} calories</Text>
+                        <View style={styles.horizontalButtonBox}>
+                            <View style={styles.buttons2}>
+                                <Button color={Colors.button} title="No" onPress={()=>this.wrongDetails()}></Button>
+                            </View>
                         </View>
-                    </View>
+                    </CheckResults>
                 </ScrollView>
                     
                 </>
@@ -345,23 +328,15 @@ const styles=StyleSheet.create({
         alignSelf: 'center',
         marginVertical: 20,
       },
-      info:{
-        borderColor: 'black',
-        backgroundColor: 'rgb(255,255,255)',
-        borderWidth: 2,
-        width: '95%',
-        alignSelf: 'center',
-        padding: 5,
-        marginTop: 10,
-      },
+
       buttons1:{
-        backgroundColor: Colors.buttonBackground1,
+        backgroundColor: Colors.buttonBackground,
         width: "75%",
         alignSelf: 'center',
         marginTop: 10,
       },
       buttons2:{
-        backgroundColor: Colors.buttonBackground2,
+        backgroundColor: Colors.buttonBackground,
         width: "75%",
         alignSelf: 'center',
         marginTop: 10,

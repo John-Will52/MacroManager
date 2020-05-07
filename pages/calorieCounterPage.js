@@ -77,7 +77,7 @@ export default class CalorieCounterPage extends Component{
             return Colors.disabledButton;
         }
         else{
-            return Colors.button1;
+            return Colors.button;
         }
     }
 
@@ -110,12 +110,6 @@ export default class CalorieCounterPage extends Component{
                 </View>
                 <View style={styles.buttons2}>
                     <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.props.clear()}></Button>
-                </View>
-                <View style={styles.navigationButtons}>
-                    <Button title="Save a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
-                </View>
-                <View style={styles.navigationButtons}>
-                    <Button title="Eat a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(2)}></Button>
                 </View>
             </View>
         );
@@ -152,7 +146,7 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 350,
         alignItems: 'flex-end',
-        marginTop:50,
+        marginTop:40,
         borderColor: 'black',
         borderWidth: 2,
         backgroundColor: 'white',
@@ -174,8 +168,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignSelf: 'flex-start'
     },
-    buttons1:{
-        backgroundColor: Colors.buttonBackground1,
+    buttons:{
+        backgroundColor: Colors.buttonBackground,
         width: "30%",
         alignSelf: 'center',
         marginTop: 10,
@@ -184,12 +178,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.buttonBackground2,
         width: "25%",
         alignSelf: 'center',
-      },
-      navigationButtons:{
-        backgroundColor: Colors.navigationButtonBackground,
-        width: "55%",
-        alignSelf: 'center',
-        marginTop: 10,
       },
 })
 

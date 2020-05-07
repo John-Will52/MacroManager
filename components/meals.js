@@ -133,18 +133,17 @@ And, per serving:
         }
         return(
             <View style={styles.pageContainer}>
-            <Text style={styles.text}>Save a Meal</Text>
-            <View style= {styles.mealBox}>
-                <Text style={styles.mealInfo}> Meal information</Text>
-                <View style={styles.mealHeader}>
-                    <TextInput style={styles.nameInputs} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black' minLength={3}></TextInput>
-                    <TextInput style={styles.numInputs} onChangeText={name => this.addMealServings(name)} keyboardType="number-pad" minLength={1} maxLength={2} placeholder="Total Servings" placeholderTextColor='black'></TextInput>
+                <Text style={styles.text}>Save a Meal</Text>
+                <View style= {styles.mealBox}>
+                    <Text style={styles.mealInfo}> Meal information</Text>
+                    <View style={styles.mealHeader}>
+                        <TextInput style={styles.nameInputs} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black' minLength={3}></TextInput>
+                        <TextInput style={styles.numInputs} onChangeText={name => this.addMealServings(name)} keyboardType="number-pad" minLength={1} maxLength={2} placeholder="Total Servings" placeholderTextColor='black'></TextInput>
+                    </View>
+                    <View style = {styles.ingredientBox}>
+                        {recipe}
+                    </View>
                 </View>
-                <View style = {styles.ingredientBox}>
-                    {recipe}
-                </View>
-            </View>
-            {this.props.children}
             </View>
         );
     }
@@ -194,9 +193,6 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 60,
         padding: 5,
-    },
-    split:{
-        marginTop: 20,
     },
     mealInfo:{
         color: 'white',

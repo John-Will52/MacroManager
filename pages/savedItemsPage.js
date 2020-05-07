@@ -18,13 +18,7 @@ export default class SavedItemsPage extends Component{
             return(
                 <View style={styles.pageContainer}>
                     <View style={styles.savedItemsBox}>
-                        <Text style={styles.text}>Click the "Add a Snack or Meal" button to add things that you eat often.</Text>
-                    </View>
-                    <View style={styles.navigationButtons}>
-                        <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
-                    </View>
-                    <View style={styles.navigationButtons}>
-                        <Button title="Add a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
+                        <Text style={styles.text}>Go to the "Save a Snack or Meal" page to add foods that you eat often.</Text>
                     </View>
                 </View>
             );
@@ -34,12 +28,6 @@ export default class SavedItemsPage extends Component{
                 <View style={styles.pageContainer}>
                     <View style={styles.savedItemsBox}>
                         {this.props.itemList}   
-                    </View>
-                    <View style={styles.navigationButtons}>
-                        <Button title="Calorie Counters Page" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
-                    </View>
-                    <View style={styles.navigationButtons}>
-                        <Button title="Add a Snack or Meal" color={Colors.navigatingButtons} onPress={() => this.props.changePage(1)}></Button>
                     </View>
                 </View>
             );
@@ -59,15 +47,9 @@ const styles = StyleSheet.create({
     },
     text:{
         color: 'white',
-        fontSize: 30,
+        fontSize: 25,
         textAlign: "center",
     },
-    navigationButtons:{
-        backgroundColor: Colors.navigationButtonBackground,
-        width: "55%",
-        alignSelf: 'center',
-        marginTop: 10,
-      },
   });
 
 AppRegistry.registerComponent(appName, () => SavedItemsPage);

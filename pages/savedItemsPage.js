@@ -44,9 +44,11 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.boxBackground,
         width: '100%',
         padding: 5,
+        borderColor: Colors.borders,
+        borderWidth: 5
     },
     text:{
-        color: 'white',
+        color: Colors.text,
         fontSize: 25,
         textAlign: "center",
     },

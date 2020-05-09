@@ -1,24 +1,21 @@
 import {Platform} from 'react-native';
 const Colors = {
-    background: 'rgb(0,67,170)',
+    background: '#021C44',
     text: 'rgb(0,0,0)',
-    boxBackground: 'rgb(175,175,175)',
+    boxBackground: '#105DFE',
+    borders: '#0AD435',
 
-    primary:'#dd523a',
-    secondary:'#aa7589',
-    tertiary:'black',
     titles:'black',
     subtitles: '#ccc',
-    button: Platform.OS === 'ios' ? 'white' :'rgb(77,144,255)',
-    button2: Platform.OS === 'ios' ? 'white' :'rgb(26,93,204)',
-    buttonBackground:Platform.OS === 'ios' ?'rgb(77,144,255)' : 'transparent',
-    buttonBackground2:Platform.OS === 'ios' ?'rgb(26,93,204)' : 'transparent',
-
-    navigatingButtons: Platform.OS === 'ios' ? 'white' : 'transparent',
+    text: '#fff',
+    button: Platform.OS === 'ios' ? 'white' :'#2068BF',
+    button2: Platform.OS === 'ios' ? 'white' :'#D43157',
+    navigatingButtons: Platform.OS === 'ios' ? 'white' : '#6FE815',
+    navigatingButtonBackground: Platform.OS === 'ios' ? '#6FE815' : 'transparent',
+    buttonBackground:Platform.OS === 'ios' ?'#2068BF' : 'transparent',
+    buttonBackground2:Platform.OS === 'ios' ?'#D43157' : 'transparent',
     disabledButton:Platform.OS === 'ios' ?'gray' : 'transparent',
-    navigationButtonBackground:Platform.OS === 'ios' ?'transparent' : 'transparent',
-    footerButtons:'rgb(6,43,184)'
-    // footerButtons: Platform.OS === 'ios' ? 'rgb(6,43,184)' : 'transparent'
+    footerButtons:'#5019F3'
 }
 
 export default Colors;

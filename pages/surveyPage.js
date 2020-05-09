@@ -294,7 +294,7 @@ Which are you?`} testType="Dilemma" optionOne="Male" optionTwo="Female" stateOpt
                         </View>
                         <View style={styles.horizontalButtonBox}>
                             <View style={styles.buttons2}>
-                                <Button color={Colors.button} title="No" onPress={()=>this.wrongDetails()}></Button>
+                                <Button color={Colors.button2} title="No" onPress={()=>this.wrongDetails()}></Button>
                             </View>
                         </View>
                     </CheckResults>
@@ -307,10 +307,11 @@ Which are you?`} testType="Dilemma" optionOne="Male" optionTwo="Female" stateOpt
 }
 
 const styles=StyleSheet.create({
-    text:{
-        fontSize: 30,
-        textAlign:'left',  
-    },
+    // text:{
+    //     fontSize: 30,
+    //     textAlign:'left',
+    //     color: Colors.titles
+    // },
     horizontalButtonContainer:{
         flexDirection: 'row',
         justifyContent:'space-evenly',
@@ -321,8 +322,8 @@ const styles=StyleSheet.create({
     container: {
         flex: 1,
         padding: 15,
-        borderColor: 'black',
-        backgroundColor: 'rgb(175,175,175)',
+        borderColor: Colors.borders,
+        backgroundColor: Colors.boxBackground,
         borderWidth: 3,
         width: '95%',
         alignSelf: 'center',
@@ -336,20 +337,14 @@ const styles=StyleSheet.create({
         marginTop: 10,
       },
       buttons2:{
-        backgroundColor: Colors.buttonBackground,
+        backgroundColor: Colors.buttonBackground2,
         width: "75%",
         alignSelf: 'center',
         marginTop: 10,
       },
       navigationButtons:{
-        backgroundColor: Colors.navigationButtonBackground,
+        backgroundColor: Colors.navigatingButtonBackground,
         width: "55%",
-        alignSelf: 'center',
-        marginTop: 10,
-      },
-      operationButtons:{
-        backgroundColor: Colors.operationButtonBackground,
-        width: "70%",
         alignSelf: 'center',
         marginTop: 10,
       },

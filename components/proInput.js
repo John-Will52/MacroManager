@@ -75,10 +75,10 @@ export default class ProInput extends Component{
                 if((this.state.inputCarbs < (total * .4)) || (this.state.inputCarbs > (total * .6))){
                     errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .4)} and ${parseInt(total * .6)}`)
                 }
-                if((this.state.inputProteins < (total * .25)) || (this.state.inputProteins > (total * .35))){
+                else if((this.state.inputProteins < (total * .25)) || (this.state.inputProteins > (total * .35))){
                     errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .25)} and ${parseInt(total * .35)}`)
                 }
-                if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
+                else if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
                     errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .15)} and ${parseInt(total * .25)}`)    
                 }
 
@@ -88,10 +88,10 @@ export default class ProInput extends Component{
                 if((this.state.inputCarbs < (total * .1)) || (this.state.inputCarbs > (total * .3))){
                     errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .1)} and ${parseInt(total * .3)}`)
                 }
-                if((this.state.inputProteins < (total * .4)) || (this.state.inputProteins > (total * .5))){
+                else if((this.state.inputProteins < (total * .4)) || (this.state.inputProteins > (total * .5))){
                     errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .4)} and ${parseInt(total * .5)}`)
                 }
-                if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
+                else if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
                     errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .3)} and ${parseInt(total * .4)}`)    
                 }
                 return errors;
@@ -121,7 +121,7 @@ export default class ProInput extends Component{
                         <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black' maxLength={4}></TextInput>
 
                         <View style={styles.buttons1}>
-                            <Button  color={Colors.button1} title="Use These Numbers" onPress={()=> this.props.submit(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats, this.list().length)} disabled={this.allEntries()}></Button>
+                            <Button  color={Colors.button} title="Use These Numbers" onPress={()=> this.props.submit(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats, this.list().length)} disabled={this.allEntries()}></Button>
                         </View>
                     </View>
                     <View style={styles.inputContainer}>
@@ -168,9 +168,10 @@ const styles=StyleSheet.create({
         borderWidth: 2,
     },
     text:{
-        fontSize: 25,
+        fontSize: 30,
         textAlign:'center',
-        marginBottom: 15  
+        marginBottom: 15,
+        color: Colors.titles
     },
     
 });

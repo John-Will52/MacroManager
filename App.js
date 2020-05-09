@@ -7,6 +7,7 @@ import SavedItemsPage from './pages/savedItemsPage';
 import SavedItems from './components/savedItems';
 import NavBar from './components/navBar';
 import Footer from './components/footer';
+import EditInfoPage from './pages/editInfoPage';
 
 import Colors from './styling/colors';
 
@@ -126,6 +127,11 @@ export default class App extends Component{
       );
     }  
   }
+  // saveChanges = (name, carbs, proteins, fats, goal) =>{
+  //   this.setState({
+
+  //   })
+  // }
 
   // Data sent to CalorieCounterPage
 
@@ -217,6 +223,28 @@ export default class App extends Component{
       );
     }
     else if(this.state.allottedTotal != null && this.state.pageNumber === 2){
+      return(
+        <SafeAreaView style={styles.background}>
+          <ScrollView>
+            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
+            <SavedItemsPage changePage={this.navigator} itemList={this.list()}></SavedItemsPage>
+
+          </ScrollView>
+        </SafeAreaView>
+      );
+    }
+    else if(this.state.allottedTotal != null && this.state.pageNumber === 3){
+      return(
+        <SafeAreaView style={styles.background}>
+          <ScrollView>
+            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
+            <EditInfoPage ></EditInfoPage>
+
+          </ScrollView>
+        </SafeAreaView>
+      );
+    }
+    else if(this.state.allottedTotal != null && this.state.pageNumber === 4){
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView>

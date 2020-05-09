@@ -60,7 +60,7 @@ export default class Snacks extends Component{
                         <TextInput style={styles.numInputs} ref={input => { this.snackServings = input }} onChangeText={num => this.addSnackServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                     </View>
                     <View style={styles.operationButtons}>
-                        <Button title="Save Snack" color={Colors.operationButtons} onPress={()=>this.props.saveItem(this.state.snackName, this.state.snackCarbs, this.state.snackProteins, this.state.snackFats, this.state.snackServings)}></Button>
+                        <Button title="Save Snack" color={Colors.button} onPress={()=>this.props.saveItem(this.state.snackName, this.state.snackCarbs, this.state.snackProteins, this.state.snackFats, this.state.snackServings)}></Button>
                     </View>
                 </View>
             </View>
@@ -72,6 +72,8 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 35,
         textAlign: "center",
+        color: Colors.titles,
+        marginBottom: 10
     },
     nameInputs:{
         width: '100%',
@@ -84,8 +86,10 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     mealBox:{
-        borderWidth: 5,
+        borderWidth: 3,
         // padding: 5
+        backgroundColor: Colors.boxBackground,
+        borderColor: Colors.borders,
     },
     horizontalButtonBox:{
         width:'30%'
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     operationButtons:{
-        backgroundColor: Colors.operationButtonBackground,
+        backgroundColor: Colors.buttonBackground,
         width: "30%",
         alignSelf: 'center',
         marginTop: 10,

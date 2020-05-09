@@ -19,10 +19,10 @@ export default class Footer extends Component{
         return(
             <View style={styles.footer}>
                 <View style={styles.buttons}>
-                    <Button title="Edit Info" color={Colors.footerButtons} onPress={() => this.props.changePage(2)}></Button>
+                    <Button title="Edit Info" color={Colors.footerButtons} onPress={() => this.props.changePage(3)}></Button>
                 </View>
                 <View style={styles.buttons}>
-                    <Button title="FAQs" color={Colors.footerButtons} onPress={() => this.props.changePage(1)}></Button>
+                    <Button title="FAQs" color={Colors.footerButtons} onPress={() => this.props.changePage(4)}></Button>
                 </View>
             </View>
         );
@@ -37,13 +37,15 @@ const styles = StyleSheet.create({
         height: 35,
         // borderColor: 'black',
         // borderWidth:1,
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-around'
 
 
     },
     buttons: {
         // backgroundColor: 'transparent',
-        width: '50%',
+        width: '25%',
+        borderWidth: 0,
+        borderColor: 'transparent'
 
       },
   });

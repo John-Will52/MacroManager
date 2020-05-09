@@ -82,7 +82,7 @@ export default class AddSnacksAndMealsPage extends Component{
 
             return(
                 <View>
-                    <View style={styles.split}>
+                    <View>
                         <Question testType="Dilemma" asked="Which are you saving?" optionOne="Snack" optionTwo="Meal" stateOptionOne="Snack" stateOptionTwo="Meal" buttonPress ={this.setItemType}></Question>
                     </View>
                 </View>
@@ -106,46 +106,5 @@ export default class AddSnacksAndMealsPage extends Component{
     }
 }
 
-const styles = StyleSheet.create({
-    text:{
-        fontSize: 35,
-        textAlign: "center",
-    },
-    nameInputs:{
-        width: '100%',
-        backgroundColor: 'white',
-        height: 60,
-        borderColor:'black',
-        borderWidth: 1,
-    },
-    pageContainer:{
-        padding: 5,
-    },
-    mealBox:{
-        borderWidth: 5,
-    },
-    horizontalButtonBox:{
-        width:'30%'
-    },
-    horizontalButtonContainer:{
-        flexDirection: 'row',
-        justifyContent:'space-evenly',
-    },
-    numInputs:{
-        width: '25%',
-        backgroundColor: 'white',
-        height: 50,
-        borderColor:'black',
-        borderWidth: 1,
-    },
-    inputContainer:{
-        flexDirection: 'row',
-        width: '100%',
-        flex: 1,
-        height: 60,
-        padding: 5,
-    },
-
-})
 
 AppRegistry.registerComponent(appName, () => AddSnacksAndMealsPage);

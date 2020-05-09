@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 35,
         textAlign: "center",
+        color: Colors.titles
     },
     nameInputs:{
         width: '70%',
@@ -164,9 +165,10 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     mealBox:{
-        borderWidth: 5,
+        borderWidth: 3,
         backgroundColor: Colors.boxBackground,
         padding: 5,
+        borderColor: Colors.borders
     },
     mealHeader:{
         flexDirection: 'row',
@@ -195,7 +197,7 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     mealInfo:{
-        color: 'white',
+        color: Colors.subtitles,
         fontWeight: 'bold',
         fontSize: 25,
         textDecorationLine: 'underline',

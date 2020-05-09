@@ -57,6 +57,15 @@ export default class NavBar extends Component{
                 </View>
             );
         }
+        if(this.props.currentPage === 3){
+            return(
+                <View style={styles.navBar}>
+                    <View style={styles.footerButtons}>
+                        <Button title="Back to Calorie Counter" color={Colors.navigatingButtons} onPress={() => this.props.changePage(0)}></Button>
+                    </View>
+                </View>
+            );
+        }
 
         
     }
@@ -66,18 +75,27 @@ const styles = StyleSheet.create({
     navBar: {
         flexDirection: 'row',
         justifyContent: 'space-around',
+        marginBottom: 10,
+        borderBottomColor: 'black',
+        borderBottomWidth: 2
 
 
     },
     buttons: {
-        backgroundColor: Colors.navigationButtonBackground,
+        backgroundColor: Colors.navigatingButtonBackground,
         width: '50%',
         // marginTop: 1
         // borderColor: 'black',
         // borderWidth: 1,
         // padding: 5,
-
-
+      },
+      footerButtons: {
+        backgroundColor: Colors.navigatingButtonBackground,
+        width: '100%',
+        // marginTop: 1
+        // borderColor: 'black',
+        // borderWidth: 1,
+        // padding: 5,
       },
   });
 

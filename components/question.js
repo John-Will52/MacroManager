@@ -140,7 +140,7 @@ const styles=StyleSheet.create({
         fontSize: 50,
         textDecorationLine: 'underline',
         textAlign:'center',
-        color: Colors.text,
+        color: Colors.titles,
     },
     smallText:{
         fontSize: 30,
@@ -186,8 +186,8 @@ const styles=StyleSheet.create({
         padding: 5,
         justifyContent: 'space-evenly',
         height: 400,
-        borderColor: 'black',
-        backgroundColor: 'rgb(175,175,175)',
+        borderColor: Colors.borders,
+        backgroundColor: Colors.boxBackground,
         borderWidth: 3,
         width: '95%',
         alignSelf: 'center',
@@ -214,7 +214,7 @@ const styles=StyleSheet.create({
       },
 
       navigationButtons:{
-        backgroundColor: Colors.navigationButtonBackground,
+        backgroundColor: Colors.navigatingButtonBackground,
         width: "70%",
         alignSelf: 'center',
         marginTop: 10,

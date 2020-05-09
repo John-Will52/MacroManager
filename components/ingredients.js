@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },    
     ingredient:{
-        color: 'white',
+        color: Colors.text,
         fontWeight: '600',
         fontSize: 20,
         paddingHorizontal: 5,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
       },
       buttons2:{
-        backgroundColor: Colors.buttonBackground,
+        backgroundColor: Colors.buttonBackground2,
         width: "40%",
         alignSelf: 'center',
         marginTop: 10,

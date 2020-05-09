@@ -72,25 +72,14 @@ const styles=StyleSheet.create({
     container: {
         flex: 1,
         padding: 15,
-        borderColor: 'black',
-        backgroundColor: 'rgb(175,175,175)',
+        borderColor: Colors.borders,
+        backgroundColor: Colors.boxBackground,
         borderWidth: 3,
         width: '95%',
         alignSelf: 'center',
         marginVertical: 20,
       },
-      buttons1:{
-        backgroundColor: Colors.buttonBackground,
-        width: "75%",
-        alignSelf: 'center',
-        marginTop: 10,
-      },
-      buttons2:{
-        backgroundColor: Colors.buttonBackground,
-        width: "75%",
-        alignSelf: 'center',
-        marginTop: 10,
-      },
+
     
 
 

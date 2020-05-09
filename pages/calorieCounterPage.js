@@ -93,7 +93,7 @@ export default class CalorieCounterPage extends Component{
                     <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
                     <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                 </View>
-                <View style={styles.buttons1}>
+                <View style={styles.buttons}>
                     <Button ref={this.addCaloriesButton} color={this.buttonColor()} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())} disabled={this.allEntries()}></Button>
                 </View>
                 <View style={styles.counterContainer}>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         height: 60,
-        // borderColor: 'black',
+        // borderColor: Colors.borders,
         // borderWidth: 2,
     },
     counterContainer:{
@@ -147,19 +147,20 @@ const styles = StyleSheet.create({
         height: 350,
         alignItems: 'flex-end',
         marginTop:40,
-        borderColor: 'black',
+        borderColor: Colors.borders,
         borderWidth: 2,
         backgroundColor: 'white',
     },
     text:{
         fontSize: 35,
         textAlign: "center",
+        color: Colors.titles
     },
     pageContainer:{
         padding: 5,
     },
     labels:{
-        color: 'black',
+        color: Colors.text,
         width: '25%',
         fontSize: 18,
         textDecorationLine: 'underline',

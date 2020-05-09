@@ -102,15 +102,16 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       width: '90%',
       alignSelf: 'center',
-      borderColor: 'black',
-      borderWidth: 2,
+      borderColor: Colors.borders,
+      borderWidth: 5,
       marginVertical: 10,
       padding: 5
   
     },
     itemName:{
       fontSize: 25,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      color: Colors.subtitles
     },
     macroFactsBox:{
       width: '90%',
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
       marginTop: 10,
     },
     buttons2:{
-      backgroundColor: Colors.buttonBackground,
+      backgroundColor: Colors.buttonBackground2,
       width: "30%",
       alignSelf: 'center',
       marginTop: 10,
@@ -160,6 +161,7 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 15,
+      color: Colors.text
 
     }
     

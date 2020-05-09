@@ -76,8 +76,8 @@ export default class Question extends Component{
                     <TextInput style={styles.input} value={this.state.input} onChangeText={text => this.getInput(text)} placeholder={this.props.placehold} placeholderTextColor='black' keyboardType="default"></TextInput>
                     <View style={styles.horizontalButtonContainer}>
                             <View style={styles.horizontalButtonBox}>
-                                <View style = {styles.navigationButtons}>
-                                    <Button color={Colors.navigatingButtons} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
+                                <View style = {styles.buttons}>
+                                    <Button color={Colors.button} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
                                 </View>
                             </View>
                     </View>
@@ -144,7 +144,7 @@ const styles=StyleSheet.create({
     },
     smallText:{
         fontSize: 30,
-        color: Colors.text,
+        color: Colors.subtitles,
     },
     numInput:{
         width: 150,

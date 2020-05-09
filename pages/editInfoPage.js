@@ -19,10 +19,18 @@ export default class EditInfoPage extends Component{
             <View>
                 <Text style={styles.title}>What would you like to edit?</Text>
                 <View>
-                    <Button title="Name" onPress={() => {}}></Button>
-                    <Button title="Goal" onPress={() => {}}></Button>
-                    <Button title="Recalculate BMI" onPress={() => {}}></Button>
-                    <Button title="Change caloric numbers" onPress={() => {}}></Button>
+                    <View style={styles.buttonBackground}>
+                        <Button title="Name" color={Colors.button2} onPress={() => {}}></Button>
+                    </View>
+                    <View style={styles.buttonBackground}>
+                        <Button title="Goal" color={Colors.button2} onPress={() => {}}></Button> 
+                    </View>
+                    <View style={styles.buttonBackground}>
+                        <Button title="Recalculate BMI" color={Colors.button2} onPress={() => {}}></Button>
+                    </View>
+                    <View style={styles.buttonBackground}>
+                        <Button title="Change caloric numbers" color={Colors.button2} onPress={() => {}}></Button> 
+                    </View>
                 </View>
             </View>
         );
@@ -32,6 +40,17 @@ export default class EditInfoPage extends Component{
 const styles = StyleSheet.create({
     title:{
         color: Colors.titles,
+        fontSize: 30,
+        alignSelf: 'center',
+        marginBottom: 10
+    },
+    buttonBackground:{
+        backgroundColor: Colors.buttonBackground2,
+        borderWidth: 2,
+        borderColor: Colors.boxBackground,
+        margin: 5,
+        width:'60%',
+        alignSelf:'center'
     }
 })
 

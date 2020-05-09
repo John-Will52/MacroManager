@@ -17,7 +17,7 @@ export default class CheckResults extends Component{
         return(
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.text}>Is this information correct?</Text>
+                    <Text style={styles.title}>Is this information correct?</Text>
                     <View style={styles.horizontalButtonContainer}>
                         {this.props.children}
                     </View>
@@ -46,16 +46,23 @@ export default class CheckResults extends Component{
 const styles=StyleSheet.create({
     text:{
         fontSize: 30,
-        textAlign:'left',  
+        textAlign:'left',
+        color: Colors.text,
+    },
+    title:{
+        fontSize: 30,
+        textAlign:'left',
+        color: Colors.titles,
     },
     numbers:{
         fontSize: 25,
         textAlign:'left',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: Colors.text
     },
     info:{
-        borderColor: 'black',
-        backgroundColor: 'rgb(255,255,255)',
+        borderColor: Colors.borders,
+        backgroundColor: 'white',
         borderWidth: 2,
         width: '95%',
         alignSelf: 'center',

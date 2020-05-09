@@ -47,7 +47,7 @@ const styles=StyleSheet.create({
     text:{
         fontSize: 30,
         textAlign:'left',
-        color: Colors.text,
+        color: Colors.background,
     },
     title:{
         fontSize: 30,
@@ -58,7 +58,7 @@ const styles=StyleSheet.create({
         fontSize: 25,
         textAlign:'left',
         fontWeight: 'bold',
-        color: Colors.text
+        color: Colors.background
     },
     info:{
         borderColor: Colors.borders,

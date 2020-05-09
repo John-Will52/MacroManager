@@ -26,9 +26,7 @@ export default class SavedItemsPage extends Component{
         else{
             return(
                 <View style={styles.pageContainer}>
-                    <View style={styles.savedItemsBox}>
-                        {this.props.itemList}   
-                    </View>
+                    {this.props.itemList}   
                 </View>
             );
         }

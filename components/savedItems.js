@@ -99,7 +99,7 @@ export default class SavedItems extends Component{
 
 const styles = StyleSheet.create({
     itemBox:{
-      backgroundColor: 'white',
+      backgroundColor: Colors.boxBackground,
       width: '90%',
       alignSelf: 'center',
       borderColor: Colors.borders,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 15,
-      color: Colors.text
+      color: 'white'
 
     }
     

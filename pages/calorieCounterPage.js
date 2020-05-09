@@ -86,30 +86,32 @@ export default class CalorieCounterPage extends Component{
     render(){
         return(
             <View style={styles.pageContainer}>
-                <Text style={styles.text}>Add the amounts of each in grams</Text>
-                <View style={styles.inputContainer}>
-                    <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
-                    <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
-                </View>
-                <View style={styles.buttons}>
-                    <Button ref={this.addCaloriesButton} color={this.buttonColor()} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())} disabled={this.allEntries()}></Button>
-                </View>
-                <View style={styles.counterContainer}>
-                    <Counter percentages={this.props.percentOfFats}></Counter>
-                    <Counter percentages={this.props.percentOfCarbs}></Counter>
-                    <Counter percentages={this.props.percentOfProteins}></Counter>
-                    <Counter percentages={this.props.percentOfTotalCalories}></Counter>
-                </View>
-                <View style={styles.labelContainer}>
-                    <Text style={styles.labels}>Fats</Text>
-                    <Text style={styles.labels}>Carbs</Text>
-                    <Text style={styles.labels}>Proteins</Text>
-                    <Text style={styles.labels}>Total</Text>
-                </View>
-                <View style={styles.buttons2}>
-                    <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.props.clear()}></Button>
+                <View style={styles.contentContainer}>
+                    <Text style={styles.text}>Add the amounts of each in grams</Text>
+                    <View style={styles.inputContainer}>
+                        <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
+                        <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
+                    </View>
+                    <View style={styles.buttons}>
+                        <Button ref={this.addCaloriesButton} color={this.buttonColor()} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())} disabled={this.allEntries()}></Button>
+                    </View>
+                    <View style={styles.counterContainer}>
+                        <Counter percentages={this.props.percentOfFats}></Counter>
+                        <Counter percentages={this.props.percentOfCarbs}></Counter>
+                        <Counter percentages={this.props.percentOfProteins}></Counter>
+                        <Counter percentages={this.props.percentOfTotalCalories}></Counter>
+                    </View>
+                    <View style={styles.labelContainer}>
+                        <Text style={styles.labels}>Fats</Text>
+                        <Text style={styles.labels}>Carbs</Text>
+                        <Text style={styles.labels}>Proteins</Text>
+                        <Text style={styles.labels}>Total</Text>
+                    </View>
+                    <View style={styles.buttons2}>
+                        <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.props.clear()}></Button>
+                    </View>
                 </View>
             </View>
         );
@@ -144,12 +146,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: '100%',
         flex: 1,
-        height: 350,
+        height: 360,
         alignItems: 'flex-end',
         marginTop:40,
-        borderColor: Colors.borders,
-        borderWidth: 2,
-        backgroundColor: 'white',
+        borderColor: 'black',
+        borderWidth: 3,
+        backgroundColor: '#d1f7ff',
     },
     text:{
         fontSize: 35,
@@ -157,10 +159,10 @@ const styles = StyleSheet.create({
         color: Colors.titles
     },
     pageContainer:{
-        padding: 5,
+        // paddingHorizontal: 5,
     },
     labels:{
-        color: Colors.text,
+        color: 'white',
         width: '25%',
         fontSize: 18,
         textDecorationLine: 'underline',
@@ -171,7 +173,7 @@ const styles = StyleSheet.create({
     },
     buttons:{
         backgroundColor: Colors.buttonBackground,
-        width: "30%",
+        width: "40%",
         alignSelf: 'center',
         marginTop: 10,
       },
@@ -180,6 +182,12 @@ const styles = StyleSheet.create({
         width: "25%",
         alignSelf: 'center',
       },
+      contentContainer:{
+          backgroundColor: Colors.boxBackground,
+          borderColor:Colors.borders,
+          borderWidth: 3,
+          padding: 10
+      }
 })
 
 AppRegistry.registerComponent(appName, () => CalorieCounterPage);

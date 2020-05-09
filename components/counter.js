@@ -13,24 +13,22 @@ export default class Counter extends Component{
         }
     }
 
-    color = () =>{
-            if(this.props.percentages < 76){
-                color = 'red';
-            }
-            else if(76 <= this.props.percentages <= 89){
-                color = 'orange';
-            }
-            else if(90 <= this.props.percentages <= 95){
-                color = 'yellow';
-            }
-            else if(96 <= this.props.percentages <= 105){
-                color = 'green';
-            }
-            else{
-                color = Colors.background;
-            }
+    color = (x) =>{
+        const colorArray=['red','orange','green','blue'];
 
-        return color;
+        if(x < 76 || x > 105){
+            return colorArray[0];
+        }
+        else if (x > 75 && x <= 86){
+            return colorArray[1];
+        }
+        else if (x > 85 && x <= 95){
+            return colorArray[2];
+        }
+        else if (x > 95 && x <= 105){
+            return colorArray[3];
+        }
+
     }
 
 
@@ -42,8 +40,10 @@ export default class Counter extends Component{
         
         return(
             <View>
-                <View style={[styles.box, {height: `${parseInt(this.props.percentages)}%`, backgroundColor: this.color()}]}>
+
+                <View style={[styles.box, {height: `${parseInt(this.props.percentages)}%`, backgroundColor: this.color(parseInt(this.props.percentages))}]}>
                     <Text style={styles.labels}>{parseInt(this.props.percentages)}%</Text>
+                    {/* <Text>{this.color(parseInt(this.props.percentages))}</Text> */}
                 </View>
             </View>
         );
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         width: 85,
         paddingBottom: 20,
         minHeight: Platform.OS === 'ios' ? '12%' : '8%',
-        maxHeight: '100%'
+        maxHeight: '100%',
     },
     labels:{
         fontSize: 20,

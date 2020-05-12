@@ -447,26 +447,26 @@ const styles = StyleSheet.create({
         width:'40%',
         justifyContent:'space-between'
     },
-      buttons:{
+    buttons:{
         backgroundColor: Colors.buttonBackground,
         width: "30%",
         alignSelf: 'center',
         marginTop: 10,
-      },
-      BMIbuttons:{
+    },
+    BMIbuttons:{
         backgroundColor: Colors.buttonBackground,
         width: "50%",
         alignSelf: 'center',
         marginTop: 10,
-      },
-      buttons2:{
+    },
+    buttons2:{
         backgroundColor: Colors.buttonBackground2,
         width: "30%",
         alignSelf: 'center',
         marginTop: 10,
-      },
+    },
 
-      navigationButtons:{
+    navigationButtons:{
         backgroundColor: Colors.navigatingButtonBackground,
         width: "70%",
         alignSelf: 'center',
@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
       },
-      inputs:{
+    inputs:{
         width: '90%',
         backgroundColor: 'white',
         height: 50,

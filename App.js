@@ -8,6 +8,7 @@ import SavedItems from './components/savedItems';
 import NavBar from './components/navBar';
 import Footer from './components/footer';
 import EditInfoPage from './pages/editInfoPage';
+import FAQsPage from './pages/FAQsPage;'
 
 import Colors from './styling/colors';
 
@@ -367,7 +368,7 @@ Are you sure that you want to use them?`,
         <SafeAreaView style={styles.background}>
           <ScrollView>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
-            <SavedItemsPage changePage={this.navigator} itemList={this.list()}></SavedItemsPage>
+            <FAQsPage></FAQsPage>
 
           </ScrollView>
         </SafeAreaView>

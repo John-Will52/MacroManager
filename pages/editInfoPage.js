@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {AppRegistry, View, Text, StyleSheet, TextInput, Button} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
-import ProInput from '../components/proInput';
+import Errors from '../components/errors';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class EditInfoPage extends Component{
     constructor(props) {
         super()
         this.state = {
+            name: null,
             feet: null,
             inches: null,
             weight: null,
@@ -16,6 +17,15 @@ export default class EditInfoPage extends Component{
             inputProteins: null,
             inputFats: null,
             focus: null
+        }
+    }
+    setName = input => {
+        if(input === null || input === ''){
+            Alert.alert("Error", "Please provide your name.");
+            this.setState({name:null});
+        }
+        else{
+            this.setState({name:input});
         }
     }
     getFeet = input =>{
@@ -167,11 +177,11 @@ export default class EditInfoPage extends Component{
                     <View>
                         <View style={styles.focus}>
                             <Text style={styles.text}>Change your name.</Text>
-                            <TextInput style={styles.input} onChangeText={text => this.props.changeName(text)} placeholder={this.props.placehold} placeholderTextColor='black' keyboardType="default"></TextInput>
+                            <TextInput style={styles.input} ref={(name) => { this.nameInput = name }} onChangeText={(name)=>{this.setName(name)}} placeholder="Name" placeholderTextColor='black' keyboardType="default"></TextInput>
                             <View style={styles.horizontalButtonContainer}>
                                 <View style={styles.horizontalButtonBox}>
                                     <View style = {styles.buttons}>
-                                        <Button color={Colors.button} title="Submit" onPress={()=>this.props.buttonPress(this.state.input)}></Button>
+                                        <Button color={Colors.button} title="Submit" onPress={()=>this.props.changeName(this.state.name)}></Button>
                                     </View>
                                 </View>
                             </View>
@@ -191,37 +201,63 @@ export default class EditInfoPage extends Component{
             );
         }
         else if(this.state.focus == 'Goal'){
-            return(
-                <View>
-                    <Text style={styles.title}>What would you like to edit?</Text>
+            if(this.props.goal == 'Gain'){
+                return(
                     <View>
-                        <View style={styles.buttonBackground}>
-                            <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
-                        </View>
-                        <View style={styles.container}>
-                            <Text style={styles.text}>Change your goal.</Text>
-                            <View style={styles.horizontalButtonContainer}>
-                                <View style={styles.horizontalButtonBox}>
-                                    <View style = {styles.buttons}>
-                                        <Button color={Colors.button} title="Gain" onPress={()=>this.props.changeGoal('Gain')}></Button>
-                                    </View>
-                                </View>
-                                <View style={styles.horizontalButtonBox}>
-                                    <View style = {styles.buttons2}>
-                                        <Button color={Colors.button2} title="Lose" onPress={()=>this.props.changeGoal('Lose')}></Button>
-                                    </View>
-                                </View>
+                        <Text style={styles.title}>What would you like to edit?</Text>
+                        <View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
                             </View>
-                    </View>
-                        <View style={styles.buttonBackground}>
-                            <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
+                            <View style={styles.container}>
+                                <Text style={styles.text}>Change your goal.</Text>
+                                <View style={styles.horizontalButtonContainer}>
+                                    <View style={styles.horizontalButtonBox}>
+                                        <View style = {styles.buttons2}>
+                                            <Button color={Colors.button2} title="Lose" onPress={()=>this.props.changeGoal('Lose')}></Button>
+                                        </View>
+                                    </View>
+                                </View>
                         </View>
-                        <View style={styles.buttonBackground}>
-                            <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
+                            <View style={styles.buttonBackground}>
+                                <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
+                            </View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
+                            </View>
                         </View>
                     </View>
-                </View>
-            );
+                );
+            }
+            if(this.props.goal == 'Lose'){
+                return(
+                    <View>
+                        <Text style={styles.title}>What would you like to edit?</Text>
+                        <View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
+                            </View>
+                            <View style={styles.container}>
+                                <Text style={styles.text}>Change your goal.</Text>
+                                <View style={styles.horizontalButtonContainer}>
+                                    <View style={styles.horizontalButtonBox}>
+                                        <View style = {styles.buttons}>
+                                            <Button color={Colors.button} title="Gain" onPress={()=>this.props.changeGoal('Gain')}></Button>
+                                        </View>
+                                    </View>
+                                </View>
+                        </View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
+                            </View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
+                            </View>
+                        </View>
+                    </View>
+                );
+            }
+            
         }
         else if(this.state.focus == 'BMI'){
             if(this.props.units == "Imperial"){
@@ -249,7 +285,7 @@ export default class EditInfoPage extends Component{
                                     </View>
                                 </View>
                                 <View style={styles.BMIbuttons}>
-                                    <Button color={Colors.button} title="Submit" onPress={ () => this.props.buttonPress((this.state.feet + this.state.inches), this.state.weight)} disabled={this.BMIEntries()}></Button>
+                                    <Button color={Colors.button} title="Submit" onPress={ () => this.props.editBMI((parseInt(this.state.feet) + parseInt(this.state.inches)), parseInt(this.state.weight), this.getBMI((parseInt(this.state.feet) + parseInt(this.state.inches)), parseInt(this.state.weight)))} disabled={this.BMIEntries()}></Button>
                                 </View>
                             </View>
                             <View style={styles.buttonBackground}>
@@ -283,7 +319,7 @@ export default class EditInfoPage extends Component{
                                     </View>
                                 </View>
                                 <View style={styles.BMIbuttons}>
-                                    <Button color={Colors.button} title="Submit" onPress={() =>this.props.buttonPress(this.state.height, this.state.weight)} disabled={this.BMIEntries()}></Button>
+                                    <Button color={Colors.button} title="Submit" onPress={() =>this.props.editBMI(parseInt(this.state.height), parseInt(this.state.weight), this.getBMI(parseInt(this.cmInput), parseInt(this.weightInput)))} disabled={this.BMIEntries()}></Button>
                                 </View>
                             </View>
                             <View style={styles.buttonBackground}>
@@ -339,7 +375,7 @@ export default class EditInfoPage extends Component{
                             <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
                         </View>
                         <View style={styles.buttonBackground}>
-                            <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button> 
+                            <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
                         </View>
                         <View style={styles.buttonBackground}>
                             <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>

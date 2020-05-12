@@ -194,14 +194,54 @@ export default class App extends Component{
       this.setState({
         name: input
       })
+      this.navigator(3);
     }
     changeGoal = input =>{
       this.setState({
         goal: input
       })
+      this.changeGoalNewNumbers(input);
+      this.navigator(3);
     }
-    editBMI = newBMI =>{
-      this.setState({BMI : newBMI});
+    changeGoalNewNumbers= newGoal =>{
+      let leanBodyMass = parseInt(this.state.weight * ((100 - this.state.BMI)/100));
+      if(newGoal === "Lose" && this.state.sex === "Male"){
+          let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
+          let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+          let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+          let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+      }
+      if(newGoal === "Lose" && this.state.sex === "Female"){
+          let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
+          let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+          let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+          let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+          
+      }
+      if(newGoal === "Gain" && this.state.sex === "Male"){
+          let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+          let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+          let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+          let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+          
+      }
+      if(newGoal === "Gain" && this.state.sex === "Female"){
+          let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
+          let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+          let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+          let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+      }
+    }
+    editBMI = (newHeight, newWeight, newBMI) =>{
+      this.setState({
+        BMI : parseInt(newBMI),
+        weight: parseInt(newWeight),
+        height: parseInt(newHeight)
+      });
       let leanBodyMass = parseInt(this.state.weight * ((100 - newBMI)/100));
       if(this.state.goal === "Lose" && this.state.sex === "Male"){
           let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
@@ -233,6 +273,7 @@ export default class App extends Component{
           let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
           this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
       }
+      this.navigator(3);
     }
     changeNumbers = (carbs, protein, fat, errors)=>{
       total = parseInt(carbs) + parseInt(protein) + parseInt(fat);
@@ -244,10 +285,11 @@ Are you sure that you want to use them?
 (You can change them later.)`,
               [
                 {text: "I know what I'm doing", onPress: () => this.setState({
-                  allotedCarbs: parseInt(carbs),
+                  allottedCarbs: parseInt(carbs),
                   allottedProteins: parseInt(protein),
-                  allottedFats: parseInt(fat)
-                })
+                  allottedFats: parseInt(fat),
+                  pageNumber: 3
+                }),
                   },
                 {
                   text: "No"
@@ -258,9 +300,10 @@ Are you sure that you want to use them?
       }
       else{
           this.setState({
-            allotedCarbs: parseInt(carbs),
+            allottedCarbs: parseInt(carbs),
             allottedProteins: parseInt(protein),
-            allottedFats: parseInt(fat)
+            allottedFats: parseInt(fat),
+            pageNumber: 3
           })          
       }
   }
@@ -282,6 +325,12 @@ Are you sure that you want to use them?
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <CalorieCounterPage clear={this.reset}  addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
+            <Text style={styles.text}>{this.state.name}</Text>
+            <Text style={styles.text}>{this.state.goal}</Text>
+            <Text style={styles.text}>{this.state.BMI}</Text>
+            <Text style={styles.text}>{this.state.allottedCarbs}</Text>
+            <Text style={styles.text}>{this.state.allottedProteins}</Text>
+            <Text style={styles.text}>{this.state.allottedFats}</Text>
             <Footer changePage={this.navigator}></Footer>
           </ScrollView>
         </SafeAreaView>
@@ -314,7 +363,7 @@ Are you sure that you want to use them?
         <SafeAreaView style={styles.background}>
           <ScrollView>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
-            <EditInfoPage changeName={this.nameChange} changeGoal={this.changeGoal} editBMI={this.editBMI} changeNumbers={this.changeNumbers} units={this.state.units} sex={this.state.sex}></EditInfoPage>
+            <EditInfoPage changeName={this.nameChange} changeGoal={this.changeGoal} editBMI={this.editBMI} changeNumbers={this.changeNumbers} units={this.state.units} sex={this.state.sex} goal={this.state.goal}></EditInfoPage>
 
           </ScrollView>
         </SafeAreaView>
@@ -341,4 +390,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     height: '100%',
   },
+  text:{
+    color: Colors.button2
+  }
 });

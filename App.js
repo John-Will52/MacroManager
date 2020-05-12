@@ -189,6 +189,82 @@ export default class App extends Component{
       });
     };
 
+  //Edit page functions
+    nameChange = input =>{
+      this.setState({
+        name: input
+      })
+    }
+    changeGoal = input =>{
+      this.setState({
+        goal: input
+      })
+    }
+    editBMI = newBMI =>{
+      this.setState({BMI : newBMI});
+      let leanBodyMass = parseInt(this.state.weight * ((100 - newBMI)/100));
+      if(this.state.goal === "Lose" && this.state.sex === "Male"){
+          let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
+          let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+          let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+          let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+      }
+      if(this.state.goal === "Lose" && this.state.sex === "Female"){
+          let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
+          let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+          let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+          let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+          
+      }
+      if(this.state.goal === "Gain" && this.state.sex === "Male"){
+          let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+          let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+          let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+          let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+          
+      }
+      if(this.state.goal === "Gain" && this.state.sex === "Female"){
+          let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
+          let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+          let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+          let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+      }
+    }
+    changeNumbers = (carbs, protein, fat, errors)=>{
+      total = parseInt(carbs) + parseInt(protein) + parseInt(fat);
+      if(errors > 0){
+          Alert.alert(
+              'Warning',
+              `Unless you're a professional, and you know EXACTLY what you're doing, your numbers aren't recommended.
+Are you sure that you want to use them?
+(You can change them later.)`,
+              [
+                {text: "I know what I'm doing", onPress: () => this.setState({
+                  allotedCarbs: parseInt(carbs),
+                  allottedProteins: parseInt(protein),
+                  allottedFats: parseInt(fat)
+                })
+                  },
+                {
+                  text: "No"
+                },
+              ],
+              {cancelable: false},
+            );
+      }
+      else{
+          this.setState({
+            allotedCarbs: parseInt(carbs),
+            allottedProteins: parseInt(protein),
+            allottedFats: parseInt(fat)
+          })          
+      }
+  }
+
 
   render(){
     if(this.state.allottedTotal == null){
@@ -238,7 +314,7 @@ export default class App extends Component{
         <SafeAreaView style={styles.background}>
           <ScrollView>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
-            <EditInfoPage ></EditInfoPage>
+            <EditInfoPage changeName={this.nameChange} changeGoal={this.changeGoal} editBMI={this.editBMI} changeNumbers={this.changeNumbers} units={this.state.units} sex={this.state.sex}></EditInfoPage>
 
           </ScrollView>
         </SafeAreaView>

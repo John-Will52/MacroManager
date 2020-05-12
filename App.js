@@ -8,7 +8,7 @@ import SavedItems from './components/savedItems';
 import NavBar from './components/navBar';
 import Footer from './components/footer';
 import EditInfoPage from './pages/editInfoPage';
-import FAQsPage from './pages/FAQsPage;'
+import FAQsPage from './pages/FAQsPage';
 
 import Colors from './styling/colors';
 
@@ -288,6 +288,7 @@ Are you sure that you want to use them?`,
                   allottedCarbs: parseInt(carbs),
                   allottedProteins: parseInt(protein),
                   allottedFats: parseInt(fat),
+                  allottedTotal: total,
                   pageNumber: 3
                 }),
                   },
@@ -358,7 +359,17 @@ Are you sure that you want to use them?`,
           <ScrollView>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <EditInfoPage changeName={this.nameChange} changeGoal={this.changeGoal} editBMI={this.editBMI} changeNumbers={this.changeNumbers} units={this.state.units} sex={this.state.sex} goal={this.state.goal}></EditInfoPage>
-
+            <View style={styles.container}>
+              <Text style={styles.text}>Current Name: {this.state.name}</Text>
+              <Text style={styles.text}>Current Goal: {this.state.goal}</Text>
+              <Text style={styles.text}>Current Height: {this.state.height}</Text>
+              <Text style={styles.text}>Current Weight: {this.state.weight}</Text>
+              <Text style={styles.text}>Current BMI: {this.state.BMI}</Text>
+              <Text style={styles.text}>Current Total Fat Calories: {this.state.allottedFats}</Text>
+              <Text style={styles.text}>Current Total Carb Calories: {this.state.allottedCarbs}</Text>
+              <Text style={styles.text}>Current Total Protein Calories:  {this.state.allottedProteins}</Text>
+              <Text style={styles.text}>Current Total Daily Calories:  {this.state.allottedTotal}</Text>
+            </View>
           </ScrollView>
         </SafeAreaView>
       );
@@ -369,7 +380,6 @@ Are you sure that you want to use them?`,
           <ScrollView>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <FAQsPage></FAQsPage>
-
           </ScrollView>
         </SafeAreaView>
       );
@@ -384,7 +394,18 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     height: '100%',
   },
+  container:{
+    backgroundColor:Colors.boxBackground,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderColor: Colors.borders,
+    borderWidth: 2,
+    marginTop: 10,
+    width: '90%',
+    alignSelf: "center",
+  },
   text:{
-    color: Colors.button2
+    color: Colors.text,
+    fontSize: 20
   }
 });

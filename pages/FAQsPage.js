@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, AppState} from 'react-native';
+import {AppRegistry, View, Text, Button} from 'react-native';
 import {name as appName} from '../app.json';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 

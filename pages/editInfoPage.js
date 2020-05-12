@@ -178,12 +178,8 @@ export default class EditInfoPage extends Component{
                         <View style={styles.focus}>
                             <Text style={styles.text}>Change your name.</Text>
                             <TextInput style={styles.input} ref={(name) => { this.nameInput = name }} onChangeText={(name)=>{this.setName(name)}} placeholder="Name" placeholderTextColor='black' keyboardType="default"></TextInput>
-                            <View style={styles.horizontalButtonContainer}>
-                                <View style={styles.horizontalButtonBox}>
-                                    <View style = {styles.buttons}>
-                                        <Button color={Colors.button} title="Submit" onPress={()=>this.props.changeName(this.state.name)}></Button>
-                                    </View>
-                                </View>
+                            <View style = {styles.buttons}>
+                                <Button color={Colors.button} title="Submit" onPress={()=>this.props.changeName(this.state.name)}></Button>
                             </View>
                         </View>
 
@@ -209,14 +205,10 @@ export default class EditInfoPage extends Component{
                             <View style={styles.buttonBackground}>
                                 <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
                             </View>
-                            <View style={styles.container}>
+                            <View style={styles.focus}>
                                 <Text style={styles.text}>Change your goal.</Text>
-                                <View style={styles.horizontalButtonContainer}>
-                                    <View style={styles.horizontalButtonBox}>
-                                        <View style = {styles.buttons2}>
-                                            <Button color={Colors.button2} title="Lose" onPress={()=>this.props.changeGoal('Lose')}></Button>
-                                        </View>
-                                    </View>
+                                <View style = {styles.buttons2}>
+                                    <Button color={Colors.button2} title="Lose" onPress={()=>this.props.changeGoal('Lose')}></Button>
                                 </View>
                         </View>
                             <View style={styles.buttonBackground}>
@@ -237,16 +229,12 @@ export default class EditInfoPage extends Component{
                             <View style={styles.buttonBackground}>
                                 <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
                             </View>
-                            <View style={styles.container}>
+                            <View style={styles.focus}>
                                 <Text style={styles.text}>Change your goal.</Text>
-                                <View style={styles.horizontalButtonContainer}>
-                                    <View style={styles.horizontalButtonBox}>
-                                        <View style = {styles.buttons}>
-                                            <Button color={Colors.button} title="Gain" onPress={()=>this.props.changeGoal('Gain')}></Button>
-                                        </View>
-                                    </View>
+                                <View style = {styles.buttons}>
+                                    <Button color={Colors.button} title="Gain" onPress={()=>this.props.changeGoal('Gain')}></Button>                
                                 </View>
-                        </View>
+                            </View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
                             </View>
@@ -271,8 +259,8 @@ export default class EditInfoPage extends Component{
                             <View style={styles.buttonBackground}>
                                 <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
                             </View>
-                            <View style={styles.container}>
-                                <Text style={styles.text}>Enter your current height and weight.</Text>
+                            <View style={styles.focus}>
+                                <Text style={styles.BMIText}>Enter your current height and weight.</Text>
                                 <Text style={styles.smallText}>Height</Text>
                                 <View style={styles.vertAlign}>
                                     <TextInput style={styles.imperialNumInput} ref={(feet) => { this.footInput = feet }} onChangeText= {(feet) =>{this.getFeet(feet)}} placeholder ="Feet" placeholderTextColor='black' keyboardType="number-pad" maxLength={1} ></TextInput>
@@ -306,8 +294,8 @@ export default class EditInfoPage extends Component{
                             <View style={styles.buttonBackground}>
                                 <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
                             </View>
-                            <View style={styles.container}>
-                                <Text style={styles.text}>Enter your current height and weight.</Text>
+                            <View style={styles.focus}>
+                                <Text style={styles.BMIText}>Enter your current height and weight.</Text>
                                 <Text style={styles.smallText}>Height</Text>
                                 <View style={styles.vertAlign}>
                                     <TextInput style={styles.numInput} ref={(cm) => { this.cmInput = cm }} onChangeText={text => this.metricGetHeight(text)} placeholder="cm." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
@@ -345,10 +333,10 @@ export default class EditInfoPage extends Component{
                         <View style={styles.buttonBackground}>
                             <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
                         </View>
-                        <View>
+                        <View style={styles.focus}>
                             <Text style={styles.text}>Enter the calorie amounts that you follow</Text>
-                            <View style={styles.container}>
-                                <View style={styles.inputContainer}>
+                            <View style={styles.numbersContainer}>
+                                <View style={styles.numbersInputContainer}>
                                     <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carb Calories" placeholderTextColor='black' maxLength={4}></TextInput>
                                     <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Protein Calories" placeholderTextColor='black' maxLength={4}></TextInput>
                                     <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black' maxLength={4}></TextInput>
@@ -357,7 +345,7 @@ export default class EditInfoPage extends Component{
                                         <Button  color={Colors.button} title="Use These Numbers" onPress={()=> this.props.changeNumbers(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats, this.list().length)} disabled={this.macroEntries()}></Button>
                                     </View>
                                 </View>
-                                <View style={styles.inputContainer}>
+                                <View style={styles.numbersInputContainer}>
                                     {this.list()}
                                 </View> 
                             </View>
@@ -417,15 +405,9 @@ const styles = StyleSheet.create({
         height: 50,
         borderColor:'black',
         borderWidth: 2,
-        width: '80%',
+        width: '60%',
         alignSelf: 'center'
     },
-    // text:{
-    //     fontSize: 50,
-    //     textDecorationLine: 'underline',
-    //     textAlign:'center',
-    //     color: Colors.titles,
-    // },
     smallText:{
         fontSize: 30,
         color: Colors.subtitles,
@@ -465,34 +447,21 @@ const styles = StyleSheet.create({
         width:'40%',
         justifyContent:'space-between'
     },
-    container: {
-        flex: 1,
-        padding: 5,
-        justifyContent: 'space-evenly',
-        height: 400,
-        borderColor: Colors.borders,
-        backgroundColor: Colors.boxBackground,
-        borderWidth: 3,
-        width: '95%',
-        alignSelf: 'center',
-        marginTop: 100,
-        borderRadius: 25,
-      },
       buttons:{
         backgroundColor: Colors.buttonBackground,
-        width: "100%",
+        width: "30%",
         alignSelf: 'center',
         marginTop: 10,
       },
       BMIbuttons:{
         backgroundColor: Colors.buttonBackground,
-        width: "25%",
+        width: "50%",
         alignSelf: 'center',
         marginTop: 10,
       },
       buttons2:{
         backgroundColor: Colors.buttonBackground2,
-        width: "100%",
+        width: "30%",
         alignSelf: 'center',
         marginTop: 10,
       },
@@ -503,14 +472,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
       },
-      inputContainer:{
-        width:'50%',
-        alignItems: 'center',
-
-    },
-    container: {
-        flexDirection:'row',
-        justifyContent:'space-around'
+    container:{
+        width: '70%',
+        alignSelf: "center",
 
     },
     buttons1:{
@@ -540,7 +504,29 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         color: Colors.titles
     },
-    
+    BMIText:{
+        fontSize: 30,
+        textAlign:'center',
+        marginBottom: 10,
+        color: Colors.titles
+    },
+    numbersInputContainer:{
+        width:'50%',
+        alignItems: 'center',
+
+    },
+    numbersContainer: {
+        flexDirection:'row',
+        justifyContent:'space-around'
+
+    },
+    focus:{
+        borderColor: 'white',
+        borderWidth: 2,
+        margin: 5,
+        padding: 5
+    },
+
 })
 
 AppRegistry.registerComponent(appName, () => EditInfoPage);

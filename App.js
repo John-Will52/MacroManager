@@ -281,8 +281,7 @@ export default class App extends Component{
           Alert.alert(
               'Warning',
               `Unless you're a professional, and you know EXACTLY what you're doing, your numbers aren't recommended.
-Are you sure that you want to use them?
-(You can change them later.)`,
+Are you sure that you want to use them?`,
               [
                 {text: "I know what I'm doing", onPress: () => this.setState({
                   allottedCarbs: parseInt(carbs),
@@ -325,12 +324,6 @@ Are you sure that you want to use them?
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <CalorieCounterPage clear={this.reset}  addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
-            <Text style={styles.text}>{this.state.name}</Text>
-            <Text style={styles.text}>{this.state.goal}</Text>
-            <Text style={styles.text}>{this.state.BMI}</Text>
-            <Text style={styles.text}>{this.state.allottedCarbs}</Text>
-            <Text style={styles.text}>{this.state.allottedProteins}</Text>
-            <Text style={styles.text}>{this.state.allottedFats}</Text>
             <Footer changePage={this.navigator}></Footer>
           </ScrollView>
         </SafeAreaView>

@@ -16,6 +16,7 @@ import Colors from './styling/colors';
 export default class App extends Component{
   constructor(props) {
       super()
+      this.getData();
       this.state = {
         name : null,
         sex : null,
@@ -40,13 +41,12 @@ export default class App extends Component{
         savedItems:[],    
     }
 
-    this.getData()
   }
 
   storeData = async () => {
     try {
-      
-      await AsyncStorage.setItem('state', JSON.stringify(this.state));
+      const saveData = JSON.stringify(this.state);
+      await AsyncStorage.setItem('state', saveData);
 
     } 
     catch (e) {
@@ -57,12 +57,10 @@ export default class App extends Component{
 
   getData = async () => {
     try {
-      const appData = await AsyncStorage.getItem('state')
-      if(appData !== null){
-        this.setState(appData);
-      }
-      else{
-        this.setState(this.state);
+      const appData = await AsyncStorage.getItem('state');
+      const savedState = JSON.parse(appData);
+      if(savedState !== null){
+        this.setState({...savedState})
       }
     } 
     catch(e) {
@@ -87,6 +85,7 @@ export default class App extends Component{
       allottedFats: fats,
       allottedTotal: total,
     })
+    this.storeData();
   }
   calorieCounterStateTransfer = (servings, carbs, proteins, fats) => {
     let addedCarbs= carbs * servings * 4;
@@ -101,6 +100,8 @@ export default class App extends Component{
     })
     
     this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
+    this.storeData();
+
   }
   saveItems = (item) =>{
     this.setState(state =>{
@@ -109,6 +110,8 @@ export default class App extends Component{
           savedItems
         };
     });  
+    this.storeData();
+
   }
   deleteItems = (id) =>{
     let updatedArray = this.state.savedItems.filter((item) =>{
@@ -117,7 +120,8 @@ export default class App extends Component{
     this.setState({
       savedItems: updatedArray,
     })
-  
+    this.storeData();
+    
   }
 
   
@@ -126,6 +130,8 @@ export default class App extends Component{
     this.setState({
       pageNumber: pageNum,
     })
+    this.storeData();
+
   }
 
 
@@ -185,6 +191,8 @@ export default class App extends Component{
       })
       this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
       this.navigator(0);
+      this.storeData();
+
     }
     
   }
@@ -196,6 +204,8 @@ export default class App extends Component{
         percentOfFats: (f/this.state.allottedFats) * 100 + this.state.percentOfFats,
         percentOfTotalCalories: (t/this.state.allottedTotal) * 100 + this.state.percentOfTotalCalories,
       })
+      this.storeData();
+
     }
 
     reset = () =>{
@@ -209,6 +219,8 @@ export default class App extends Component{
         percentOfFats: 0,
         percentOfTotalCalories: 0,
       })
+      this.storeData();
+
     }
 
   // Data sent to SavedItemsPage
@@ -346,6 +358,7 @@ Are you sure that you want to use them?`,
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
+            <Text style={styles.text}>{this.state.name}</Text>
             <SurveyPage transferState={this.surveyPageStateTransfer} changePage={this.navigator}></SurveyPage>
           </ScrollView>
         </SafeAreaView>

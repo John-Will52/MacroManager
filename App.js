@@ -9,6 +9,7 @@ import NavBar from './components/navBar';
 import Footer from './components/footer';
 import EditInfoPage from './pages/editInfoPage';
 import FAQsPage from './pages/FAQsPage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Colors from './styling/colors';
 
@@ -36,8 +37,38 @@ export default class App extends Component{
         percentOfFats: 0,
         percentOfTotalCalories: 0,
         pageNumber: 0,
-        savedItems:[],
-        
+        savedItems:[],    
+    }
+
+    this.getData()
+  }
+
+  storeData = async () => {
+    try {
+      
+      await AsyncStorage.setItem('state', JSON.stringify(this.state));
+
+    } 
+    catch (e) {
+      // saving error
+      console.log(e);
+    }
+  }
+
+  getData = async () => {
+    try {
+      const appData = await AsyncStorage.getItem('state')
+      if(appData !== null){
+        this.setState(appData);
+      }
+      else{
+        this.setState(this.state);
+      }
+    } 
+    catch(e) {
+      // error reading value
+      console.log(e);
+
     }
   }
   // Sending information to App.js for central management
@@ -320,7 +351,7 @@ Are you sure that you want to use them?`,
         </SafeAreaView>
       );
     }
-    else if(this.state.allottedTotal != null && this.state.pageNumber === 0){
+    if(this.state.allottedTotal != null && this.state.pageNumber === 0){
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
@@ -332,7 +363,7 @@ Are you sure that you want to use them?`,
       );
     }
 
-    else if(this.state.allottedTotal != null && this.state.pageNumber === 1){
+    if(this.state.allottedTotal != null && this.state.pageNumber === 1){
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -342,7 +373,7 @@ Are you sure that you want to use them?`,
         </SafeAreaView>
       );
     }
-    else if(this.state.allottedTotal != null && this.state.pageNumber === 2){
+    if(this.state.allottedTotal != null && this.state.pageNumber === 2){
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView>
@@ -353,7 +384,7 @@ Are you sure that you want to use them?`,
         </SafeAreaView>
       );
     }
-    else if(this.state.allottedTotal != null && this.state.pageNumber === 3){
+    if(this.state.allottedTotal != null && this.state.pageNumber === 3){
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView>
@@ -374,7 +405,7 @@ Are you sure that you want to use them?`,
         </SafeAreaView>
       );
     }
-    else if(this.state.allottedTotal != null && this.state.pageNumber === 4){
+    if(this.state.allottedTotal != null && this.state.pageNumber === 4){
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView>

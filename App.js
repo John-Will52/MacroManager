@@ -16,7 +16,6 @@ import Colors from './styling/colors';
 export default class App extends Component{
   constructor(props) {
       super()
-      this.getData();
       this.state = {
         name : null,
         sex : null,
@@ -39,8 +38,9 @@ export default class App extends Component{
         percentOfTotalCalories: 0,
         pageNumber: 0,
         savedItems:[],    
-    }
-
+      }
+      this.getData();
+      
   }
 
   storeData = async () => {
@@ -54,6 +54,17 @@ export default class App extends Component{
       console.log(e);
     }
   }
+  // storeCaloricData = async () => {
+  //   try {
+  //     const saveData = JSON.stringify(this.state);
+  //     await AsyncStorage.setItem('state', saveData);
+
+  //   } 
+  //   catch (e) {
+  //     // saving error
+  //     console.log(e);
+  //   }
+  // }
 
   getData = async () => {
     try {
@@ -66,7 +77,6 @@ export default class App extends Component{
     catch(e) {
       // error reading value
       console.log(e);
-
     }
   }
   // Sending information to App.js for central management
@@ -88,21 +98,39 @@ export default class App extends Component{
     this.storeData();
   }
   calorieCounterStateTransfer = (servings, carbs, proteins, fats) => {
-    let addedCarbs= carbs * servings * 4;
-    let addedProteins= proteins * servings * 4;
-    let addedFats= fats * servings * 9;
-    let addedTotal = addedCarbs + addedProteins + addedFats;
-    this.setState({
-      currentCarbs: this.state.currentCarbs + addedCarbs,
-      currentProteins: this.state.currentProteins + addedProteins,
-      currentFats: this.state.currentFats + addedFats,
-      currentTotal: this.state.currentTotal + addedTotal,
-    });
+    Alert.alert(
+      'Alert',
+      `Are these the correct TOTAL amounts?
+Fats: ${fats * servings} grams
+Carbs: ${carbs * servings} grams
+Protein: ${proteins * servings} grams`,
+      [
+        {text: 'Yes', 
+        onPress: () =>{ 
+          let addedCarbs= carbs * servings * 4;
+          let addedProteins= proteins * servings * 4;
+          let addedFats= fats * servings * 9;
+          let addedTotal = addedCarbs + addedProteins + addedFats;
+          this.setState({
+            currentCarbs: this.state.currentCarbs + addedCarbs,
+            currentProteins: this.state.currentProteins + addedProteins,
+            currentFats: this.state.currentFats + addedFats,
+            currentTotal: this.state.currentTotal + addedTotal,
+          });
+      
+          this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
+          this.storeData();
+          }
+        },
+        {
+          text: "No",
+          onPress: () =>{ this.navigator(0), this.storeData()},
+        },
+      ],
+      {cancelable: false},
+    );
+  }      
 
-    this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
-    this.storeData();
-
-  }
   saveItems = (item) =>{
     this.setState(state =>{
       const savedItems = [...state.savedItems, item];
@@ -369,7 +397,7 @@ Are you sure that you want to use them?`,
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
-            <CalorieCounterPage clear={this.reset}  addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
+            <CalorieCounterPage clear={this.reset} addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
             <Footer changePage={this.navigator}></Footer>
           </ScrollView>
         </SafeAreaView>

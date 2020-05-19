@@ -101,7 +101,6 @@ export default class App extends Component{
 
     this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
     this.storeData();
-    this.navigator(0);
 
   }
   saveItems = (item) =>{

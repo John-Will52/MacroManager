@@ -149,8 +149,9 @@ const styles = StyleSheet.create({
         height: 360,
         alignItems: 'flex-end',
         marginTop:40,
-        borderColor: 'black',
-        borderWidth: 3,
+        borderColor: 'white',
+        borderWidth: 1,
+        borderBottomWidth: 0,
         backgroundColor: '#d1f7ff',
 
     },

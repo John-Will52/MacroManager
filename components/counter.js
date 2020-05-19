@@ -14,19 +14,28 @@ export default class Counter extends Component{
     }
 
     color = (x) =>{
-        const colorArray=['red','orange','green','blue'];
+        const colorArray=['#FF1E01','#FF8703','#F7DB0B','#488D24','#02EEFF','#0234FF','#B001FF'];
 
-        if(x < 76 || x > 105){
+        if(x < 50 || x > 110){
             return colorArray[0];
         }
-        else if (x > 75 && x <= 86){
+        else if (x > 50 && x <= 65){
             return colorArray[1];
         }
-        else if (x > 85 && x <= 95){
+        else if (x > 65 && x <= 75){
             return colorArray[2];
         }
-        else if (x > 95 && x <= 105){
+        else if (x > 75 && x <= 85){
             return colorArray[3];
+        }
+        else if (x > 85 && x <= 95){
+            return colorArray[4];
+        }
+        else if (x > 95 && x <= 105){
+            return colorArray[5];
+        }
+        else if (x > 105 && x <= 110){
+            return colorArray[6];
         }
 
     }
@@ -60,7 +69,7 @@ const styles = StyleSheet.create({
     },
     labels:{
         fontSize: 20,
-        color: 'white',
+        color: '#fff',
         fontWeight: 'bold',
         alignSelf: 'center',
         textAlignVertical: 'bottom'

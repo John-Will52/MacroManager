@@ -110,7 +110,7 @@ export default class CalorieCounterPage extends Component{
                         <Text style={styles.labels}>Total</Text>
                     </View>
                     <View style={styles.buttons2}>
-                        <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.props.clear()}></Button>
+                        <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.props.clear()} disabled={this.props.percentOfTotalCalories > 0 ? false : true}></Button>
                     </View>
                 </View>
             </View>
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 3,
         backgroundColor: '#d1f7ff',
+
     },
     text:{
         fontSize: 35,
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 5,
     },
     labels:{
-        color: 'white',
+        color: '#fff',
         width: '25%',
         fontSize: 18,
         textDecorationLine: 'underline',

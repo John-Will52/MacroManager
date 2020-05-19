@@ -4,11 +4,14 @@ import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 
 
+
 // AppRegistry is the JS entry point for all ReactNative apps. 
 export default class SavedItemsPage extends Component{
     constructor(props) {
         super()
-
+        this.state={
+            type: "All"
+        }
     }
   
 
@@ -26,6 +29,8 @@ export default class SavedItemsPage extends Component{
         else{
             return(
                 <View style={styles.pageContainer}>
+                    <View style={styles.buttonContainer}>
+                    </View>
                     {this.props.itemList}   
                 </View>
             );

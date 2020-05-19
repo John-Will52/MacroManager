@@ -57,7 +57,7 @@ export default class NavBar extends Component{
                 </View>
             );
         }
-        if(this.props.currentPage === 3){
+        if(this.props.currentPage === 3 || this.props.currentPage === 4){
             return(
                 <View style={styles.navBar}>
                     <View style={styles.footerButtons}>

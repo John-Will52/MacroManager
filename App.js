@@ -97,10 +97,11 @@ export default class App extends Component{
       currentProteins: this.state.currentProteins + addedProteins,
       currentFats: this.state.currentFats + addedFats,
       currentTotal: this.state.currentTotal + addedTotal,
-    })
-    
-    this.storeData();
+    });
+
     this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
+    this.storeData();
+    this.navigator(0);
 
   }
   saveItems = (item) =>{
@@ -120,9 +121,9 @@ export default class App extends Component{
     this.setState({
       savedItems: updatedArray,
     })
-    this.storeData();
-    
+    this.storeData();  
   }
+
 
   
   // Managed by App.js for navigation and/or verification
@@ -141,10 +142,10 @@ export default class App extends Component{
         'Alert',
         `Are you sure that you want to eat ${servings} servings of ${name.toLowerCase()}?`,
         [
-          {text: 'Yes', onPress: () => this.addItemCalories(servings, carbs, proteins, fats)},
+          {text: 'Yes', onPress: () => {this.addItemCalories(servings, carbs, proteins, fats), this.storeData()}},
           {
             text: "No",
-            onPress: () => this.navigator(2),
+            onPress: () =>{ this.navigator(2), this.storeData()}
           },
         ],
         {cancelable: false},
@@ -155,23 +156,16 @@ export default class App extends Component{
         'Alert',
         `Are you sure that you want to eat ${name.toLowerCase()}?`,
         [
-          {text: 'Yes', onPress: () => this.addItemCalories(servings, carbs, proteins, fats)},
+          {text: 'Yes', onPress: () =>{ this.addItemCalories(servings, carbs, proteins, fats), this.storeData()}},
           {
             text: "No",
-            onPress: () => this.navigator(2),
+            onPress: () =>{ this.navigator(2), this.storeData()},
           },
         ],
         {cancelable: false},
       );
     }  
   }
-  // saveChanges = (name, carbs, proteins, fats, goal) =>{
-  //   this.setState({
-
-  //   })
-  // }
-
-  // Data sent to CalorieCounterPage
 
   addItemCalories = (servings, carbs, proteins, fats) => {
     
@@ -189,9 +183,9 @@ export default class App extends Component{
         currentFats: this.state.currentFats + addedFats,
         currentTotal: this.state.currentTotal + addedTotal,
       })
-      this.storeData();
       this.percentCalculator(addedCarbs, addedProteins, addedFats, addedTotal);
       this.navigator(0);
+      this.storeData();
 
     }
     
@@ -203,24 +197,25 @@ export default class App extends Component{
         percentOfProteins: (p/this.state.allottedProteins) * 100 + this.state.percentOfProteins,
         percentOfFats: (f/this.state.allottedFats) * 100 + this.state.percentOfFats,
         percentOfTotalCalories: (t/this.state.allottedTotal) * 100 + this.state.percentOfTotalCalories,
-      })
-      this.storeData();
-
-    }
-
-    reset = () =>{
-      this.setState({
-        currentCarbs: 0,
-        currentProteins: 0,
-        currentFats: 0,
-        currentTotal: 0,
-        percentOfCarbs: 0,
-        percentOfProteins: 0,
-        percentOfFats: 0,
-        percentOfTotalCalories: 0,
-      })
+      });
       this.storeData();
     }
+
+    reset = () =>{ 
+      Alert.alert(
+        'Alert',
+        `Are you sure that you want to reset your numbers?`,
+        [
+          {text: 'Yes', onPress: () =>{ this.setState({currentCarbs: 0, currentProteins: 0, currentFats: 0, currentTotal: 0, percentOfCarbs: 0, percentOfProteins: 0, percentOfFats: 0, percentOfTotalCalories: 0}), this.navigator(0), this.storeData()}},
+          {
+            text: "No",
+            onPress: () =>{ this.navigator(0), this.storeData()},
+          },
+        ],
+        {cancelable: false},
+      );
+    }       
+
 
   // Data sent to SavedItemsPage
 
@@ -376,9 +371,6 @@ Are you sure that you want to use them?`,
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <CalorieCounterPage clear={this.reset}  addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories}></CalorieCounterPage>
-            <Text style={styles.text}> {this.state.currentCarbs}</Text>
-            <Text style={styles.text}> {this.state.currentProteins}</Text>
-            <Text style={styles.text}> {this.state.currentFats}</Text>
             <Footer changePage={this.navigator}></Footer>
           </ScrollView>
         </SafeAreaView>

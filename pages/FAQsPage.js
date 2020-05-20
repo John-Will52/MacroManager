@@ -38,7 +38,7 @@ export default class FAQsPage extends Component{
                             <Button title="What should I expect from using this app?" color={Colors.button2} onPress={() => this.setState({focus: 4})}></Button> 
                         </View>
                         <View style={styles.buttonBackground}>
-                            <Button title="Is any of my information recorded, or sent anywhere?" color={Colors.button2} onPress={() => this.setState({focus: 5})}></Button> 
+                            <Button title="Is any of my information recorded, or sent anywhere else?" color={Colors.button2} onPress={() => this.setState({focus: 5})}></Button> 
                         </View>
                         <View style={styles.buttonBackground}>
                             <Button title="Can I use the recommended calorie amounts without exercising?" color={Colors.button2} onPress={() => this.setState({focus: 6})}></Button> 
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     },
     window:{
         width: '90%',
-        height: '85%',
+        height: '86%',
         borderColor: Colors.borders,
         borderWidth: 2,
         alignSelf: 'center',

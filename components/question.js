@@ -55,17 +55,17 @@ export default class Question extends Component{
                 <View style={styles.container}>
                     <Text style={styles.text}>{this.props.asked}</Text>
                     <View style={styles.horizontalButtonContainer}>
-                            <View style={styles.horizontalButtonBox}>
-                                <View style = {styles.buttons}>
-                                    <Button color={Colors.button} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.stateOptionOne)}></Button>
-                                </View>
-                            </View>
-                            <View style={styles.horizontalButtonBox}>
-                                <View style = {styles.buttons2}>
-                                    <Button color={Colors.button2} title={this.props.optionTwo} onPress={()=>this.props.buttonPress(this.props.stateOptionTwo)}></Button>
-                                </View>
+                        <View style={styles.horizontalButtonBox}>
+                            <View style = {styles.buttons}>
+                                <Button color={Colors.button} title={this.props.optionOne} onPress={()=>this.props.buttonPress(this.props.stateOptionOne)}></Button>
                             </View>
                         </View>
+                        <View style={styles.horizontalButtonBox}>
+                            <View style = {styles.buttons2}>
+                                <Button color={Colors.button2} title={this.props.optionTwo} onPress={()=>this.props.buttonPress(this.props.stateOptionTwo)}></Button>
+                            </View>
+                        </View>
+                    </View>
                 </View>
             )
         }

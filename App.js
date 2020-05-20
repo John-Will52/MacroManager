@@ -380,6 +380,13 @@ Are you sure that you want to use them?`,
           })          
       }
   }
+  selectSex = input =>{
+    this.setState({
+      sex: input
+    });
+    this.changeGoalNewNumbers(this.state.goal);
+    this.storeData();
+  }
 
 
   render(){
@@ -451,7 +458,7 @@ Are you sure that you want to use them?`,
         <SafeAreaView style={styles.background}>
           <View>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
-            <FAQsPage></FAQsPage>
+            <FAQsPage selectSex={this.selectSex}></FAQsPage>
           </View>
         </SafeAreaView>
       );

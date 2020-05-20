@@ -98,7 +98,7 @@ export default class FAQ extends Component{
                         <Text style={styles.text}>It is meant to emphasize the importance of your eating habits. The percentages may be dramatic, but the thought still stands.</Text>
                         <Text style={styles.text}>This app is meant to be used with a regular workout regimen, while keeping your macronutrient counts within the recommended amounts.</Text>
                         <Text style={styles.text}>Therefore, if you thought that this app was a miracle worker that allows you to eat whatever you want, without regard to the amounts, without working out; <Text style={styles.emphasis}>you were wrong!</Text></Text>
-                        <Text style={styles.text}>You would be looking for <Text style={styles.italicizedUnderline}>liposuction</Text>, which comes with its own risks.</Text>
+                        <Text style={styles.text}>You would be looking for <Text style={styles.italicizedUnderline}>liposuction and other forms of cosmetic surgery</Text>, which come with their own risks.</Text>
                     </View>
                     <View style={styles.paragraph}>
                         <Text style={styles.subtitles}>Last Thoughts:</Text>
@@ -132,11 +132,11 @@ export default class FAQ extends Component{
                     <View style={styles.paragraph}>
                         <Text style={styles.subtitles}>Full Story:</Text>
                         <Text style={styles.text}>The numbers that you were given were meant to go with a workout regimen. You can change them according to your desires, but exercising and eating right are always best when done together.</Text>
-                        <Text style={styles.text}>If you selected to gain mass, you will be setting yourself up to gain fat. Working out, especially weightlifting, cause your muscles to tear, and your body must fix the tears. This cycle of tearing and rebuilding is what causes muscle growth. With adequate amounts of rest, calories (within certain amounts), and exercise, you can build your physique. Lacking any of those things will slow or prevent your progress. </Text>
+                        <Text style={styles.text}>If you selected to gain mass, you will be setting yourself up to gain fat. Working out, especially weightlifting, cause your muscles to tear, and your body must fix the tears. This cycle of tearing and rebuilding is what causes muscle growth. With adequate amounts of rest, calories (within certain amounts), and exercise, you can build your physique. Lacking any of those things will slow or prevent your progress.</Text>
                     </View>
                     <View style={styles.paragraph}>
                         <Text style={styles.subtitles}>Last Thoughts:</Text>
-                        <Text style={styles.text}>If your goal was to burn fat, you may still have some success without working out, but to maximize your results, you should workout. Not working out would be at your own expense.</Text>
+                        <Text style={styles.text}>If your goal was to burn fat, you <Text style={styles.emphasis}>might</Text> still have some success without working out, but to maximize your results, you should be active. Not working out would be at the expense of your progress.</Text>
                     </View>
                 </View>
             );
@@ -144,14 +144,54 @@ export default class FAQ extends Component{
         if(this.props.questionNumber == 7){
             return(
                 <View>
-                    <Text style={styles.text}>7</Text>
+                    <View style={styles.paragraph}>
+                        <Text style={styles.subtitles}>In Short:</Text>
+                        <Text style={styles.text}>It is commonly-believed that losing weight requires you to cut down food, especially the ones that you enjoy. That's true. However, this app is all about changing body composition, which requires you to boost your metabolism, while reducing your amounts of sugar/carbohydrates intake.</Text>
+                    </View>
+                    <View style={styles.paragraph}>
+                        <Text style={styles.subtitles}>Full Story:</Text>
+                        <Text style={styles.text}>People often talk about "fast" matabolisms, and associate them to leaner figures. This is a common misunderstanding of metabolism.</Text>
+                        <Text style={styles.text}>Metabolism is your body's calorie burning "habit." Much like any habit, it requires training. If you don't eat much, and put on weight easily, these are indicators that your metabolism is low, and vice versa.</Text>
+                        <Text style={styles.text}>The idea behind the calorie amounts that you are provided from this app (if you chose to burn fat) is that you want to train your body to burn calories, without putting on fat. Fat comes from an abundance of unused sugars/carbohydrates that get converted to fat, to be used as backup energy for hard periods where food is scarce (starvation).</Text>
+                        <Text style={styles.text}>This is why people initially see a lot of progress when they cut their calories, and workout more; but this is also the cause for when their body stops losing weight. The only thing that you can do at that point to keep losing weight is to keep cutting calories, or to workout more, which would be much harder with such a calorie deficit.</Text>
+                        <Text style={styles.text}>This point is where many people usually revert to their old habits, and regain the weight, while their metabolism takes its time to readjust. It is during this readjusment period that people put on weight.</Text>
+                    </View>
+                    <View style={styles.paragraph}>
+                        <Text style={styles.subtitles}>Last Thoughts:</Text>
+                        <Text style={styles.text}>It is important to remember the purpose of this app. Eating more foods with higher protein and fat calories, and less carbohydrate calories will allow you to build your metabolism, while preventing your body from getting the "ingredients" needed to make your fat cells grow.</Text>
+                    </View>
                 </View>
             );
         }
         if(this.props.questionNumber == 8){
             return(
                 <View>
-                    <Text style={styles.text}>8</Text>
+                    <View style={styles.paragraph}>
+                        <Text style={styles.subtitles}>In Short:</Text>
+                        <Text style={styles.text}>With all due respect to how you identify, you should select the sex that your were born as, rather than the gender that you identify with.</Text>
+                    </View>
+                    <View style={styles.paragraph}>
+                        <Text style={styles.subtitles}>Full Story:</Text>
+                        <Text style={styles.text}>Male bodies and female bodies have different needs which are established in our DNA. We won't pretend to understand your struggle, but we are as sympathetic as we can be.</Text>
+                        <Text style={styles.text}>The choice is ultimately yours, and it is respected. </Text>
+                    </View>
+                    <View style={styles.paragraph}>
+                        <Text style={styles.subtitles}>Last Thoughts:</Text>
+                        <Text style={styles.text}>It is our primary belief that people should be free to be themselves, and live as they choose. Along with that, fitness is for everybody, so we don't discriminate, and we have considered this during development.</Text>
+                        <Text style={styles.text}>The best thing that we could do for you is acknowledge that this is your choice, and leave it to you to decide:</Text>
+                    </View>
+                    <View style={styles.horizontalButtonContainer}>
+                        <View style={styles.horizontalButtonBox}>
+                            <View style = {styles.buttons}>
+                                <Button color={Colors.button} title="Male" onPress={()=>this.props.selectSex('Male'), this.props.return}></Button>
+                            </View>
+                        </View>
+                        <View style={styles.horizontalButtonBox}>
+                            <View style = {styles.buttons2}>
+                                <Button color={Colors.button2} title="Female" onPress={()=>this.props.selectSex('Female'), this.props.return}></Button>
+                            </View>
+                        </View>
+                    </View>
                 </View>
             );
         }
@@ -182,6 +222,7 @@ const styles = StyleSheet.create({
         // backgroundColor: Colors.boxBackground,
         backgroundColor: '#d1f7ff',
         flex: 1,
+        paddingBottom: 10
     },
     subtitles:{
         fontSize: 30,
@@ -225,6 +266,26 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
 
     },
+    buttons:{
+        backgroundColor: Colors.buttonBackground,
+        width: "100%",
+        alignSelf: 'center',
+        marginTop: 10,
+    },
+    buttons2:{
+        backgroundColor: Colors.buttonBackground2,
+        width: "100%",
+        alignSelf: 'center',
+        marginTop: 10,
+    },
+    horizontalButtonContainer:{
+        flexDirection: 'row',
+        justifyContent:'space-evenly',
+    },
+    horizontalButtonBox:{
+        width:'30%'
+    },
+    
 })
 
 

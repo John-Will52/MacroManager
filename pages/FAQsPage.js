@@ -58,7 +58,7 @@ export default class FAQsPage extends Component{
                 <View>
                     <Text style={styles.title}>FAQ Page</Text>
                     <View style = {styles.window}>
-                        <FAQ return={this.nullifyQuestion} questionNumber={this.state.focus}></FAQ>
+                        <FAQ return={this.nullifyQuestion} questionNumber={this.state.focus} selectSex={this.props.selectSex}></FAQ>
                     </View>
                 </View>
             )
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10
     },
+    
 })
 
 AppRegistry.registerComponent(appName, () => FAQsPage);

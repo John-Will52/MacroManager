@@ -183,12 +183,12 @@ export default class FAQ extends Component{
                     <View style={styles.horizontalButtonContainer}>
                         <View style={styles.horizontalButtonBox}>
                             <View style = {styles.buttons}>
-                                <Button color={Colors.button} title="Male" onPress={()=>this.props.selectSex('Male'), this.props.return}></Button>
+                                <Button color={Colors.button} title="Male" onPress={()=>this.props.selectSex('Male')}></Button>
                             </View>
                         </View>
                         <View style={styles.horizontalButtonBox}>
                             <View style = {styles.buttons2}>
-                                <Button color={Colors.button2} title="Female" onPress={()=>this.props.selectSex('Female'), this.props.return}></Button>
+                                <Button color={Colors.button2} title="Female" onPress={()=>this.props.selectSex('Female')}></Button>
                             </View>
                         </View>
                     </View>

@@ -99,7 +99,7 @@ export default class App extends Component{
   }
   calorieCounterStateTransfer = (servings, carbs, proteins, fats) => {
     Alert.alert(
-      'Alert',
+      'Calorie Entry',
       `Are these the correct TOTAL amounts?
 Fats: ${fats * servings} grams
 Carbs: ${carbs * servings} grams
@@ -230,7 +230,7 @@ Protein: ${proteins * servings} grams`,
 
     reset = () =>{ 
       Alert.alert(
-        'Alert',
+        'Reset?',
         `Are you sure that you want to reset your numbers?`,
         [
           {text: 'Yes', onPress: () =>{ this.setState({currentCarbs: 0, currentProteins: 0, currentFats: 0, currentTotal: 0, percentOfCarbs: 0, percentOfProteins: 0, percentOfFats: 0, percentOfTotalCalories: 0}), this.navigator(0), this.storeData()}},
@@ -449,10 +449,10 @@ Are you sure that you want to use them?`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 4){
       return(
         <SafeAreaView style={styles.background}>
-          <ScrollView>
+          <View>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <FAQsPage></FAQsPage>
-          </ScrollView>
+          </View>
         </SafeAreaView>
       );
     }

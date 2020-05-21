@@ -117,10 +117,7 @@ const styles = StyleSheet.create({
         marginLeft: 10
 
     },
-    text:{
-        fontSize: 20,
-        marginVertical: 2,
-    },
+    
     paragraph:{
         width: '90%',
         marginBottom: 10,
@@ -133,11 +130,18 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         
     },
+    text:{
+        fontSize: 20,
+        marginVertical: 2,
+        lineHeight: 30
+    },
     italicized:{
         fontSize: 20,
         marginVertical: 2,
         fontWeight: '300',
         fontStyle: 'italic',
+        lineHeight: 25
+
     },
     italicizedUnderline:{
         fontSize: 20,
@@ -145,6 +149,8 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         fontStyle: 'italic',
         textDecorationLine: 'underline',
+        lineHeight: 25
+
     },
     boldItalicizedUnderline:{
         fontSize: 20,

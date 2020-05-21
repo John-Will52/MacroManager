@@ -64,11 +64,15 @@ export default class MacroExplanations extends Component{
         }
         if(this.state.macro == null){
             return(
-                <View style={styles.buttonContainer}>
-                    <Button color={Colors.borders} title="Fats" onPress={()=>this.setState({macro:"Fats"})}></Button>
-                    <Button color={Colors.borders} title="Carbs" onPress={()=>this.setState({macro: "Carbs"})}></Button>
-                    <Button color={Colors.borders} title="Protein" onPress={()=>this.setState({macro:"Protein"})}></Button>
+                <View>
+                    <Text style={styles.titles}> Which Macronutrient do you want to know more about?</Text>
+                    <View style={styles.buttonContainer}>
+                        <Button color={Colors.borders} title=" • Fats" onPress={()=>this.setState({macro:"Fats"})}></Button>
+                        <Button color={Colors.borders} title=" • Carbs" onPress={()=>this.setState({macro: "Carbs"})}></Button>
+                        <Button color={Colors.borders} title=" • Protein" onPress={()=>this.setState({macro:"Protein"})}></Button>
+                    </View>
                 </View>
+
             )
         }
     }
@@ -100,6 +104,15 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         width:'50%'
     },
+    titles:{
+        fontSize: 30,
+        textDecorationLine: 'underline',
+        marginVertical: 5,
+        alignSelf: 'center',
+        textAlign: 'center'
+
+    },
+
    
 })
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {AppRegistry, View, Text, Button, StyleSheet, ScrollView} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
+import MacroExplanations from './macroExplantions';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class FAQ extends Component{
@@ -24,7 +25,7 @@ export default class FAQ extends Component{
                     </View>
                     <View style={styles.paragraph}>
                         <Text style={styles.subtitles}>Full Story:</Text>
-                        <Text style={styles.text}>Body composition deals with how much of each type of tissue <Text style={styles.italicized}>(groups of cells that make up each part of your body)</Text> and changing the amounts that you have. Your weight, for example, is given by the total sum of the weight of your bones, your organs, your muscles, etc., while your body composition focuses on the amount of each group that you have. Given that muscle is heavier than fat, there is no guarantee that you will "lose weight", but you should become leaner.</Text>
+                        <Text style={styles.text}>Body composition deals with how much of each type of tissue <Text style={styles.italicized}>(groups of cells that make up each part of your body)</Text> and changing the amounts of each type that you have. Your weight, for example, is given by the total sum of the weight of your bones, your organs, your muscles, etc., while your body composition focuses on the weight of group that you have. Given that muscle is heavier than fat, there is no guarantee that you will "lose weight", but you should become leaner if you follow your recommended calorie amounts and exercise.</Text>
                         <Text style={styles.text}>For the sake of this app, we will be focusing helping you to achieve your goal by helping you to gain lean muscle if you chose to gain mass; or to lose fat while maintaining your muscle composition, if you chose to burn fat. For the most part, many people do not understand how to "diet".</Text>
                         <Text style={styles.text}>For example, most people think that the way to lose weight is to eat less, and workout more. This is absolutely true, for quick, short-term results, but usually leads to people hitting a "plateau", or a point when their body refuses to lose anymore weight, and people returning to their old habits, just to regain the weight that they lost.</Text>
                         <Text style={styles.text}>To explain this simply, your body is constantly adapting to your environment, and is meant to survive. If you are giving your body signs that food is not coming often, or in sufficient amounts by "starving" yourself, it will start to use its energy slower. <Text style={styles.emphasis}>This is how your metabolism works.</Text></Text>
@@ -42,9 +43,7 @@ export default class FAQ extends Component{
         }
         if(this.props.questionNumber == 2){
             return(
-                <View>
-                    <Text style={styles.text}>2</Text>
-                </View>
+                <MacroExplanations></MacroExplanations>
             );
         }
         if(this.props.questionNumber == 3){

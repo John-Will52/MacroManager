@@ -15,7 +15,8 @@ const Colors = {
     buttonBackground:Platform.OS === 'ios' ?'#004EF1' : 'transparent',
     buttonBackground2:Platform.OS === 'ios' ?'#FD4E4F' : 'transparent',
     disabledButton:Platform.OS === 'ios' ?'gray' : 'transparent',
-    footerButtons:Platform.OS === 'ios' ?'#99F9F3': '#FD4E4F'
+    footerButtons:Platform.OS === 'ios' ?'#99F9F3': '#FD4E4F',
+    // footerButtons:'#99F9F3',
 }
 
 export default Colors;

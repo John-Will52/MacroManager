@@ -116,7 +116,7 @@ export default class FAQ extends Component{
                     </View>
                     <Text style={styles.subtitles}>Full Story:</Text>
                     <View style={styles.paragraph}>
-                        <Text style={styles.text}>Your information is yours, and yours alone. This app has no need for internet connection. You could even use it on airplane mode, and it will work as intended. The only way that somebody could get your information is if you passed them your phone.</Text>
+                        <Text style={styles.text}>Your information is yours, and yours alone. This is a fitness app, not social media. We neither want, nor need your data.</Text>
                     </View>
                 </View>
             );

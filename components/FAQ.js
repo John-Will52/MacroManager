@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, Button, StyleSheet, ScrollView} from 'react-native';
+import {AppRegistry, View, Text, Button, StyleSheet, ScrollView, Alert} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import MacroExplanations from './macroExplantions';
@@ -12,7 +12,34 @@ export default class FAQ extends Component{
             // FAQVariable:'it displays by using state.var'
         }
     }
-
+    selectSex = input =>{
+        Alert.alert(
+            'Alert',
+            `You are selecting to change your sex from ${this.props.sex} to ${input}?`,
+            [
+              {text: 'Yes', onPress: () => {this.props.selectSex(input)}},
+              {text: "No"},
+            ],
+            {cancelable: false},
+          );
+    }
+    sexSelection = () =>{
+        if(this.props.sex === "Male"){
+            return(
+            <View style = {styles.buttons2}>
+                <Button color={Colors.button2} title="Female" onPress={()=>this.selectSex('Female')}></Button>
+            </View>
+            );                
+        }
+       if(this.props.sex === "Female"){
+            return(
+                <View style = {styles.buttons}>
+                    <Button color={Colors.button} title="Male" onPress={()=>this.selectSex('Male')}></Button>
+                </View>
+            )
+            
+        }
+    }
     // THis is the area that you put your JS logic for functions and stuff at.
     content = () => {
         if(this.props.questionNumber == 1){
@@ -181,14 +208,7 @@ export default class FAQ extends Component{
                     </View>
                     <View style={styles.horizontalButtonContainer}>
                         <View style={styles.horizontalButtonBox}>
-                            <View style = {styles.buttons}>
-                                <Button color={Colors.button} title="Male" onPress={()=>this.props.selectSex('Male')}></Button>
-                            </View>
-                        </View>
-                        <View style={styles.horizontalButtonBox}>
-                            <View style = {styles.buttons2}>
-                                <Button color={Colors.button2} title="Female" onPress={()=>this.props.selectSex('Female')}></Button>
-                            </View>
+                            {this.sexSelection()}
                         </View>
                     </View>
                 </View>

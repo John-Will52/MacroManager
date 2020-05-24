@@ -58,7 +58,7 @@ export default class FAQsPage extends Component{
                 <View>
                     <Text style={styles.title}>FAQ Page</Text>
                     <View style = {styles.window}>
-                        <FAQ return={this.nullifyQuestion} questionNumber={this.state.focus} selectSex={this.props.selectSex}></FAQ>
+                        <FAQ return={this.nullifyQuestion} questionNumber={this.state.focus} selectSex={this.props.selectSex} sex={this.props.sex}></FAQ>
                     </View>
                 </View>
             )

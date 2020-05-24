@@ -69,7 +69,8 @@ export default class Fats extends Component{
                             <Text style={styles.italicized}> • Dairy</Text>
                             <Text style={styles.italicized}> • Nuts and Seeds</Text>
                             <Text style={styles.italicized}> • Fish</Text>
-                            <Text style={styles.italicized}> • Lean Poultry</Text>
+                            <Text style={styles.italicized}> • Lean poultry</Text>
+                            <Text style={styles.italicized}> • Beans and Lentils</Text>
                         </View>
                     </View>
                     <View style={styles.paragraph}>

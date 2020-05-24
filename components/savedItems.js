@@ -132,6 +132,8 @@ const styles = StyleSheet.create({
       height: 20,
       borderColor:'black',
       borderWidth: 2,
+      color: 'black'
+
     },
     mealHeader:{
       width: '100%',

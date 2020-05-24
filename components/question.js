@@ -134,7 +134,8 @@ const styles=StyleSheet.create({
         borderColor:'black',
         borderWidth: 2,
         width: '80%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        color: 'black'
     },
     text:{
         fontSize: 50,
@@ -152,6 +153,7 @@ const styles=StyleSheet.create({
         height: 50,
         borderColor:'black',
         borderWidth: 2,
+        color: 'black'
     },
     imperialNumInput:{
         width: 70,
@@ -160,6 +162,7 @@ const styles=StyleSheet.create({
         borderColor:'black',
         borderWidth: 2,
         marginRight: 10,
+        color: 'black'
     },
     verticalButtonBox:{
         width:'100%'

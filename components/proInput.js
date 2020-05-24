@@ -158,7 +158,9 @@ const styles=StyleSheet.create({
         height: 50,
         borderColor:'black',
         borderWidth: 2,
-        marginVertical: 1
+        marginVertical: 1,
+        color: 'black'
+
     },
     inputError:{
         width: '90%',

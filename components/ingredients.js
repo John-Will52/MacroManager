@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
         height: 50,
         borderColor:'black',
         borderWidth: 1,
+        color: 'black'
+
     },
     nameInputs:{
         width: '100%',
@@ -97,6 +99,8 @@ const styles = StyleSheet.create({
         height: 50,
         borderColor:'black',
         borderWidth: 1,
+        color: 'black'
+
     },
     inputContainer:{
         flexDirection: 'row',

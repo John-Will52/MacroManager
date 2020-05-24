@@ -81,6 +81,8 @@ const styles = StyleSheet.create({
         height: 60,
         borderColor:'black',
         borderWidth: 1,
+        color: 'black'
+
     },
     pageContainer:{
         padding: 5,
@@ -104,6 +106,8 @@ const styles = StyleSheet.create({
         height: 50,
         borderColor:'black',
         borderWidth: 1,
+        color: 'black'
+
     },
     inputContainer:{
         flexDirection: 'row',

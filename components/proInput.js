@@ -61,13 +61,13 @@ export default class ProInput extends Component{
 
         if(this.state.inputCarbs != null && this.state.inputProteins != null && this.state.inputFats != null){
 
-            if(total < (this.props.recommendedTotal * .9)){
-                errors.push(`Your total entered calories, ${total}, is at least 10% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.recommendedTotal} total calories`);
+            if(total < (this.props.recommendedTotal * .8)){
+                errors.push(`Your total entered calories, ${total}, is at least 20% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.recommendedTotal} total calories`);
                 return errors;
 
             }
-            if(total > (this.props.recommendedTotal * 1.1)){
-                errors.push(`Your total entered calories, ${total}, is at least 10% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.recommendedTotal} total calories`);
+            if(total > (this.props.recommendedTotal * 1.2)){
+                errors.push(`Your total entered calories, ${total}, is at least 20% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.recommendedTotal} total calories`);
                 return errors;
             }
             if(this.props.goal == "Gain"){
@@ -75,10 +75,10 @@ export default class ProInput extends Component{
                 if((this.state.inputCarbs < (total * .4)) || (this.state.inputCarbs > (total * .6))){
                     errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .4)} and ${parseInt(total * .6)}`)
                 }
-                else if((this.state.inputProteins < (total * .25)) || (this.state.inputProteins > (total * .35))){
+                if((this.state.inputProteins < (total * .25)) || (this.state.inputProteins > (total * .35))){
                     errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .25)} and ${parseInt(total * .35)}`)
                 }
-                else if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
+                if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
                     errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .15)} and ${parseInt(total * .25)}`)    
                 }
 
@@ -88,10 +88,10 @@ export default class ProInput extends Component{
                 if((this.state.inputCarbs < (total * .1)) || (this.state.inputCarbs > (total * .3))){
                     errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .1)} and ${parseInt(total * .3)}`)
                 }
-                else if((this.state.inputProteins < (total * .4)) || (this.state.inputProteins > (total * .5))){
+                if((this.state.inputProteins < (total * .4)) || (this.state.inputProteins > (total * .5))){
                     errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .4)} and ${parseInt(total * .5)}`)
                 }
-                else if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
+                if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
                     errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .3)} and ${parseInt(total * .4)}`)    
                 }
                 return errors;

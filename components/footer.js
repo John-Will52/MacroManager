@@ -19,7 +19,7 @@ export default class Footer extends Component{
         return(
             <View style={styles.footer}>
                 <View style={styles.buttons}>
-                    <Button title="Edit Info" color={Colors.footerButtons} onPress={() => this.props.changePage(3)}></Button>
+                    <Button title="Edit Info" color={Colors.footerButtons} onPress={() => this.props.changePage(3)} disabled={this.props.currentTotal > 0 ? true : false}></Button>
                 </View>
                 <View style={styles.buttons}>
                     <Button title="FAQs" color={Colors.footerButtons} onPress={() => this.props.changePage(4)}></Button>

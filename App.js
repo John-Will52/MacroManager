@@ -54,17 +54,6 @@ export default class App extends Component{
       console.log(e);
     }
   }
-  // storeCaloricData = async () => {
-  //   try {
-  //     const saveData = JSON.stringify(this.state);
-  //     await AsyncStorage.setItem('state', saveData);
-
-  //   } 
-  //   catch (e) {
-  //     // saving error
-  //     console.log(e);
-  //   }
-  // }
 
   getData = async () => {
     try {
@@ -97,6 +86,7 @@ export default class App extends Component{
     })
     this.storeData();
   }
+
   calorieCounterStateTransfer = (servings, carbs, proteins, fats) => {
     Alert.alert(
       'Calorie Entry',
@@ -256,130 +246,75 @@ Protein: ${proteins * servings} grams`,
     };
 
   //Edit page functions
-    nameChange = input =>{
-      this.setState({
-        name: input
-      })
-      this.navigator(3);
-      this.storeData();
-    }
-    changeGoal = input =>{
-      this.setState({
-        goal: input
-      })
-      this.changeGoalNewNumbers(input);
-      this.navigator(3);
-      this.storeData();
+  submitEditedInfo = (name, goal, height, weight, BMI, fats, carbs, proteins, total, errors) =>{
+    const currentFats = this.state.currentFats;
+    const currentCarbs = this.state.currentCarbs;
+    const currentProteins = this.state.currentProteins;
+    const currentTotal = this.state.currentTotal;
 
-    }
-    changeGoalNewNumbers= newGoal =>{
-      let leanBodyMass = parseInt(this.state.weight * ((100 - this.state.BMI)/100));
-      if(newGoal === "Lose" && this.state.sex === "Male"){
-        let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
-        let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
-        let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
-        let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
-        this.storeData();
-      }
-      if(newGoal === "Lose" && this.state.sex === "Female"){
-        let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
-        let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
-        let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
-        let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
-        this.storeData();
-      }
-      if(newGoal === "Gain" && this.state.sex === "Male"){
-        let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
-        let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
-        let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
-        let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
-        this.storeData();    
-      }
-      if(newGoal === "Gain" && this.state.sex === "Female"){
-        let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
-        let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
-        let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
-        let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
-        this.storeData();
-      }
-    }
-    editBMI = (newHeight, newWeight, newBMI) =>{
-      this.setState({
-        BMI : parseInt(newBMI),
-        weight: parseInt(newWeight),
-        height: parseInt(newHeight)
-      });
-      let leanBodyMass = parseInt(this.state.weight * ((100 - newBMI)/100));
-      if(this.state.goal === "Lose" && this.state.sex === "Male"){
-        let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
-        let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
-        let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
-        let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
-        this.storeData();
-      }
-      if(this.state.goal === "Lose" && this.state.sex === "Female"){
-        let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
-        let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
-        let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
-        let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
-        this.storeData();          
-      }
-      if(this.state.goal === "Gain" && this.state.sex === "Male"){
-        let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
-        let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
-        let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
-        let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
-        this.storeData();         
-      }
-      if(this.state.goal === "Gain" && this.state.sex === "Female"){
-        let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
-        let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
-        let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
-        let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
-        this.storeData();
-      }
-      this.navigator(3);
-    }
-    changeNumbers = (carbs, protein, fat, errors)=>{
-      total = parseInt(carbs) + parseInt(protein) + parseInt(fat);
-      if(errors > 0){
-          Alert.alert(
-              'Warning',
-              `Unless you're a professional, and you know EXACTLY what you're doing, your numbers aren't recommended.
-Are you sure that you want to use them?`,
-              [
-                {text: "I know what I'm doing", onPress: () => this.setState({
-                  allottedCarbs: parseInt(carbs),
-                  allottedProteins: parseInt(protein),
-                  allottedFats: parseInt(fat),
-                  allottedTotal: total,
-                  pageNumber: 3
-                }),
-                  },
-                {
-                  text: "No"
-                },
-              ],
-              {cancelable: false},
-            );
-      }
-      else{
-          this.setState({
+    if(errors > 0){
+      Alert.alert(
+        'Alert',
+        `You have ${errors} errors in your calorie numbers, are you sure that you want to make these changes anyway?`,
+        [
+          {text: 'Yes', onPress: () => {this.setState({
+            name: name,
+            goal: goal,
+            height: height,
+            weight: weight,
+            BMI: BMI,
+            allottedFats: parseInt(fats),
             allottedCarbs: parseInt(carbs),
-            allottedProteins: parseInt(protein),
-            allottedFats: parseInt(fat),
-            pageNumber: 3
-          })          
-      }
+            allottedProteins: parseInt(proteins),
+            allottedTotal: parseInt(total),
+            percentOfCarbs: (currentCarbs/parseInt(carbs)) * 100,
+            percentOfProteins: (currentProteins/parseInt(proteins)) * 100,
+            percentOfFats: (currentFats/parseInt(fats)) * 100,
+            percentOfTotalCalories: (currentTotal/parseInt(total)) * 100,
+          }),
+          this.navigator(0),
+          this.storeData()}},
+          {
+            text: "No",
+            onPress: () =>{this.navigator(3), this.storeData()}
+          },
+        ],
+        {cancelable: false},
+      );
+    }
+    else{
+      Alert.alert(
+        'Alert',
+        `Are you sure that you want to make these changes?`,
+        [
+          {text: 'Yes', onPress: () => {this.setState({
+            name: name,
+            goal: goal,
+            height: height,
+            weight: weight,
+            BMI: BMI,
+            allottedFats: parseInt(fats),
+            allottedCarbs: parseInt(carbs),
+            allottedProteins: parseInt(proteins),
+            allottedTotal: parseInt(total),
+            percentOfCarbs: (currentCarbs/parseInt(carbs)) * 100,
+            percentOfProteins: (currentProteins/parseInt(proteins)) * 100,
+            percentOfFats: (currentFats/parseInt(fats)) * 100,
+            percentOfTotalCalories: (currentTotal/parseInt(total)) * 100,
+          }),
+          this.navigator(0),
+          this.storeData()}},
+          {
+            text: "No",
+            onPress: () =>{this.navigator(3), this.storeData()}
+          },
+        ],
+        {cancelable: false},
+      );
+    }
   }
+
+    
   selectSex = input =>{
     this.setState({
       sex: input
@@ -427,7 +362,6 @@ Are you sure that you want to use them?`,
           <ScrollView>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <SavedItemsPage changePage={this.navigator} itemList={this.list()}></SavedItemsPage>
-
           </ScrollView>
         </SafeAreaView>
       );
@@ -437,18 +371,7 @@ Are you sure that you want to use them?`,
         <SafeAreaView style={styles.background}>
           <ScrollView>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
-            <EditInfoPage changeName={this.nameChange} changeGoal={this.changeGoal} editBMI={this.editBMI} changeNumbers={this.changeNumbers} units={this.state.units} sex={this.state.sex} goal={this.state.goal}></EditInfoPage>
-            <View style={styles.container}>
-              <Text style={styles.text}>Current Name: {this.state.name}</Text>
-              <Text style={styles.text}>Current Goal: {this.state.goal}</Text>
-              <Text style={styles.text}>Current Height: {this.state.height}</Text>
-              <Text style={styles.text}>Current Weight: {this.state.weight}</Text>
-              <Text style={styles.text}>Current BMI: {this.state.BMI}</Text>
-              <Text style={styles.text}>Current Total Fat Calories: {this.state.allottedFats}</Text>
-              <Text style={styles.text}>Current Total Carb Calories: {this.state.allottedCarbs}</Text>
-              <Text style={styles.text}>Current Total Protein Calories:  {this.state.allottedProteins}</Text>
-              <Text style={styles.text}>Current Total Daily Calories:  {this.state.allottedTotal}</Text>
-            </View>
+            <EditInfoPage editedInfo={this.submitEditedInfo} units={this.state.units} sex={this.state.sex} goal={this.state.goal} name={this.state.name} BMI={this.state.BMI} height={this.state.height} weight={this.state.weight} allottedFats={this.state.allottedFats} allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedTotal={this.state.allottedTotal}></EditInfoPage>
           </ScrollView>
         </SafeAreaView>
       );
@@ -473,18 +396,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     height: '100%',
   },
-  container:{
-    backgroundColor:Colors.boxBackground,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderColor: Colors.borders,
-    borderWidth: 2,
-    marginTop: 10,
-    width: '90%',
-    alignSelf: "center",
-  },
-  text:{
-    color: Colors.text,
-    fontSize: 20
-  }
+  
 });

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, TextInput, Button, Alert} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import Errors from '../components/errors';
@@ -13,14 +13,20 @@ export default class EditInfoPage extends Component{
             feet: null,
             inches: null,
             weight: null,
+            BMI:null,
             inputCarbs: null,
             inputProteins: null,
             inputFats: null,
-            focus: null
+            focus: null,
+            goal: null,
+            allottedFats: null,
+            allottedCarbs: null,
+            allottedProteins: null,
+            allottedTotal: null,
         }
     }
     setName = input => {
-        if(input === null || input === ''){
+        if(input === null){
             Alert.alert("Error", "Please provide your name.");
             this.setState({name:null});
         }
@@ -28,12 +34,178 @@ export default class EditInfoPage extends Component{
             this.setState({name:input});
         }
     }
+    changeName = () =>{
+        if(this.state.name == null){
+            return this.props.name;
+        }
+        else{
+            return this.state.name;
+        }
+    }
+    setGoal = input =>{
+        if(this.state.BMI == null){
+            if(this.props.units === "Imperial"){
+                let weight = this.props.weight;
+                let BMI = this.props.BMI;
+                let leanBodyMass = parseInt(weight * ((100 - BMI)/100));
+                if(input == 'Lose' && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+                if(input == 'Lose' && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(input == 'Gain' && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(input == 'Gain' && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+            }
+            if(this.props.units === "Metric"){
+                let weight =this.props.weight;
+                let BMI = this.props.BMI;
+                let imperialWeight = parseInt(weight * 2.205);
+                let leanBodyMass = parseInt(imperialWeight * ((100 - BMI)/100));
+                if(input == 'Lose' && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+                if(input == 'Lose' && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(input == 'Gain' && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(input == 'Gain' && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+            }
+
+        }
+        else{
+            if(this.props.units === "Imperial"){
+                let weight = this.state.weight;
+                let BMI = this.state.BMI;
+                let leanBodyMass = parseInt(weight * ((100 - BMI)/100));
+                if(input == 'Lose' && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+                if(input == 'Lose' && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(input == 'Gain' && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(input == 'Gain' && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+            }
+            if(this.props.units === "Metric"){
+                let weight = this.state.weight;
+                let BMI = this.state.BMI;
+                let imperialWeight = parseInt(weight * 2.205);
+                let leanBodyMass = parseInt(imperialWeight * ((100 - BMI)/100));
+                if(input == 'Lose' && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+                if(input == 'Lose' && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(input == 'Gain' && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(input == 'Gain' && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({goal: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+            }
+        }
+    }
+    changeGoal = () =>{
+        if(this.state.goal == null){
+            return this.props.goal
+        }
+        else{
+            return this.state.goal;
+        }
+    }
+
     getFeet = input =>{
         let inchConversion = parseInt(input) * 12;
         this.setState({feet: inchConversion});
     }
     getInches = input =>{
-        if(input < 12){
+        if(0 <= input < 12){
             this.setState({inches: parseInt(input)});
         }
         else{
@@ -43,9 +215,205 @@ export default class EditInfoPage extends Component{
 
         }
     }
+    newHeight= () =>{
+        if(this.state.height == null){
+            return this.props.height;
+        }
+        else{
+            return this.state.height;
+        }
+    }
+
     getWeight = input =>{
         this.setState({weight: input});
     }
+
+    newWeight = () =>{
+        if(this.state.weight == null){
+            return this.props.weight;
+        }
+        else{
+            return this.state.weight;
+        }
+    }
+    editBMI = (h, w) =>{
+        if(h == NaN || w == NaN || h === null || w === null){
+            Alert.alert("Error", "You must provide your height and weight to calculate your BMI.");
+            this.setState({height: null, weight: null});
+        }
+        else{
+
+            this.setState({height: parseInt(h), weight: parseInt(w)});
+            if(this.props.units === "Imperial"){
+                let weight = parseInt(w);
+                let height = parseInt(h);
+                let BMI = parseInt((703 * weight)/((height)**2));
+                this.setState({BMI : BMI});
+                let leanBodyMass = parseInt(weight * ((100 - BMI)/100));
+                if(((this.props.goal === "Lose" && this.state.goal ==null) || this.state.goal == 'Lose') && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+                if(((this.props.goal === "Lose" && this.state.goal ==null) || this.state.goal == 'Lose') && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(((this.props.goal === "Gain" && this.state.goal ==null) || this.state.goal == 'Gain') && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(((this.props.goal === "Gain" && this.state.goal ==null) || this.state.goal == 'Gain') && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+            }
+            if(this.props.units === "Metric"){
+                let weight = parseInt(w);
+                let height = parseInt(h);
+                let BMI = parseInt((weight)/((height/100)**2));
+                this.setState({BMI : BMI});
+                let imperialWeight = parseInt(weight * 2.205);
+                let leanBodyMass = parseInt(imperialWeight * ((100 - BMI)/100));
+                if(((this.props.goal === "Lose" && this.state.goal ==null) || this.state.goal == 'Lose') && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+                if(((this.props.goal === "Lose" && this.state.goal ==null) || this.state.goal == 'Lose') && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(((this.props.goal === "Gain" && this.state.goal ==null) || this.state.goal == 'Gain') && this.props.sex === "Male"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                    
+                }
+                if(((this.props.goal === "Gain" && this.state.goal ==null) || this.state.goal == 'Gain') && this.props.sex === "Female"){
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+                    let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
+                    this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
+                }
+            }
+        }
+    }
+
+    newBMI = () =>{
+        if(this.state.BMI == null){
+            return this.props.BMI;
+        }
+        else{
+            return this.state.BMI;
+        }
+    }
+    newCarbs= () =>{
+        if(this.state.allottedCarbs == null){
+            if(this.state.inputCarbs == null){
+                return this.props.allottedCarbs;
+            }
+            return this.state.inputCarbs;
+        }
+        else{
+            return this.state.allottedCarbs;
+        }
+    }
+    newFats= () =>{
+        if(this.state.allottedFats == null){
+            if(this.state.inputFats == null){
+                return this.props.allottedFats;
+            }
+            return this.state.inputFats;
+        }
+        else{
+            return this.state.allottedFats;
+        }
+    }
+    newProteins= () =>{
+        if(this.state.allottedProteins == null){
+            if(this.state.inputProteins == null){
+                return this.props.allottedProteins;
+            }
+            return this.state.inputProteins;
+        }
+        else{
+            return this.state.allottedProteins;
+        }
+    }
+    newTotal= () =>{
+        let total = this.state.inputFats + this.state.inputProteins + this.state.inputCarbs;
+        if(this.state.allottedTotal == null){
+            if(this.state.inputFats == null && this.state.inputProteins == null && this.state.inputCarbs == null){
+                return this.props.allottedTotal;
+            }
+            return total;
+        }
+        else{
+            return this.state.allottedTotal;
+        }
+    }
+      
+      
+      changeNumbers = (carbs, protein, fat, errors)=>{
+        total = parseInt(carbs) + parseInt(protein) + parseInt(fat);
+        if(errors > 0){
+            Alert.alert(
+                'Warning',
+                `Unless you're a professional, and you know EXACTLY what you're doing, your numbers aren't recommended.
+  Are you sure that you want to use them?`,
+                [
+                  {text: "I know what I'm doing", onPress: () => this.setState({
+                    allottedCarbs: parseInt(carbs),
+                    allottedProteins: parseInt(protein),
+                    allottedFats: parseInt(fat),
+                    allottedTotal: total,
+                  }),
+                    },
+                  {
+                    text: "No"
+                  },
+                ],
+                {cancelable: false},
+              );
+        }
+        else{
+            this.setState({
+              allottedCarbs: parseInt(carbs),
+              allottedProteins: parseInt(protein),
+              allottedFats: parseInt(fat),
+              allottedTotal: total,
+            })          
+        }
+    }
+
+
+// ///////////////////////////////////////////////////////////////////////////////////////////
+
+    
+    
 
     BMIEntries= () =>{
         
@@ -56,27 +424,7 @@ export default class EditInfoPage extends Component{
             return true;
         }
     }
-    getBMI = (h, w) =>{
-        if(h == NaN || w == NaN || h === null || w === null){
-            Alert.alert("Error", "You must provide your height and weight to calculate your BMI.");
-            this.setState({height: null, weight: null});
-        }
-        else{
-            if(this.props.units === "Imperial"){
-                let weight = parseInt(w);
-                let height = parseInt(h);
-                let BMI = parseInt((703 * weight)/((height)**2));
-                return BMI
-                
-            }
-            else if(this.props.units === "Metric"){
-                let weight = parseInt(w);
-                let height = parseInt(h);
-                let BMI = parseInt((weight)/((height/100)**2));
-                return BMI   
-            }
-        }
-    }
+    
     macroEntries= () =>{
         
         if(this.carbInput != null && this.proteinInput != null && this.fatInput != null){
@@ -101,19 +449,6 @@ export default class EditInfoPage extends Component{
             inputFats: parseInt(input)
         })
     }
-    suggestion = input =>{
-        this.carbInput = input * .3;
-        this.proteinInput = input * .3;
-        this.fatInput = input * .3;
-
-    }
-
-    inputSum = () =>{
-        if(this.carbInput != null && this.proteinInput != null && this.fatInput != null){
-            const total = this.state.inputCarbs + this.state.inputProteins + this.state.inputFats;
-            return total
-        }
-    }
 
     inputCheck = () =>{
         let total = this.state.inputCarbs + this.state.inputProteins + this.state.inputFats;
@@ -122,37 +457,37 @@ export default class EditInfoPage extends Component{
 
         if(this.state.inputCarbs != null && this.state.inputProteins != null && this.state.inputFats != null){
 
-            if(total < (this.props.recommendedTotal * .9)){
-                errors.push(`Your total entered calories, ${total}, is at least 10% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.recommendedTotal} total calories`);
+            if(total < (this.newTotal() * .8)){
+                errors.push(`Your total entered calories, ${total}, is at least 20% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.recommendedTotal} total calories`);
                 return errors;
 
             }
-            if(total > (this.props.recommendedTotal * 1.1)){
-                errors.push(`Your total entered calories, ${total}, is at least 10% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.recommendedTotal} total calories`);
+            if(total > (this.newTotal() * 1.2)){
+                errors.push(`Your total entered calories, ${total}, is at least 20% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.recommendedTotal} total calories`);
                 return errors;
             }
-            if(this.props.goal == "Gain"){
+            if((this.props.goal == "Gain" && this.state.goal == null) || this.state.goal =='Gain'){
                 
                 if((this.state.inputCarbs < (total * .4)) || (this.state.inputCarbs > (total * .6))){
                     errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .4)} and ${parseInt(total * .6)}`)
                 }
-                else if((this.state.inputProteins < (total * .25)) || (this.state.inputProteins > (total * .35))){
+                if((this.state.inputProteins < (total * .25)) || (this.state.inputProteins > (total * .35))){
                     errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .25)} and ${parseInt(total * .35)}`)
                 }
-                else if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
+                if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
                     errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .15)} and ${parseInt(total * .25)}`)    
                 }
 
                 return errors
             }
-            if(this.props.goal == "Lose"){
+            if((this.props.goal == "Lose" && this.state.goal == null) || this.state.goal =='Lose'){
                 if((this.state.inputCarbs < (total * .1)) || (this.state.inputCarbs > (total * .3))){
                     errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .1)} and ${parseInt(total * .3)}`)
                 }
-                else if((this.state.inputProteins < (total * .4)) || (this.state.inputProteins > (total * .5))){
+                if((this.state.inputProteins < (total * .4)) || (this.state.inputProteins > (total * .5))){
                     errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .4)} and ${parseInt(total * .5)}`)
                 }
-                else if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
+                if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
                     errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .3)} and ${parseInt(total * .4)}`)    
                 }
                 return errors;
@@ -179,7 +514,6 @@ export default class EditInfoPage extends Component{
                             <Text style={styles.text}>Change your name.</Text>
                             <TextInput style={styles.input} ref={(name) => { this.nameInput = name }} onChangeText={(name)=>{this.setName(name)}} placeholder="Name" placeholderTextColor='black' keyboardType="default"></TextInput>
                             <View style = {styles.buttons}>
-                                <Button color={Colors.button} title="Submit" onPress={()=>this.props.changeName(this.state.name)}></Button>
                             </View>
                         </View>
 
@@ -197,7 +531,7 @@ export default class EditInfoPage extends Component{
             );
         }
         else if(this.state.focus == 'Goal'){
-            if(this.props.goal == 'Gain'){
+            if((this.props.goal == 'Gain' && this.state.goal == null) || this.state.goal == 'Gain'){
                 return(
                     <View>
                         <Text style={styles.title}>What would you like to edit?</Text>
@@ -208,7 +542,7 @@ export default class EditInfoPage extends Component{
                             <View style={styles.focus}>
                                 <Text style={styles.text}>Change your goal.</Text>
                                 <View style = {styles.buttons2}>
-                                    <Button color={Colors.button2} title="Lose" onPress={()=>this.props.changeGoal('Lose')}></Button>
+                                    <Button color={Colors.button2} title="Lose" onPress={()=>this.setGoal('Lose')}></Button>
                                 </View>
                         </View>
                             <View style={styles.buttonBackground}>
@@ -221,7 +555,7 @@ export default class EditInfoPage extends Component{
                     </View>
                 );
             }
-            if(this.props.goal == 'Lose'){
+            if((this.props.goal == 'Lose' && this.state.goal == null) || this.state.goal == 'Lose'){
                 return(
                     <View>
                         <Text style={styles.title}>What would you like to edit?</Text>
@@ -232,7 +566,7 @@ export default class EditInfoPage extends Component{
                             <View style={styles.focus}>
                                 <Text style={styles.text}>Change your goal.</Text>
                                 <View style = {styles.buttons}>
-                                    <Button color={Colors.button} title="Gain" onPress={()=>this.props.changeGoal('Gain')}></Button>                
+                                    <Button color={Colors.button} title="Gain" onPress={()=>this.setGoal('Gain')}></Button>                
                                 </View>
                             </View>
                             <View style={styles.buttonBackground}>
@@ -273,7 +607,7 @@ export default class EditInfoPage extends Component{
                                     </View>
                                 </View>
                                 <View style={styles.BMIbuttons}>
-                                    <Button color={Colors.button} title="Submit" onPress={ () => this.props.editBMI((parseInt(this.state.feet) + parseInt(this.state.inches)), parseInt(this.state.weight), this.getBMI((parseInt(this.state.feet) + parseInt(this.state.inches)), parseInt(this.state.weight)))} disabled={this.BMIEntries()}></Button>
+                                    <Button color={Colors.button} title="Get BMI" onPress={ () => this.editBMI((parseInt(this.state.feet) + parseInt(this.state.inches)), parseInt(this.state.weight))} disabled={this.BMIEntries()}></Button>
                                 </View>
                             </View>
                             <View style={styles.buttonBackground}>
@@ -307,7 +641,7 @@ export default class EditInfoPage extends Component{
                                     </View>
                                 </View>
                                 <View style={styles.BMIbuttons}>
-                                    <Button color={Colors.button} title="Submit" onPress={() =>this.props.editBMI(parseInt(this.state.height), parseInt(this.state.weight), this.getBMI(parseInt(this.cmInput), parseInt(this.weightInput)))} disabled={this.BMIEntries()}></Button>
+                                    <Button color={Colors.button} title="Get BMI" onPress={() =>this.editBMI(parseInt(this.state.height), parseInt(this.state.weight))} disabled={this.BMIEntries()}></Button>
                                 </View>
                             </View>
                             <View style={styles.buttonBackground}>
@@ -337,12 +671,14 @@ export default class EditInfoPage extends Component{
                             <Text style={styles.text}>Enter the calorie amounts that you follow</Text>
                             <View style={styles.numbersContainer}>
                                 <View style={styles.numbersInputContainer}>
-                                    <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carb Calories" placeholderTextColor='black' maxLength={4}></TextInput>
-                                    <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Protein Calories" placeholderTextColor='black' maxLength={4}></TextInput>
+                                    <Text style={styles.numbersText}>Fats</Text>
                                     <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fat Calories" placeholderTextColor='black' maxLength={4}></TextInput>
+                                    <Text style={styles.numbersText}>Carbs</Text>                       
+                                    <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carb Calories" placeholderTextColor='black' maxLength={4}></TextInput>
+                                    <Text style={styles.numbersText}>Proteins</Text>
+                                    <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Protein Calories" placeholderTextColor='black' maxLength={4}></TextInput>
 
                                     <View style={styles.buttons1}>
-                                        <Button  color={Colors.button} title="Use These Numbers" onPress={()=> this.props.changeNumbers(this.state.inputCarbs, this.state.inputProteins, this.state.inputFats, this.list().length)} disabled={this.macroEntries()}></Button>
                                     </View>
                                 </View>
                                 <View style={styles.numbersInputContainer}>
@@ -380,7 +716,26 @@ export default class EditInfoPage extends Component{
 
     render(){
         return(
-            this.page()
+            <View>
+                {this.page()}
+                <View style={styles.container}>
+                    <Text style={styles.text}>Please click the button below to submit your changes.</Text>
+                    <Text style={styles.tableText}>Current Name: {this.changeName()}</Text>
+                    <Text style={styles.tableText}>Current Goal: {this.changeGoal()}</Text>
+                    <Text style={styles.tableText}>Height: {this.newHeight()}</Text>
+                    <Text style={styles.tableText}>Weight: {this.newWeight()}</Text>
+                    <Text style={styles.tableText}>BMI: {this.newBMI()}</Text>
+                    <Text style={styles.tableText}>Current Daily Fat Calories: {this.newFats()}</Text>
+                    <Text style={styles.tableText}>Current Daily Carb Calories: {this.newCarbs()}</Text>
+                    <Text style={styles.tableText}>Current Daily Protein Calories:  {this.newProteins()}</Text>
+                    <Text style={styles.tableText}>Current Total Daily Calories:  {this.newTotal()}</Text>
+                    <View style={styles.buttonBackground}>
+                        <Button title="Submit Changes" color={Colors.button} onPress={() => this.props.editedInfo(this.changeName(), this.changeGoal(), this.newHeight(), this.newWeight(), this.newBMI(),this.newFats(), this.newCarbs(), this.newProteins(), this.newTotal(), this.list().length)}></Button> 
+                    </View>
+
+                </View>
+            </View>
+            
         );
     }
 }
@@ -504,6 +859,12 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         color: Colors.titles
     },
+    numbersText:{
+        fontSize: 20,
+        alignSelf:'flex-start',
+        marginStart: 15,
+        color: Colors.titles
+    },
     BMIText:{
         fontSize: 30,
         textAlign:'center',
@@ -526,6 +887,20 @@ const styles = StyleSheet.create({
         margin: 5,
         padding: 5
     },
+    container:{
+        backgroundColor:Colors.boxBackground,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderColor: Colors.borders,
+        borderWidth: 2,
+        marginTop: 10,
+        width: '90%',
+        alignSelf: "center",
+      },
+      tableText:{
+        color: Colors.text,
+        fontSize: 20
+      }
 
 })
 

@@ -19,7 +19,7 @@ export default class Fats extends Component{
                 <Text style={styles.subtitles}>How your body uses fat:</Text>
                 <View style={styles.paragraph}>
                     <Text style={styles.text}>Fats are an essential part of your diet because they are used build some very important parts of your body's functions, such as your hormones; or down to the cellular level, your cell membranes. It is important that you have enough fat in your diet to allow your body maintain its hormonal functions; some of which include managing your metabolism, and your weight.</Text>
-                    <Text style={styles.text}>Oftentimes, people misassociate weight gain to an excess of fat in their diet, but fat is actually good for weight management! As a matter of fact, a diet that is lacking in fats, and high in fats can result in greater rates of obesity.</Text>
+                    <Text style={styles.text}>Oftentimes, people misassociate weight gain to an excess of fat in their diet, but fat calories are actually good for weight management! As a matter of fact, a diet that is lacking in fat calories, and high in carb calories can result in greater rates of obesity.</Text>
                     <Text style={styles.text}>Diets that don't have enough fat can lead to problems like:</Text>
                     <View style={styles.paragraph}>
                         <Text style={styles.italicized}> - increased risk for heart disease</Text>

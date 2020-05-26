@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     numInput:{
       width: '60%',
       backgroundColor: 'white',
-      height: 20,
+      height: 35,
       borderColor:'black',
       borderWidth: 2,
       color: 'black'

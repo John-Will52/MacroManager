@@ -87,7 +87,8 @@ export default class CalorieCounterPage extends Component{
         return(
             <View style={styles.pageContainer}>
                 <View style={styles.contentContainer}>
-                    <Text style={styles.text}>Add the amounts of each in grams</Text>
+                    <Text style={styles.text}>Add the amounts of each</Text>
+                    <Text style={styles.subtext}>(<Text style={styles.subtextUnderline}>in grams</Text>)</Text>
                     <View style={styles.inputContainer}>
                         <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
                         <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
@@ -133,13 +134,14 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         height: 60,
-        marginTop: 20,
+        marginVertical: 10,
     },
     labelContainer:{
         flexDirection: 'row',
         width: '100%',
-        flex: 1,
-        height: 60,
+        // flex: 1,
+        height: 50,
+        justifyContent: 'space-evenly'
         // borderColor: Colors.borders,
         // borderWidth: 2,
     },
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 360,
         alignItems: 'flex-end',
-        marginTop:40,
+        marginVertical:10,
         borderColor: 'white',
         borderWidth: 1,
         borderBottomWidth: 0,
@@ -158,9 +160,20 @@ const styles = StyleSheet.create({
 
     },
     text:{
-        fontSize: 35,
+        fontSize: 30,
         textAlign: "center",
         color: Colors.titles
+    },
+    subtext:{
+        fontSize: 20,
+        textAlign: "center",
+        color: 'white',
+    },
+    subtextUnderline:{
+        fontSize: 20,
+        textAlign: "center",
+        color: 'white',
+        textDecorationLine: 'underline'
     },
     pageContainer:{
         // paddingHorizontal: 5,
@@ -179,7 +192,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.buttonBackground,
         width: "40%",
         alignSelf: 'center',
-        marginTop: 10,
+        // marginVertical: 10,
       },
       buttons2:{
         backgroundColor: Colors.buttonBackground2,
@@ -190,7 +203,7 @@ const styles = StyleSheet.create({
           backgroundColor: Colors.boxBackground,
           borderColor:Colors.borders,
           borderWidth: 3,
-          padding: 10
+          padding: 10,
       }
 })
 

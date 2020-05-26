@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert} from 'react-native';
+import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert, KeyboardAvoidingView} from 'react-native';
 import {name as appName} from '../app.json';
 import Ingredients from './ingredients';
 import Colors from '../styling/colors';
@@ -140,9 +140,9 @@ And, per serving:
                         <TextInput style={styles.nameInputs} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black' minLength={3}></TextInput>
                         <TextInput style={styles.numInputs} onChangeText={name => this.addMealServings(name)} keyboardType="number-pad" minLength={1} maxLength={2} placeholder="Total Servings" placeholderTextColor='black'></TextInput>
                     </View>
-                    <View style = {styles.ingredientBox}>
+                    <KeyboardAvoidingView style = {styles.ingredientBox}>
                         {recipe}
-                    </View>
+                    </KeyboardAvoidingView>
                 </View>
             </View>
         );

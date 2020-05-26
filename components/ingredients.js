@@ -57,7 +57,7 @@ export default class Ingredients extends Component{
                             <Button title="Add Ingredient" color={Colors.button} onPress={()=> this.props.addCalories(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)} disabled={(this.state.name == null || this.state.carbs == null || this.state.fats == null || this.state.proteins == null || this.state.servings == null) ? true : false}></Button>
                         </View>
                         <View style={styles.buttons2}>
-                            <Button title="Submit Meal" color={Colors.button} onPress={()=> this.props.areYouSure(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)} disabled={(this.props.mealCarbs == null || this.props.mealFats == null || this.props.mealProteins == null || this.props.counter < 2) ? true : false}></Button>
+                            <Button title="Submit Meal" color={Colors.button2} onPress={()=> this.props.areYouSure(this.state.servings, this.state.carbs, this.state.proteins, this.state.fats)} disabled={(this.props.mealCarbs == null || this.props.mealFats == null || this.props.mealProteins == null || this.props.counter < 2) ? true : false}></Button>
                         </View>
                     </View>
 

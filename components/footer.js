@@ -33,7 +33,7 @@ export default class Footer extends Component{
 const styles = StyleSheet.create({
     footer: {
         flexDirection: 'row',
-        marginTop: 20,
+        marginVertical: 20,
         height: 35,
         // borderColor: 'black',
         // borderWidth:1,

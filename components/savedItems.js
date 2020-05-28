@@ -190,10 +190,7 @@ const styles = StyleSheet.create({
     text:{
       fontSize: 15,
       color: 'white'
-
-    }
-    
-    
+    } 
   });
   
 

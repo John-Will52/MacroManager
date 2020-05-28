@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, KeyboardAvoidingView, Text, TextInput, StyleSheet, Button, Alert, ScrollView} from 'react-native';
+import {AppRegistry, KeyboardAvoidingView,} from 'react-native';
 import {name as appName} from '../app.json';
-import Colors from '../styling/colors';
 import Question from '../components/question';
 import Meals from '../components/meals';
 import Snacks from '../components/snacks';

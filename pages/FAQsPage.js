@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, Button, StyleSheet, ScrollView} from 'react-native';
+import {AppRegistry, View, Text, Button, StyleSheet,} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import FAQ from '../components/FAQ';

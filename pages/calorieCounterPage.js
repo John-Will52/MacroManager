@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert} from 'react-native';
+import {AppRegistry, View, Text, TextInput, StyleSheet, Button,} from 'react-native';
 import {name as appName} from '../app.json';
 import Counter from '../components/counter';
 import Colors from '../styling/colors';
+import AsyncStorage from '@react-native-community/async-storage';
+
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class CalorieCounterPage extends Component{
@@ -15,10 +17,35 @@ export default class CalorieCounterPage extends Component{
             fatInput: null,
             displayType: 0,
         }
+        this.getData();
     }
 
     // THis is the area that you put your JS logic for functions and stuff at.
+    storeData = async () => {
+        try {
+          const saveData = JSON.stringify(this.state.displayType);
+          await AsyncStorage.setItem('display', saveData);
     
+        } 
+        catch (e) {
+          // saving error
+          console.log(e);
+        }
+      }
+    
+      getData = async () => {
+        try {
+          const appData = await AsyncStorage.getItem('display');
+          const savedState = JSON.parse(appData);
+          if(savedState !== null){
+            this.setState({displayType: savedState})
+          }
+        } 
+        catch(e) {
+          // error reading value
+          console.log(e);
+        }
+      }
     addServings = input =>{
         if(input != null){
             this.setState({servings: parseInt(input)});
@@ -83,6 +110,7 @@ export default class CalorieCounterPage extends Component{
     }
     display = () =>{
         const displays = ['percents', 'grams', 'calories'];
+        this.storeData();
         return displays[this.state.displayType];
     }
 
@@ -104,7 +132,7 @@ export default class CalorieCounterPage extends Component{
                         <Button ref={this.addCaloriesButton} color={this.buttonColor()} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())} disabled={this.allEntries()}></Button>
                     </View>
                     <View style={styles.display}>
-                        <Button color={Colors.displayButton} title="Display" onPress={() => {(this.state.displayType < 2) ? this.setState({displayType: this.state.displayType + 1}) : this.setState({displayType : 0})}}></Button>
+                        <Button color={Colors.displayButton} title="Display" onPress={() => {(this.state.displayType < 2) ? this.setState({displayType: this.state.displayType + 1}) : this.setState({displayType : 0}), this.storeData}}></Button>
                     </View>
                     <View style={styles.counterContainer}>
                         <Counter displayType={this.display()} remainingCals={this.props.remainingFatCals} remainingGrams={this.props.remainingFatGrams} percentages={this.props.percentOfFats}></Counter>
@@ -147,11 +175,8 @@ const styles = StyleSheet.create({
     labelContainer:{
         flexDirection: 'row',
         width: '100%',
-        // flex: 1,
         height: 50,
         justifyContent: 'space-evenly'
-        // borderColor: Colors.borders,
-        // borderWidth: 2,
     },
     counterContainer:{
         flexDirection: 'row',

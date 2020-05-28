@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, KeyboardAvoidingView, View, Alert} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View, Alert} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';

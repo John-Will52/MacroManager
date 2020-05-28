@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, Alert,StyleSheet, Button, ScrollView, TextInput} from 'react-native';
+import {AppRegistry, View, Text, Alert,StyleSheet, Button, ScrollView,} from 'react-native';
 import {name as appName} from '../app.json';
 import Question from '../components/question';
 import Colors from '../styling/colors';
@@ -307,11 +307,6 @@ Which are you?`} testType="Dilemma" optionOne="Male" optionTwo="Female" stateOpt
 }
 
 const styles=StyleSheet.create({
-    // text:{
-    //     fontSize: 30,
-    //     textAlign:'left',
-    //     color: Colors.titles
-    // },
     horizontalButtonContainer:{
         flexDirection: 'row',
         justifyContent:'space-evenly',
@@ -329,7 +324,6 @@ const styles=StyleSheet.create({
         alignSelf: 'center',
         marginVertical: 20,
       },
-
       buttons1:{
         backgroundColor: Colors.buttonBackground,
         width: "75%",
@@ -355,11 +349,7 @@ const styles=StyleSheet.create({
         borderColor:'black',
         borderWidth: 1,
         color: 'black'
-
     },
-    
-
-
 }); 
 
 AppRegistry.registerComponent(appName, () => SurveyPage);

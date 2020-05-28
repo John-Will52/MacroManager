@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 20,
         paddingHorizontal: 5,
-        // textDecorationLine: 'underline'
     },
     buttons1:{
         backgroundColor: Colors.buttonBackground,

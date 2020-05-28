@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, Button} from 'react-native';
+import {AppRegistry, View, StyleSheet, Button} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 // AppRegistry is the JS entry point for all ReactNative apps. 
@@ -35,14 +35,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: 20,
         height: 35,
-        // borderColor: 'black',
-        // borderWidth:1,
         justifyContent: 'space-around'
 
 
     },
     buttons: {
-        // backgroundColor: 'transparent',
+
         width: '25%',
         borderWidth: 0,
         borderColor: 'transparent'

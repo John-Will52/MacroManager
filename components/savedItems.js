@@ -16,9 +16,26 @@ export default class SavedItems extends Component{
     eatingServings= servings =>{
       const theseServings = parseInt(servings);
       if(servings){
-        this.setState({
-          eatenServings: theseServings
-        });
+        if(theseServings > this.props.servings){
+          Alert.alert('Error', "You can't submit more servings than this meal offers", 'Okay');
+          this.setState({
+            eatenServings: null
+          });
+          this.servingsInput.clear();
+        }
+        else if(theseServings <= 0){
+          Alert.alert('Error', "You must add at least 1 serving", 'Okay');
+          this.setState({
+            eatenServings: null
+          });
+          this.servingsInput.clear();
+        }
+        else{
+          this.setState({
+            eatenServings: theseServings
+          });
+        }
+        
       }
       else{
         this.setState({
@@ -37,7 +54,7 @@ export default class SavedItems extends Component{
                 <View style ={styles.mealHeader}>
                   <Text style={styles.itemName}>{this.props.name}</Text>
                   <View style={styles.servingInfo}>
-                    <TextInput style={styles.numInput}  onChangeText={servings => this.eatingServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInput} ref={(servings) => { this.servingsInput = servings }} onChangeText={servings => this.eatingServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                     <Text style={styles.text}> /{this.props.servings}</Text>
                   </View>
   

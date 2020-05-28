@@ -24,6 +24,7 @@ export default class SavedItemsPage extends Component{
                     <View style={styles.savedItemsBox}>
                         <Text style={styles.text}>Go to the "Save a Snack or Meal" page to add foods that you eat often.</Text>
                     </View>
+                    <Text style={styles.OR}>...OR...</Text>
                     <View style={styles.savedItemsBox}>  
                         <Text style={styles.text}>If you know that you should have something saved, try pressing the filter buttons.</Text>
                     </View>
@@ -56,12 +57,17 @@ const styles = StyleSheet.create({
         padding: 5,
         borderColor: Colors.borders,
         borderWidth: 5,
-        marginBottom: 10
     },
     text:{
         color: Colors.text,
         fontSize: 25,
         textAlign: "center",
+    },
+    OR:{
+        color: Colors.text,
+        fontSize: 35,
+        textAlign: "center",
+        marginVertical: 10
     },
   });
 

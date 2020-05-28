@@ -13,6 +13,7 @@ export default class CalorieCounterPage extends Component{
             carbInput: null,
             proteinInput: null,
             fatInput: null,
+            displayType: 0,
         }
     }
 
@@ -80,6 +81,10 @@ export default class CalorieCounterPage extends Component{
             return Colors.button;
         }
     }
+    display = () =>{
+        const displays = ['percents', 'grams', 'calories'];
+        return displays[this.state.displayType];
+    }
 
 
 
@@ -98,11 +103,14 @@ export default class CalorieCounterPage extends Component{
                     <View style={styles.buttons}>
                         <Button ref={this.addCaloriesButton} color={this.buttonColor()} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())} disabled={this.allEntries()}></Button>
                     </View>
+                    <View style={styles.display}>
+                        <Button color={Colors.displayButton} title="Display" onPress={() => {(this.state.displayType < 2) ? this.setState({displayType: this.state.displayType + 1}) : this.setState({displayType : 0})}}></Button>
+                    </View>
                     <View style={styles.counterContainer}>
-                        <Counter percentages={this.props.percentOfFats}></Counter>
-                        <Counter percentages={this.props.percentOfCarbs}></Counter>
-                        <Counter percentages={this.props.percentOfProteins}></Counter>
-                        <Counter percentages={this.props.percentOfTotalCalories}></Counter>
+                        <Counter displayType={this.display()} remainingCals={this.props.remainingFatCals} remainingGrams={this.props.remainingFatGrams} percentages={this.props.percentOfFats}></Counter>
+                        <Counter displayType={this.display()} remainingCals={this.props.remainingCarbCals} remainingGrams={this.props.remainingCarbGrams} percentages={this.props.percentOfCarbs}></Counter>
+                        <Counter displayType={this.display()} remainingCals={this.props.remainingProteinCals} remainingGrams={this.props.remainingProteinGrams} percentages={this.props.percentOfProteins}></Counter>
+                        <Counter displayType={this.display()} remainingCals={this.props.remainingTotalCals} remainingGrams="N/A" percentages={this.props.percentOfTotalCalories}></Counter>
                     </View>
                     <View style={styles.labelContainer}>
                         <Text style={styles.labels}>Fats</Text>
@@ -150,9 +158,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: '100%',
         flex: 1,
-        height: 360,
+        height: 355,
         alignItems: 'flex-end',
-        marginVertical:10,
         borderColor: 'white',
         borderWidth: 1,
         borderBottomWidth: 0,
@@ -175,9 +182,6 @@ const styles = StyleSheet.create({
         color: 'white',
         textDecorationLine: 'underline'
     },
-    pageContainer:{
-        // paddingHorizontal: 5,
-    },
     labels:{
         color: '#fff',
         width: '25%',
@@ -192,7 +196,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.buttonBackground,
         width: "40%",
         alignSelf: 'center',
-        // marginVertical: 10,
       },
       buttons2:{
         backgroundColor: Colors.buttonBackground2,
@@ -203,8 +206,13 @@ const styles = StyleSheet.create({
           backgroundColor: Colors.boxBackground,
           borderColor:Colors.borders,
           borderWidth: 3,
-          padding: 10,
+          padding: 5,
+      },
+      display:{
+          flexDirection: 'row-reverse',
+          margin: 0
       }
+
 })
 
 AppRegistry.registerComponent(appName, () => CalorieCounterPage);

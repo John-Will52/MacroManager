@@ -97,32 +97,32 @@ export default class SurveyPage extends Component{
                 this.setState({BMI : BMI});
                 let leanBodyMass = parseInt(weight * ((100 - BMI)/100));
                 if(this.state.goal === "Lose" && this.state.sex === "Male"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
-                    let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.3)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 2.342)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .692)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                 }
                 if(this.state.goal === "Lose" && this.state.sex === "Female"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
-                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * .51)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 2.551)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .898)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                     
                 }
                 if(this.state.goal === "Gain" && this.state.sex === "Male"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
-                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.608)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.567)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .458)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                     
                 }
                 if(this.state.goal === "Gain" && this.state.sex === "Female"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
-                    let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.041)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.786)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .467)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                 }
@@ -135,32 +135,32 @@ export default class SurveyPage extends Component{
                 let imperialWeight = parseInt(weight * 2.205);
                 let leanBodyMass = parseInt(imperialWeight * ((100 - BMI)/100));
                 if(this.state.goal === "Lose" && this.state.sex === "Male"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * .833)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
-                    let allottedFatCalories =  parseInt((leanBodyMass * .65)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 1.3)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 2.342)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .692)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                 }
                 if(this.state.goal === "Lose" && this.state.sex === "Female"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * 1.11)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
-                    let allottedFatCalories =  parseInt((leanBodyMass * .5)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * .51)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 2.551)) * 4;
+                    let allottedFatCalories =  parseInt((leanBodyMass * .898)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                     
                 }
                 if(this.state.goal === "Gain" && this.state.sex === "Male"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * 3.125)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.875)) * 4;
-                    let allottedFatCalories = parseInt((leanBodyMass * .56)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.608)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.567)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .458)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                     
                 }
                 if(this.state.goal === "Gain" && this.state.sex === "Female"){
-                    let allottedCarbCalories = parseInt((leanBodyMass * 2.43)) * 4;
-                    let allottedProteinCalories = parseInt((leanBodyMass * 1.82)) * 4;
-                    let allottedFatCalories = parseInt((leanBodyMass * .81)) * 9;
+                    let allottedCarbCalories = parseInt((leanBodyMass * 2.041)) * 4;
+                    let allottedProteinCalories = parseInt((leanBodyMass * 1.786)) * 4;
+                    let allottedFatCalories = parseInt((leanBodyMass * .467)) * 9;
                     let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                     this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories)})
                 }

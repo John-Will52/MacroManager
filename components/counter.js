@@ -16,7 +16,7 @@ export default class Counter extends Component{
     color = (x) =>{
         const colorArray=['#FF1E01','#FF8703','#F7DB0B','#488D24','#02EEFF','#0234FF','#B001FF'];
 
-        if(x < 50 || x > 110){
+        if(x <= 50 || x > 110){
             return colorArray[0];
         }
         else if (x > 50 && x <= 65){
@@ -40,7 +40,29 @@ export default class Counter extends Component{
 
     }
 
-
+infoDisplay = () =>{
+    if( this.props.displayType == 'percents'){
+        return(
+            <Text style={styles.labels}>{parseInt(this.props.percentages)}%</Text>
+        )
+    }
+    if(this.props.displayType == 'grams'){
+        return(
+            <View>
+                <Text style={styles.otherLabels}>{this.props.remainingGrams}</Text>
+                <Text style={styles.otherLabels}>grams</Text>
+            </View>
+        )
+    }
+    if(this.props.displayType == 'calories'){
+        return(
+            <View>
+                <Text style={styles.otherLabels}>{this.props.remainingCals}</Text>
+                <Text style={styles.otherLabels}>cals</Text>
+            </View>
+        )  
+    }
+}
 
 
 
@@ -49,10 +71,8 @@ export default class Counter extends Component{
         
         return(
             <View>
-
                 <View style={[styles.box, {height: `${parseInt(this.props.percentages)}%`, backgroundColor: this.color(parseInt(this.props.percentages))}]}>
-                    <Text style={styles.labels}>{parseInt(this.props.percentages)}%</Text>
-                    {/* <Text>{this.color(parseInt(this.props.percentages))}</Text> */}
+                    {this.infoDisplay()}
                 </View>
             </View>
         );
@@ -64,11 +84,18 @@ const styles = StyleSheet.create({
         // backgroundColor: 'red',
         width: 85,
         paddingBottom: 20,
-        minHeight: Platform.OS === 'ios' ? '12%' : '8%',
+        minHeight: Platform.OS === 'ios' ? '12%' : '12%',
         maxHeight: '100%',
     },
     labels:{
         fontSize: 20,
+        color: '#fff',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        textAlignVertical: 'bottom'
+    },
+    otherLabels:{
+        fontSize: Platform.OS === 'ios' ? 18 : 16,
         color: '#fff',
         fontWeight: 'bold',
         alignSelf: 'center',

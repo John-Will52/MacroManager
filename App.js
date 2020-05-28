@@ -426,8 +426,8 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 0){
       return(
         <SafeAreaView style={styles.background}>
+          <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
           <ScrollView contentInsetAdjustmentBehavior="automatic" >
-            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <CalorieCounterPage clear={this.reset} addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories} remainingCarbCals={this.state.allottedCarbs - this.state.currentCarbs} remainingProteinCals={this.state.allottedProteins - this.state.currentProteins} remainingFatCals={this.state.allottedFats - this.state.currentFats} remainingTotalCals={this.state.allottedTotal - this.state.currentTotal} remainingCarbGrams={(this.state.allottedCarbs - this.state.currentCarbs)/4} remainingProteinGrams={(this.state.allottedProteins - this.state.currentProteins)/4} remainingFatGrams={(this.state.allottedFats - this.state.currentFats)/9} remainingTotalCals={this.state.allottedTotal - this.state.currentTotal}></CalorieCounterPage>
             <Footer changePage={this.navigator}></Footer>
           </ScrollView>
@@ -438,8 +438,8 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 1){
       return(
         <SafeAreaView style={styles.background}>
+          <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <AddSnacksAndMealsPage changePage={this.navigator} saveItem={this.saveItems}></AddSnacksAndMealsPage>
           </ScrollView>
         </SafeAreaView>
@@ -448,8 +448,8 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 2){
       return(
         <SafeAreaView style={styles.background}>
+          <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
           <ScrollView>
-            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <SavedItemsPage changePage={this.navigator} itemList={this.list()}>
               <View style={styles.filters}>
                 <Button title="All" color={Colors.filter} onPress={()=>{this.setState({listFilter: 'Any'})}}></Button>
@@ -464,8 +464,8 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 3){
       return(
         <SafeAreaView style={styles.background}>
+          <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
           <ScrollView>
-            <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <EditInfoPage editedInfo={this.submitEditedInfo} units={this.state.units} sex={this.state.sex} goal={this.state.goal} name={this.state.name} BMI={this.state.BMI} height={this.state.height} weight={this.state.weight} allottedFats={this.state.allottedFats} allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedTotal={this.state.allottedTotal}></EditInfoPage>
           </ScrollView>
         </SafeAreaView>

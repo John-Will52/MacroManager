@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, Button} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 
@@ -30,10 +30,12 @@ export default class SavedItemsPage extends Component{
         else{
             return(
                 <View style={styles.pageContainer}>
-                    {this.props.children}
                     <View style={styles.buttonContainer}>
+                        {this.props.children}
                     </View>
-                    {this.props.itemList}   
+                    <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={0}>
+                        {this.props.itemList}
+                    </KeyboardAvoidingView>
                 </View>
             );
         }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, View, Alert} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View, Alert, Button} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
@@ -37,6 +37,7 @@ export default class App extends Component{
         percentOfFats: 0,
         percentOfTotalCalories: 0,
         pageNumber: 0,
+        listFilter: 'Any',
         savedItems:[],    
       }
       this.getData();
@@ -238,11 +239,27 @@ Protein: ${proteins * servings} grams`,
 
     list = () => {
       this.storeData();
-      return this.state.savedItems.map((item) => {
-        return(
-          <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
-        );
-      });
+      if(this.state.listFilter == 'Any'){
+        return this.state.savedItems.map((item) => {
+          return(
+            <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
+          );
+        });
+      }
+      if(this.state.listFilter == 'Snack'){
+        return this.state.savedItems.filter((item) => {return item.item == 'Snack';}).map((item) => {
+          return(
+            <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
+          );
+        });
+      }
+      if(this.state.listFilter == 'Meal'){
+        return this.state.savedItems.filter((item) => {return item.item == 'Meal';}).map((item) => {
+          return(
+            <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
+          );
+        });
+      }    
     };
 
   //Edit page functions
@@ -433,7 +450,13 @@ Protein: ${proteins * servings} grams`,
         <SafeAreaView style={styles.background}>
           <ScrollView>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
-            <SavedItemsPage changePage={this.navigator} itemList={this.list()}></SavedItemsPage>
+            <SavedItemsPage changePage={this.navigator} itemList={this.list()}>
+              <View style={styles.filters}>
+                <Button title="All" color={Colors.filter} onPress={()=>{this.setState({listFilter: 'Any'})}}></Button>
+                <Button title="Snacks" color={Colors.filter} onPress={()=>{this.setState({listFilter: 'Snack'})}}></Button>
+                <Button title="Meals" color={Colors.filter} onPress={()=>{this.setState({listFilter: 'Meal'})}}></Button>
+              </View>
+            </SavedItemsPage>
           </ScrollView>
         </SafeAreaView>
       );
@@ -468,6 +491,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     height: '100%',
   },
+  filters:{
+    flexDirection: 'row',
+    justifyContent: "space-around"
+  }
 
   
 });

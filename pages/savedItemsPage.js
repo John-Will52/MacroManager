@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet,} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, Button} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 
@@ -20,6 +20,7 @@ export default class SavedItemsPage extends Component{
         if(this.props.itemList.length == 0){
             return(
                 <View style={styles.pageContainer}>
+                    {this.props.children}
                     <View style={styles.savedItemsBox}>
                         <Text style={styles.text}>Go to the "Save a Snack or Meal" page to add foods that you eat often.</Text>
                     </View>
@@ -29,6 +30,7 @@ export default class SavedItemsPage extends Component{
         else{
             return(
                 <View style={styles.pageContainer}>
+                    {this.props.children}
                     <View style={styles.buttonContainer}>
                     </View>
                     {this.props.itemList}   

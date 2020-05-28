@@ -325,69 +325,69 @@ Protein: ${proteins * servings} grams`,
    
     if(this.state.units === "Imperial"){
       let leanBodyMass = parseInt(weight * ((100 - BMI)/100));
-      if(this.state.goal === "Lose" && this.state.sex === "Male"){
+      if(this.state.goal === "Lose" && input === "Male"){
         let allottedCarbCalories = parseInt((leanBodyMass * 1.3)) * 4;
         let allottedProteinCalories = parseInt((leanBodyMass * 2.342)) * 4;
         let allottedFatCalories =  parseInt((leanBodyMass * .692)) * 9;
         let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
+        this.setState({sex: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
       }
-      if(this.state.goal === "Lose" && this.state.sex === "Female"){
+      if(this.state.goal === "Lose" && input === "Female"){
           let allottedCarbCalories = parseInt((leanBodyMass * .51)) * 4;
           let allottedProteinCalories = parseInt((leanBodyMass * 2.551)) * 4;
           let allottedFatCalories =  parseInt((leanBodyMass * .898)) * 9;
           let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
+          this.setState({sex: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
 
       }
-      if(this.state.goal === "Gain" && this.state.sex === "Male"){
+      if(this.state.goal === "Gain" && input === "Male"){
           let allottedCarbCalories = parseInt((leanBodyMass * 2.608)) * 4;
           let allottedProteinCalories = parseInt((leanBodyMass * 1.567)) * 4;
           let allottedFatCalories = parseInt((leanBodyMass * .458)) * 9;
           let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories),percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
+          this.setState({sex: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories),percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
 
       }
-      if(this.state.goal === "Gain" && this.state.sex === "Female"){
+      if(this.state.goal === "Gain" && input === "Female"){
           let allottedCarbCalories = parseInt((leanBodyMass * 2.041)) * 4;
           let allottedProteinCalories = parseInt((leanBodyMass * 1.786)) * 4;
           let allottedFatCalories = parseInt((leanBodyMass * .467)) * 9;
           let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
+          this.setState({sex: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
       }
     }
     if(this.state.units === "Metric"){
       let imperialWeight = parseInt(weight * 2.205);
       let leanBodyMass = parseInt(imperialWeight * ((100 - BMI)/100));
-      if(this.state.goal === "Lose" && this.state.sex === "Male"){
+      if(this.state.goal === "Lose" && input === "Male"){
         let allottedCarbCalories = parseInt((leanBodyMass * 1.3)) * 4;
         let allottedProteinCalories = parseInt((leanBodyMass * 2.342)) * 4;
         let allottedFatCalories =  parseInt((leanBodyMass * .692)) * 9;
         let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-        this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
+        this.setState({sex: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
       }
-      if(this.state.goal === "Lose" && this.state.sex === "Female"){
+      if(this.state.goal === "Lose" && input === "Female"){
           let allottedCarbCalories = parseInt((leanBodyMass * .51)) * 4;
           let allottedProteinCalories = parseInt((leanBodyMass * 2.551)) * 4;
           let allottedFatCalories =  parseInt((leanBodyMass * .898)) * 9;
           let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
+          this.setState({sex: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
 
       }
-      if(this.state.goal === "Gain" && this.state.sex === "Male"){
+      if(this.state.goal === "Gain" && input === "Male"){
           let allottedCarbCalories = parseInt((leanBodyMass * 2.608)) * 4;
           let allottedProteinCalories = parseInt((leanBodyMass * 1.567)) * 4;
           let allottedFatCalories = parseInt((leanBodyMass * .458)) * 9;
           let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories),percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
+          this.setState({sex: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories),percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
 
       }
-      if(this.state.goal === "Gain" && this.state.sex === "Female"){
+      if(this.state.goal === "Gain" && input === "Female"){
           let allottedCarbCalories = parseInt((leanBodyMass * 2.041)) * 4;
           let allottedProteinCalories = parseInt((leanBodyMass * 1.786)) * 4;
           let allottedFatCalories = parseInt((leanBodyMass * .467)) * 9;
           let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
-          this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
+          this.setState({sex: input, allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), percentOfCarbs: (currentCarbs/allottedCarbCalories) * 100, percentOfProteins: (currentProteins/allottedProteinCalories) * 100, percentOfFats: (currentFats/allottedFatCalories) * 100, percentOfTotalCalories: (currentTotal/allottedTotalCalories) * 100,})
       }
     }
         this.navigator(0);

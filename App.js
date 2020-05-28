@@ -442,11 +442,8 @@ Protein: ${proteins * servings} grams`,
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView>
-          <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={120}>
-
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <EditInfoPage editedInfo={this.submitEditedInfo} units={this.state.units} sex={this.state.sex} goal={this.state.goal} name={this.state.name} BMI={this.state.BMI} height={this.state.height} weight={this.state.weight} allottedFats={this.state.allottedFats} allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedTotal={this.state.allottedTotal}></EditInfoPage>
-            </KeyboardAvoidingView>
           </ScrollView>
         </SafeAreaView>
       );

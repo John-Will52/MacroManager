@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, Text, View, Alert} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, KeyboardAvoidingView, View, Alert} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
@@ -442,8 +442,11 @@ Protein: ${proteins * servings} grams`,
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView>
+          <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={120}>
+
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <EditInfoPage editedInfo={this.submitEditedInfo} units={this.state.units} sex={this.state.sex} goal={this.state.goal} name={this.state.name} BMI={this.state.BMI} height={this.state.height} weight={this.state.weight} allottedFats={this.state.allottedFats} allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedTotal={this.state.allottedTotal}></EditInfoPage>
+            </KeyboardAvoidingView>
           </ScrollView>
         </SafeAreaView>
       );
@@ -468,5 +471,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     height: '100%',
   },
+
   
 });

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert, KeyboardAvoidingView, ScrollView} from 'react-native';
+import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert, ScrollView} from 'react-native';
 import {name as appName} from '../app.json';
 import Ingredients from './ingredients';
 import Colors from '../styling/colors';
@@ -132,19 +132,17 @@ And, per serving:
                 )
         }
         return(
-            <View style={styles.pageContainer}>
-                <Text style={styles.text}>Save a Meal</Text>
-                <ScrollView style= {styles.mealBox}>
-                    <Text style={styles.mealInfo}> Meal information</Text>
-                    <View style={styles.mealHeader}>
-                        <TextInput style={styles.nameInputs} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black' minLength={3}></TextInput>
-                        <TextInput style={styles.numInputs} onChangeText={name => this.addMealServings(name)} keyboardType="number-pad" minLength={1} maxLength={2} placeholder="Total Servings" placeholderTextColor='black'></TextInput>
-                    </View>
-                    <KeyboardAvoidingView style = {styles.ingredientBox} behavior='padding'>
+                <View style={styles.pageContainer}>
+                    <Text style={styles.text}>Save a Meal</Text>
+                    <ScrollView style= {styles.mealBox}>
+                        <Text style={styles.mealInfo}> Meal information</Text>
+                        <View style={styles.mealHeader}>
+                            <TextInput style={styles.nameInputs} onChangeText={name => this.addMealName(name)} keyboardType="default" placeholder="Meal Name" placeholderTextColor='black' minLength={3}></TextInput>
+                            <TextInput style={styles.numInputs} onChangeText={name => this.addMealServings(name)} keyboardType="number-pad" minLength={1} maxLength={2} placeholder="Total Servings" placeholderTextColor='black'></TextInput>
+                        </View>
                         {recipe}
-                    </KeyboardAvoidingView>
-                </ScrollView>
-            </View>
+                    </ScrollView>
+                </View>
         );
     }
 }
@@ -207,9 +205,6 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         marginBottom: 5,
     },
-    ingredientBox:{
-        padding: 10,
-    }
 })
 
 AppRegistry.registerComponent(appName, () => Meals);

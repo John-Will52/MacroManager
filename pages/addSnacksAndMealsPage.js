@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, TextInput, StyleSheet, Button, Alert, ScrollView} from 'react-native';
+import {AppRegistry, View, KeyboardAvoidingView, Text, TextInput, StyleSheet, Button, Alert, ScrollView} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import Question from '../components/question';
@@ -81,30 +81,22 @@ export default class AddSnacksAndMealsPage extends Component{
         if(this.state.item === null){
 
             return(
-                <View>
-                    <View>
-                        <Question testType="Dilemma" asked="Which are you saving?" optionOne="Snack" optionTwo="Meal" stateOptionOne="Snack" stateOptionTwo="Meal" buttonPress ={this.setItemType}></Question>
-                    </View>
-                </View>
-
+                <Question testType="Dilemma" asked="Which are you saving?" optionOne="Snack" optionTwo="Meal" stateOptionOne="Snack" stateOptionTwo="Meal" buttonPress ={this.setItemType}></Question>
             );
         }
         else if(this.state.item === "Meal"){
             return(
-                <View>
+                <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={120}>
                     <Meals saveItem={this.saveItem}></Meals>
-                </View>
+                </KeyboardAvoidingView>
             );
         }
         else if(this.state.item === "Snack"){
             return(
-                <View>
-                    <Snacks saveItem={this.saveItem}></Snacks>
-                </View>
+                <Snacks saveItem={this.saveItem}></Snacks>
             ); 
         }
     }
 }
-
 
 AppRegistry.registerComponent(appName, () => AddSnacksAndMealsPage);

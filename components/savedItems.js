@@ -12,10 +12,19 @@ export default class SavedItems extends Component{
         }
     }
 
+    
     eatingServings= servings =>{
-      this.setState({
-          eatenServings: servings,
-      })
+      const theseServings = parseInt(servings);
+      if(servings){
+        this.setState({
+          eatenServings: theseServings
+        });
+      }
+      else{
+        this.setState({
+          eatenServings: null
+        })
+      }
     }
 
     // THis is the area that you put your JS logic for functions and stuff at.
@@ -28,7 +37,7 @@ export default class SavedItems extends Component{
                 <View style ={styles.mealHeader}>
                   <Text style={styles.itemName}>{this.props.name}</Text>
                   <View style={styles.servingInfo}>
-                    <TextInput style={styles.numInput} onChangeText={servings => this.eatingServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.numInput}  onChangeText={servings => this.eatingServings(servings)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
                     <Text style={styles.text}> /{this.props.servings}</Text>
                   </View>
   
@@ -36,15 +45,15 @@ export default class SavedItems extends Component{
   
                 <View style={styles.macroFactsBox}>
                   <View style={styles.macroFacts}>
-                    <Text style={styles.text}>Fat: {parseInt(this.props.fats / this.props.servings)} grams</Text>
+                    <Text style={styles.text}>Fat: {parseInt(this.props.fats / this.props.servings) * ((this.state.eatenServings == null) ? 1 : this.state.eatenServings)} grams</Text>
                   </View>
                   <View style={styles.macroFacts}>
-                    <Text style={styles.text}>Protein: {parseInt(this.props.proteins / this.props.servings)} grams</Text>
+                    <Text style={styles.text}>Protein: {parseInt(this.props.proteins / this.props.servings) * ((this.state.eatenServings == null) ? 1 : this.state.eatenServings)} grams</Text>
                   </View> 
                 </View>
                 <View style={styles.macroFactsBox}>
                   <View style={styles.macroFacts}>
-                    <Text style={styles.text}>Carbs: {parseInt(this.props.carbs / this.props.servings)} grams</Text>
+                    <Text style={styles.text}>Carbs: {parseInt(this.props.carbs / this.props.servings) * ((this.state.eatenServings == null) ? 1 : this.state.eatenServings)} grams</Text>
                   </View>  
                   <View style={styles.macroFacts}>
                     <Text style={styles.text}>Servings: {this.props.servings}</Text>

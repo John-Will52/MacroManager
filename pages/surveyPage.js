@@ -221,6 +221,7 @@ Total: ${this.state.allottedTotal} calories`,
             BMI : null,
         })
     }
+    
 
     render(){
         if(this.state.name === null){

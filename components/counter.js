@@ -19,22 +19,22 @@ export default class Counter extends Component{
         if(x <= 50 || x > 110){
             return colorArray[0];
         }
-        if (50 < x <= 65){
+        if (50 < x && x <= 65){
             return colorArray[1];
         }
-        if (65 < x <= 75){
+        if (65 < x && x <= 75){
             return colorArray[2];
         }
-        if (75 < x <= 85){
+        if (75 < x && x <= 85){
             return colorArray[3];
         }
-        if (85 < x <=95){
+        if (85 < x && x <=95){
             return colorArray[4];
         }
-        if (95 < x <= 105){
+        if (95 < x && x <= 105){
             return colorArray[5];
         }
-        if (105 < x <= 110){
+        if (105 < x  && x<= 110){
             return colorArray[6];
         }
 

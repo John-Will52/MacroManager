@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, View, Alert, Button} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View, Alert, Button, AppState} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
@@ -16,35 +16,35 @@ import Colors from './styling/colors';
 
 export default class App extends Component{
   constructor(props) {
-      super()
-      this.state = {
-        name : null,
-        sex : null,
-        goal : null,
-        units : null,
-        height : null,
-        weight : null,
-        BMI : null,
-        allottedCarbs : null,
-        allottedProteins : null,
-        allottedFats : null,
-        allottedTotal : null,
-        currentCarbs : 0,
-        currentProteins : 0,
-        currentFats : 0,
-        currentTotal : 0,
-        percentOfCarbs: 0,
-        percentOfProteins: 0,
-        percentOfFats: 0,
-        percentOfTotalCalories: 0,
-        pageNumber: 0,
-        listFilter: 'Any',
-        savedItems:[],    
-      }
-      this.getData();
-      
+    super()
+    this.state = {
+      name : null,
+      sex : null,
+      goal : null,
+      units : null,
+      height : null,
+      weight : null,
+      BMI : null,
+      allottedCarbs : null,
+      allottedProteins : null,
+      allottedFats : null,
+      allottedTotal : null,
+      currentCarbs : 0,
+      currentProteins : 0,
+      currentFats : 0,
+      currentTotal : 0,
+      percentOfCarbs: 0,
+      percentOfProteins: 0,
+      percentOfFats: 0,
+      percentOfTotalCalories: 0,
+      pageNumber: 0,
+      listFilter: 'Any',
+      appState: AppState.currentState,
+      savedItems:[],    
+    }
+    this.getData();
   }
-
+  
   storeData = async () => {
     try {
       const saveData = JSON.stringify(this.state);
@@ -69,6 +69,8 @@ export default class App extends Component{
       // error reading value
       console.log(e);
     }
+
+    
   }
   // Sending information to App.js for central management
     
@@ -412,8 +414,10 @@ Protein: ${proteins * servings} grams`,
         this.storeData();  
   }
 
-
-
+  display= () =>{
+    
+  }
+  
   render(){
     if(this.state.allottedTotal == null){
       return(
@@ -482,15 +486,6 @@ Protein: ${proteins * servings} grams`,
         </SafeAreaView>
       );
     }
-    if(this.state.allottedTotal != null && this.state.pageNumber === 5){
-      return(
-        <SafeAreaView style={styles.background}>
-          <View>
-            <LandingPage name={this.state.name}></LandingPage>
-          </View>
-        </SafeAreaView>
-      );
-    }
   }
 }
   
@@ -505,6 +500,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "space-around"
   }
-
-  
 });

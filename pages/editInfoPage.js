@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, TextInput, Button, Alert} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, TextInput, Button, Alert, KeyboardAvoidingView} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import Errors from '../components/errors';
@@ -461,38 +461,38 @@ export default class EditInfoPage extends Component{
 
         if(this.state.inputCarbs != null && this.state.inputProteins != null && this.state.inputFats != null){
 
-            if(total < (this.newTotal() * .8)){
-                errors.push(`Your total entered calories, ${total}, is at least 20% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.recommendedTotal} total calories`);
+            if(total < (this.props.allottedTotal * .75)){
+                errors.push(`Your total entered calories, ${total}, is at least 25% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.recommendedTotal} total calories`);
                 return errors;
 
             }
-            if(total > (this.newTotal() * 1.2)){
-                errors.push(`Your total entered calories, ${total}, is at least 20% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.recommendedTotal} total calories`);
+            if(total > (this.props.allottedTotal * 1.25)){
+                errors.push(`Your total entered calories, ${total}, is at least 25% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.recommendedTotal} total calories`);
                 return errors;
             }
             if((this.props.goal == "Gain" && this.state.goal == null) || this.state.goal =='Gain'){
                 
-                if((this.state.inputCarbs < (total * .4)) || (this.state.inputCarbs > (total * .6))){
-                    errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .4)} and ${parseInt(total * .6)}`)
+                if((this.state.inputCarbs < (this.props.allottedTotal * .4)) || (this.state.inputCarbs > (this.props.allottedTotal * .6))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(this.props.allottedTotal * .4)} and ${parseInt(this.props.allottedTotal * .6)}`)
                 }
-                if((this.state.inputProteins < (total * .25)) || (this.state.inputProteins > (total * .35))){
-                    errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .25)} and ${parseInt(total * .35)}`)
+                if((this.state.inputProteins < (this.props.allottedTotal * .25)) || (this.state.inputProteins > (this.props.allottedTotal * .35))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(this.props.allottedTotal * .25)} and ${parseInt(this.props.allottedTotal * .35)}`)
                 }
-                if((this.state.inputFats < (total * .15)) || (this.state.inputFats > (total * .25))){
-                    errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .15)} and ${parseInt(total * .25)}`)    
+                if((this.state.inputFats < (this.props.allottedTotal * .15)) || (this.state.inputFats > (this.props.allottedTotal * .25))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(this.props.allottedTotal * .15)} and ${parseInt(this.props.allottedTotal * .25)}`)    
                 }
 
                 return errors
             }
             if((this.props.goal == "Lose" && this.state.goal == null) || this.state.goal =='Lose'){
-                if((this.state.inputCarbs < (total * .1)) || (this.state.inputCarbs > (total * .3))){
-                    errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(total * .1)} and ${parseInt(total * .3)}`)
+                if((this.state.inputCarbs < (this.props.allottedTotal * .1)) || (this.state.inputCarbs > (this.props.allottedTotal * .3))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your carb calories should be between ${parseInt(this.props.allottedTotal * .1)} and ${parseInt(this.props.allottedTotal * .3)}`)
                 }
-                if((this.state.inputProteins < (total * .4)) || (this.state.inputProteins > (total * .5))){
-                    errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(total * .4)} and ${parseInt(total * .5)}`)
+                if((this.state.inputProteins < (this.props.allottedTotal * .4)) || (this.state.inputProteins > (this.props.allottedTotal * .5))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your protein calories should be between ${parseInt(this.props.allottedTotal * .4)} and ${parseInt(this.props.allottedTotal * .5)}`)
                 }
-                if((this.state.inputFats < (total * .3)) || (this.state.inputFats > (total * .4))){
-                    errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(total * .3)} and ${parseInt(total * .4)}`)    
+                if((this.state.inputFats < (this.props.allottedTotal * .3)) || (this.state.inputFats > (this.props.allottedTotal * .4))){
+                    errors.push(`For your goal, and the total calories that you want to eat, your fat calories should be between ${parseInt(this.props.allottedTotal * .3)} and ${parseInt(this.props.allottedTotal * .4)}`)    
                 }
                 return errors;
             }
@@ -767,7 +767,6 @@ export default class EditInfoPage extends Component{
                         let allottedFatCalories =  parseInt((leanBodyMass * .898)) * 9;
                         let allottedTotalCalories = allottedCarbCalories + allottedProteinCalories + allottedFatCalories;
                         this.setState({allottedCarbs: parseInt(allottedCarbCalories), allottedProteins: parseInt(allottedProteinCalories), allottedFats: parseInt(allottedFatCalories), allottedTotal: parseInt(allottedTotalCalories), inputCarbs: null, inputProteins: null, inputFats:null})
-                        
                     }
                     if(((this.props.goal === "Gain" && this.state.goal ==null) || this.state.goal == 'Gain') && this.props.sex === "Male"){
                         let allottedCarbCalories = parseInt((leanBodyMass * 2.608)) * 4;
@@ -1113,6 +1112,7 @@ export default class EditInfoPage extends Component{
         else if(this.state.focus == 'Numbers'){
             return(
                 <View>
+                    <KeyboardAvoidingView  behavior='position' keyboardVerticalOffset={100}>
                     <Text style={styles.title}>What would you like to edit?</Text>
                     <View>
                         <View style={styles.buttonBackground}>
@@ -1141,9 +1141,10 @@ export default class EditInfoPage extends Component{
                                 <View style={styles.numbersInputContainer}>
                                     {this.list()}
                                 </View> 
+                                </View>
                             </View>
                         </View>
-                    </View>
+                    </KeyboardAvoidingView>
                 </View>
             );
         }

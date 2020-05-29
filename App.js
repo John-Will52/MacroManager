@@ -9,6 +9,7 @@ import NavBar from './components/navBar';
 import Footer from './components/footer';
 import EditInfoPage from './pages/editInfoPage';
 import FAQsPage from './pages/FAQsPage';
+import LandingPage from './pages/landingPage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Colors from './styling/colors';
@@ -477,6 +478,15 @@ Protein: ${proteins * servings} grams`,
           <View>
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <FAQsPage sex={this.state.sex} selectSex={this.selectSex}></FAQsPage>
+          </View>
+        </SafeAreaView>
+      );
+    }
+    if(this.state.allottedTotal != null && this.state.pageNumber === 5){
+      return(
+        <SafeAreaView style={styles.background}>
+          <View>
+            <LandingPage name={this.state.name}></LandingPage>
           </View>
         </SafeAreaView>
       );

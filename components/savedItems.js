@@ -17,18 +17,24 @@ export default class SavedItems extends Component{
       const theseServings = parseInt(servings);
       if(servings){
         if(theseServings > this.props.servings){
-          Alert.alert('Error', "You can't submit more servings than this meal offers", 'Okay');
-          this.setState({
-            eatenServings: null
-          });
-          this.servingsInput.clear();
+          Alert.alert(
+            'Error',
+            "You can't submit more servings than this meal offers",
+            [
+              {text: 'Okay', onPress: () => {this.setState({eatenServings: null}); this.servingsInput.clear();}},
+            ],
+            {cancelable: false},
+          );
         }
         else if(theseServings <= 0){
-          Alert.alert('Error', "You must add at least 1 serving", 'Okay');
-          this.setState({
-            eatenServings: null
-          });
-          this.servingsInput.clear();
+          Alert.alert(
+            'Error',
+            "You must add at least 1 serving",
+            [
+              {text: 'Okay', onPress: () => {this.setState({eatenServings: null}); this.servingsInput.clear();}},
+            ],
+            {cancelable: false},
+          );
         }
         else{
           this.setState({

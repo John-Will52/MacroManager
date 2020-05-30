@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, View, Alert, Button, AppState} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View, Alert, Button, AppState, Text} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
@@ -62,7 +62,7 @@ export default class App extends Component{
       const appData = await AsyncStorage.getItem('state');
       const savedState = JSON.parse(appData);
       if(savedState !== null){
-        this.setState({...savedState})
+        this.setState({...savedState, pageNumber:5})
       }
     } 
     catch(e) {
@@ -88,6 +88,7 @@ export default class App extends Component{
       allottedFats: fats,
       allottedTotal: total,
     })
+    this.navigator(0);
     this.storeData();
   }
 
@@ -414,11 +415,10 @@ Protein: ${proteins * servings} grams`,
         this.storeData();  
   }
 
-  display= () =>{
-    
-  }
+ 
   
   render(){
+    
     if(this.state.allottedTotal == null){
       return(
         <SafeAreaView style={styles.background}>
@@ -483,6 +483,13 @@ Protein: ${proteins * servings} grams`,
             <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
             <FAQsPage sex={this.state.sex} selectSex={this.selectSex}></FAQsPage>
           </View>
+        </SafeAreaView>
+      );
+    }
+    if(this.state.pageNumber == 5 && this.state.allottedTotal != null){
+      return(
+        <SafeAreaView style={styles.background}>
+          <LandingPage name={this.state.name} nextPage={this.navigator}></LandingPage>
         </SafeAreaView>
       );
     }

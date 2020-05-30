@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, Alert,StyleSheet, Button, ScrollView,} from 'react-native';
+import {AppRegistry, View, Text, Alert,StyleSheet, Button, ScrollView, Animated, Easing} from 'react-native';
 import {name as appName} from '../app.json';
 import Question from '../components/question';
 import Colors from '../styling/colors';
 import ProInput from '../components/proInput';
 import CheckResults from '../components/checkResults';
+import LandingPage from './landingPage';
 
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
@@ -12,6 +13,7 @@ export default class SurveyPage extends Component{
     constructor(props) {
         super()
         this.state = {
+            begin:false,
             name : null,
             sex : null,
             goal : null,
@@ -24,7 +26,11 @@ export default class SurveyPage extends Component{
             allottedProteins : null,
             allottedFats : null,
             allottedTotal : null,
+            expansion: new Animated.Value(0),
+           fadeIn: new Animated.Value(0),
+           buttonFadeIn: new Animated.Value(0),
         }
+        this.animation();
     }
     setName = input => {
         if(input === null || input === ''){
@@ -221,10 +227,49 @@ Total: ${this.state.allottedTotal} calories`,
             BMI : null,
         })
     }
+
+    start = () =>{
+        this.setState({
+            begin: true,
+        })
+    }
+    animation = () =>{
+        Animated.sequence([
+            Animated.timing(this.state.expansion, {
+                toValue: 1,
+                duration: 1000,
+                useNativeDriver: true,
+            }),
+            Animated.timing(this.state.fadeIn,{
+                toValue: 1,
+                easing: Easing.ease,
+                duration: 1000,
+                useNativeDriver: true
+            }),
+            Animated.timing(this.state.buttonFadeIn,{
+                toValue: 1,
+                easing: Easing.ease,
+                duration: 1000,
+                useNativeDriver: true
+            })
+        ]).start();
+    }
     
 
     render(){
-        if(this.state.name === null){
+        if(this.state.begin == false){
+            return(
+                <Animated.View style={[styles.background, {transform:[{scaleX: this.state.expansion, scaleY: this.state.expansion}]}]}>
+                    <Animated.Text style={[styles.title, {opacity: this.state.fadeIn}]}>Welcome to Macromanager!</Animated.Text>
+                    <Animated.Image style={[styles.logo, {opacity:this.state.fadeIn}]} source={require('../AppIcons/appstore.png')}></Animated.Image>
+                    <Animated.Text style={[styles.subtitle, {opacity: this.state.fadeIn}]}>Let's get to work.</Animated.Text>
+                    <Animated.View style={[styles.initialButton, {opacity: this.state.buttonFadeIn}]}>
+                        <Button title="Let's begin!" color={Colors.button2} onPress={()=> {this.setState({begin: true})}}></Button>
+                    </Animated.View>
+                </Animated.View>
+            )
+        }
+        else if(this.state.name === null && this.state.begin === true){
 
             return(
                 <Question style={styles.container} asked="What is your name?" testType="Input" buttonPress={this.setName} placehold="Name"></Question>
@@ -351,6 +396,55 @@ const styles=StyleSheet.create({
         borderWidth: 1,
         color: 'black'
     },
+    background:{
+        backgroundColor: Colors.boxBackground,
+        borderColor: Colors.borders,
+        borderWidth: 2,
+        width: '95%',
+        alignSelf: "center",
+        paddingVertical: 20,
+        paddingHorizontal: 5,
+        marginTop: '40%'
+    },
+    title:{
+        fontSize: 50,
+        alignSelf: 'center',
+        textAlign: 'center',
+        color: 'white',
+        fontWeight: '600',
+    },
+    subtitle:{
+        fontSize: 25,
+        textAlign: 'center',
+        alignSelf: 'center',
+        width: '95%',
+        color: 'white',
+        fontWeight: '400',
+        textDecorationLine: "underline",
+        marginTop: 20
+    },
+    logo:{
+        height: 150,
+        width:150,
+        alignSelf: 'center',
+        marginVertical: 20,
+        borderColor: Colors.borders,
+        borderWidth: 3
+    },
+    initialButton:{
+        backgroundColor:Colors.buttonBackground2,
+        width: 125,
+        alignSelf: 'center',
+        marginTop: 15
+
+    },
+    button:{
+        backgroundColor:Colors.buttonBackground2,
+        width: 175,
+        alignSelf: 'center',
+        marginTop: 15
+
+    }
 }); 
 
 AppRegistry.registerComponent(appName, () => SurveyPage);

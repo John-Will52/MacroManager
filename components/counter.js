@@ -8,13 +8,12 @@ export default class Counter extends Component{
     constructor(props) {
         super()
         this.state = {
-            color: 'red',
+            color: '#FF1E01',
         }
     }
 
     color = (x) =>{
         const colorArray=['#FF1E01','#FF8703','#F7DB0B','#488D24','#02EEFF','#0234FF','#B001FF'];
-
         if(x <= 50 || x > 110){
             return colorArray[0];
         }
@@ -39,35 +38,31 @@ export default class Counter extends Component{
 
     }
 
-infoDisplay = () =>{
-    if( this.props.displayType == 'percents'){
-        return(
-            <Text style={styles.labels}>{parseInt(this.props.percentages)}%</Text>
-        )
+    infoDisplay = () =>{
+        if( this.props.displayType == 'percents'){
+            return(
+                <Text style={styles.labels}>{parseInt(this.props.percentages)}%</Text>
+            )
+        }
+        if(this.props.displayType == 'grams'){
+            return(
+                <View>
+                    <Text style={styles.otherLabels}>{this.props.remainingGrams}</Text>
+                    <Text style={styles.otherLabels}>grams</Text>
+                </View>
+            )
+        }
+        if(this.props.displayType == 'calories'){
+            return(
+                <View>
+                    <Text style={styles.otherLabels}>{this.props.remainingCals}</Text>
+                    <Text style={styles.otherLabels}>cals</Text>
+                </View>
+            )  
+        }
     }
-    if(this.props.displayType == 'grams'){
-        return(
-            <View>
-                <Text style={styles.otherLabels}>{this.props.remainingGrams}</Text>
-                <Text style={styles.otherLabels}>grams</Text>
-            </View>
-        )
-    }
-    if(this.props.displayType == 'calories'){
-        return(
-            <View>
-                <Text style={styles.otherLabels}>{this.props.remainingCals}</Text>
-                <Text style={styles.otherLabels}>cals</Text>
-            </View>
-        )  
-    }
-}
-
-
-
-    
-    render(){
-        
+ 
+    render(){ 
         return(
             <View>
                 <View style={[styles.box, {height: `${parseInt(this.props.percentages)}%`, backgroundColor: this.color(parseInt(this.props.percentages))}]}>
@@ -80,10 +75,9 @@ infoDisplay = () =>{
 
 const styles = StyleSheet.create({
     box:{
-        // backgroundColor: 'red',
         width: 85,
         paddingBottom: 20,
-        minHeight: '13%',
+        minHeight: '12%',
         maxHeight: '100%',
     },
     labels:{

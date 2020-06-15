@@ -118,37 +118,35 @@ export default class CalorieCounterPage extends Component{
 
     render(){
         return(
-            <View style={styles.pageContainer}>
-                <View style={styles.contentContainer}>
-                    <Text style={styles.text}>Add the amounts of each</Text>
-                    <Text style={styles.subtext}>(<Text style={styles.subtextUnderline}>in grams</Text>)</Text>
-                    <View style={styles.inputContainer}>
-                        <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
-                        <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
-                        <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
-                        <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
-                    </View>
-                    <View style={styles.buttons}>
-                        <Button ref={this.addCaloriesButton} color={this.buttonColor()} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())} disabled={this.allEntries()}></Button>
-                    </View>
-                    <View style={styles.display}>
-                        <Button color={Colors.displayButton} title="Display" onPress={() => {(this.state.displayType < 2) ? this.setState({displayType: this.state.displayType + 1}) : this.setState({displayType : 0}), this.storeData}}></Button>
-                    </View>
-                    <View style={styles.counterContainer}>
-                        <Counter displayType={this.display()} remainingCals={this.props.remainingFatCals} remainingGrams={this.props.remainingFatGrams} percentages={this.props.percentOfFats}></Counter>
-                        <Counter displayType={this.display()} remainingCals={this.props.remainingCarbCals} remainingGrams={this.props.remainingCarbGrams} percentages={this.props.percentOfCarbs}></Counter>
-                        <Counter displayType={this.display()} remainingCals={this.props.remainingProteinCals} remainingGrams={this.props.remainingProteinGrams} percentages={this.props.percentOfProteins}></Counter>
-                        <Counter displayType={this.display()} remainingCals={this.props.remainingTotalCals} remainingGrams="N/A" percentages={this.props.percentOfTotalCalories}></Counter>
-                    </View>
-                    <View style={styles.labelContainer}>
-                        <Text style={styles.labels}>Fats</Text>
-                        <Text style={styles.labels}>Carbs</Text>
-                        <Text style={styles.labels}>Proteins</Text>
-                        <Text style={styles.labels}>Total</Text>
-                    </View>
-                    <View style={styles.buttons2}>
-                        <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.props.clear()} disabled={this.props.percentOfTotalCalories > 0 ? false : true}></Button>
-                    </View>
+            <View style={styles.contentContainer}>
+                <Text style={styles.text}>Add the amounts of each</Text>
+                <Text style={styles.subtext}>(<Text style={styles.subtextUnderline}>in grams</Text>)</Text>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.inputs} ref={(fats) => { this.fatInput = fats }} onChangeText={num => this.addFats(num)} keyboardType="number-pad" placeholder="Fats" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.inputs} ref={(carbs) => { this.carbInput = carbs }} onChangeText={num => this.addCarbs(num)} keyboardType="number-pad" placeholder="Carbs" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.inputs} ref={(proteins) => { this.proteinInput = proteins }} onChangeText={num => this.addProteins(num)} keyboardType="number-pad" placeholder="Proteins" placeholderTextColor='black'></TextInput>
+                    <TextInput style={styles.inputs} ref={(servings) => { this.servingInput = servings}} onChangeText={num => this.addServings(num)} keyboardType="number-pad" placeholder="Servings" placeholderTextColor='black'></TextInput>
+                </View>
+                <View style={styles.buttons}>
+                    <Button ref={this.addCaloriesButton} color={this.buttonColor()} title="Add Calories" onPress={()=> (this.props.addCalories(this.state.servings, this.state.carbInput, this.state.proteinInput, this.state.fatInput), this.clearInputs())} disabled={this.allEntries()}></Button>
+                </View>
+                <View style={styles.display}>
+                    <Button color={Colors.displayButton} title="Display" onPress={() => {(this.state.displayType < 2) ? this.setState({displayType: this.state.displayType + 1}) : this.setState({displayType : 0}), this.storeData}}></Button>
+                </View>
+                <View style={styles.counterContainer}>
+                    <Counter displayType={this.display()} remainingCals={this.props.remainingFatCals} remainingGrams={this.props.remainingFatGrams} percentages={this.props.percentOfFats}></Counter>
+                    <Counter displayType={this.display()} remainingCals={this.props.remainingCarbCals} remainingGrams={this.props.remainingCarbGrams} percentages={this.props.percentOfCarbs}></Counter>
+                    <Counter displayType={this.display()} remainingCals={this.props.remainingProteinCals} remainingGrams={this.props.remainingProteinGrams} percentages={this.props.percentOfProteins}></Counter>
+                    <Counter displayType={this.display()} remainingCals={this.props.remainingTotalCals} remainingGrams="N/A" percentages={this.props.percentOfTotalCalories}></Counter>
+                </View>
+                <View style={styles.labelContainer}>
+                    <Text style={styles.labels}>Fats</Text>
+                    <Text style={styles.labels}>Carbs</Text>
+                    <Text style={styles.labels}>Proteins</Text>
+                    <Text style={styles.labels}>Total</Text>
+                </View>
+                <View style={styles.buttons2}>
+                    <Button ref={this.clearButton} color={Colors.button2} title="Clear" onPress={()=> this.props.clear()} disabled={this.props.percentOfTotalCalories > 0 ? false : true}></Button>
                 </View>
             </View>
         );
@@ -221,21 +219,21 @@ const styles = StyleSheet.create({
         width: "40%",
         alignSelf: 'center',
       },
-      buttons2:{
+    buttons2:{
         backgroundColor: Colors.buttonBackground2,
         width: "25%",
         alignSelf: 'center',
-      },
-      contentContainer:{
-          backgroundColor: Colors.boxBackground,
-          borderColor:Colors.borders,
-          borderWidth: 3,
-          padding: 5,
-      },
-      display:{
-          flexDirection: 'row-reverse',
-          margin: 0
-      }
+    },
+    contentContainer:{
+        backgroundColor: Colors.boxBackground,
+        borderColor:Colors.borders,
+        borderWidth: 3,
+        padding: 5,
+    },
+    display:{
+        flexDirection: 'row-reverse',
+        margin: 0
+    }
 
 })
 

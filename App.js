@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, View, Alert, Button, AppState, Text} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View, Alert, Button,} from 'react-native';
 import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
@@ -11,7 +11,6 @@ import EditInfoPage from './pages/editInfoPage';
 import FAQsPage from './pages/FAQsPage';
 import LandingPage from './pages/landingPage';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import Colors from './styling/colors';
 
 export default class App extends Component{
@@ -67,10 +66,9 @@ export default class App extends Component{
     catch(e) {
       // error reading value
       console.log(e);
-    }
-
-    
+    } 
   }
+  
   // Sending information to App.js for central management
     
   surveyPageStateTransfer = (n, s, g, u, h, w, BMI, carbs, proteins, fats, total) =>{
@@ -504,6 +502,6 @@ const styles = StyleSheet.create({
   },
   filters:{
     flexDirection: 'row',
-    justifyContent: "space-around"
+    justifyContent: 'space-around'
   }
 });

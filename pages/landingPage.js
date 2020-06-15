@@ -20,7 +20,7 @@ export default class LandingPage extends Component{
     }
     animation = () =>{
         Animated.sequence([
-            Animated.timing(this.state.expansion, {
+            Animated.timing(this.state.expansion,{
                 toValue: 1,
                 duration: 1000,
                 useNativeDriver: true,
@@ -39,8 +39,10 @@ export default class LandingPage extends Component{
             })
         ]).start();
     }
+
     outro = () =>{
-        Animated.timing(this.state.expansion, {
+        Animated.timing(this.state.expansion, 
+            {
                 toValue: 0,
                 duration: 500,
                 useNativeDriver: true,

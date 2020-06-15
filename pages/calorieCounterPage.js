@@ -189,7 +189,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderBottomWidth: 0,
         backgroundColor: '#d1f7ff',
-
     },
     text:{
         fontSize: 30,

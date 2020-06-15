@@ -16,6 +16,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* MacroManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MacroManagerTests.m */; };
 		414AAC3141317CBBF51E1EEE /* libPods-MacroManager-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8540FE227AB6F3F22289EBE3 /* libPods-MacroManager-tvOS.a */; };
+		5022CF042482300000FF129F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5022CF032482300000FF129F /* Assets.xcassets */; };
 		7366E91FCE036846088F5AB3 /* libPods-MacroManager-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F3FF2398A659263CF982F3 /* libPods-MacroManager-tvOSTests.a */; };
 		F85F4C3D3B7B73886C1AF758 /* libPods-MacroManager-MacroManagerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F8C6450D1D9C8BCCBDF1676 /* libPods-MacroManager-MacroManagerTests.a */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		2D02E4901E0B4A5D006451C7 /* MacroManager-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MacroManager-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8C6450D1D9C8BCCBDF1676 /* libPods-MacroManager-MacroManagerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MacroManager-MacroManagerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4285A16A8E2EA217BBE2EB7F /* Pods-MacroManager-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacroManager-tvOS.release.xcconfig"; path = "Target Support Files/Pods-MacroManager-tvOS/Pods-MacroManager-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		5022CF032482300000FF129F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/AppIcons (1)/Assets.xcassets"; sourceTree = "<group>"; };
 		55504E76350F15C1CD139D27 /* libPods-MacroManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MacroManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69B93CBAB7A1141BA49F920E /* Pods-MacroManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacroManager.release.xcconfig"; path = "Target Support Files/Pods-MacroManager/Pods-MacroManager.release.xcconfig"; sourceTree = "<group>"; };
 		7545396A42BD437B603B9A1E /* Pods-MacroManager-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacroManager-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MacroManager-tvOS/Pods-MacroManager-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				5022CF032482300000FF129F /* Assets.xcassets */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -335,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				5022CF042482300000FF129F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

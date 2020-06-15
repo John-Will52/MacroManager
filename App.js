@@ -39,7 +39,6 @@ export default class App extends Component{
       percentOfTotalCalories: 0,
       pageNumber: 0,
       listFilter: 'Any',
-      appState: AppState.currentState,
       savedItems:[],    
     }
     this.getData();

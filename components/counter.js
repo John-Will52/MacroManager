@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, Animated, StyleSheet, Platform} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, Platform} from 'react-native';
 import {name as appName} from '../app.json';
-import Colors from '../styling/colors';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'red',
         width: 85,
         paddingBottom: 20,
-        minHeight: Platform.OS === 'ios' ? '12%' : '12%',
+        minHeight: '13%',
         maxHeight: '100%',
     },
     labels:{

@@ -462,12 +462,12 @@ export default class EditInfoPage extends Component{
         if(this.state.inputCarbs != null && this.state.inputProteins != null && this.state.inputFats != null){
 
             if(total < (this.props.allottedTotal * .75)){
-                errors.push(`Your total entered calories, ${total}, is at least 25% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.recommendedTotal} total calories`);
+                errors.push(`Your total entered calories, ${total}, is at least 25% under your recommended total. You should only do this if you're a professional Bodybuilder trying to cut. I would recommend ${this.props.allottedTotal} total calories`);
                 return errors;
 
             }
             if(total > (this.props.allottedTotal * 1.25)){
-                errors.push(`Your total entered calories, ${total}, is at least 25% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.recommendedTotal} total calories`);
+                errors.push(`Your total entered calories, ${total}, is at least 25% over your recommended total. You should only do this if you're a professional Bodybuilder trying to bulk. I would recommend ${this.props.allottedTotal} total calories`);
                 return errors;
             }
             if((this.props.goal == "Gain" && this.state.goal == null) || this.state.goal =='Gain'){
@@ -980,6 +980,9 @@ export default class EditInfoPage extends Component{
                             <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
                         </View>
                         <View style={styles.buttonBackground}>
+                                <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
+                        </View>
+                        <View style={styles.buttonBackground}>
                             <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
                         </View>
                     </View>
@@ -1005,6 +1008,9 @@ export default class EditInfoPage extends Component{
                                 <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
                             </View>
                             <View style={styles.buttonBackground}>
+                                <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
+                            </View>
+                            <View style={styles.buttonBackground}>
                                 <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
                             </View>
                         </View>
@@ -1027,6 +1033,9 @@ export default class EditInfoPage extends Component{
                             </View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
+                            </View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
                             </View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
@@ -1067,6 +1076,9 @@ export default class EditInfoPage extends Component{
                                 </View>
                             </View>
                             <View style={styles.buttonBackground}>
+                                <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
+                            </View>
+                            <View style={styles.buttonBackground}>
                                 <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
                             </View>
                         </View>
@@ -1101,6 +1113,9 @@ export default class EditInfoPage extends Component{
                                 </View>
                             </View>
                             <View style={styles.buttonBackground}>
+                                <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
+                            </View>
+                            <View style={styles.buttonBackground}>
                                 <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
                             </View>
                         </View>
@@ -1108,6 +1123,37 @@ export default class EditInfoPage extends Component{
                 );
             }
             
+        }
+        else if(this.state.focus == 'Phases'){
+            return(
+                <View>
+                    <Text style={styles.title}>What would you like to edit?</Text>
+                    <View>
+
+                        <View style={styles.buttonBackground}>
+                            <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
+                        </View>
+
+                        <View style={styles.buttonBackground}>
+                            <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
+                        </View>
+
+                        <View style={styles.buttonBackground}>
+                            <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
+                        </View>
+
+                        <View style={styles.focus}>
+                            <Text style={styles.text}>Change your numbers by selecting your next phase</Text>
+                            {this.phaseButtons()}
+                        </View>
+
+                        <View style={styles.buttonBackground}>
+                            <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
+                        </View>
+
+                    </View>
+                </View>
+            );
         }
         else if(this.state.focus == 'Numbers'){
             return(
@@ -1124,10 +1170,10 @@ export default class EditInfoPage extends Component{
                         <View style={styles.buttonBackground}>
                             <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
                         </View>
+                        <View style={styles.buttonBackground}>
+                                <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
+                        </View>
                         <View style={styles.focus}>
-                            <Text style={styles.text}>Change your numbers for the next phase</Text>
-                            {this.phaseButtons()}
-                            <Text style={styles.text}>OR</Text>
                             <Text style={styles.text}>Enter your own calorie amounts that you want to follow</Text>
                             <View style={styles.numbersContainer}>
                                 <View style={styles.numbersInputContainer}>
@@ -1161,6 +1207,9 @@ export default class EditInfoPage extends Component{
                         </View>
                         <View style={styles.buttonBackground}>
                             <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
+                        </View>
+                        <View style={styles.buttonBackground}>
+                            <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
                         </View>
                         <View style={styles.buttonBackground}>
                             <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
@@ -1371,7 +1420,7 @@ const styles = StyleSheet.create({
           flexDirection: 'row',
           width: '100%',
           justifyContent: 'space-around',
-          marginBottom: 20
+          marginBottom: 20,
       },
 
       phaseButtons: {

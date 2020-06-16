@@ -145,6 +145,13 @@ export default class FAQ extends Component{
                     <Text style={styles.subtitles}>Full Story:</Text>
                     <View style={styles.paragraph}>
                         <Text style={styles.text}>Your information is yours, and yours alone. This is a fitness app, not social media. We neither want, nor need your data.</Text>
+
+                        <Text style={styles.text}>If this app was collecting data, it would require an internet connection to use, and this app doesn't require any type of online connection. The reason why we charge for this app is to keep ads off of it, and to help you commit to achieving your body goals.</Text>
+                        <Text style={styles.text}>If this ever changes, there will be a notification when you update it; but, within the forseeable future, there are no plans to change this.</Text>
+                    </View>
+                    <Text style={styles.subtitles}>Last Thoughts:</Text>
+                    <View style={styles.paragraph}>
+                        <Text style={styles.text}>This is our privacy policy, and will be updated if anything ever changes.</Text>
                     </View>
                 </View>
             );

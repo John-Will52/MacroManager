@@ -68,7 +68,7 @@ export default class App extends Component{
       console.log(e);
     } 
   }
-  
+
   // Sending information to App.js for central management
     
   surveyPageStateTransfer = (n, s, g, u, h, w, BMI, carbs, proteins, fats, total) =>{
@@ -429,7 +429,7 @@ Protein: ${proteins * servings} grams`,
       return(
         <SafeAreaView style={styles.background}>
           <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar>
-          <ScrollView contentInsetAdjustmentBehavior="automatic" >
+          <ScrollView contentInsetAdjustmentBehavior="automatic">
             <CalorieCounterPage clear={this.reset} addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories} remainingCarbCals={this.state.allottedCarbs - this.state.currentCarbs} remainingProteinCals={this.state.allottedProteins - this.state.currentProteins} remainingFatCals={this.state.allottedFats - this.state.currentFats} remainingTotalCals={this.state.allottedTotal - this.state.currentTotal} remainingCarbGrams={(this.state.allottedCarbs - this.state.currentCarbs)/4} remainingProteinGrams={(this.state.allottedProteins - this.state.currentProteins)/4} remainingFatGrams={(this.state.allottedFats - this.state.currentFats)/9} remainingTotalCals={this.state.allottedTotal - this.state.currentTotal}></CalorieCounterPage>
             <Footer changePage={this.navigator}></Footer>
           </ScrollView>

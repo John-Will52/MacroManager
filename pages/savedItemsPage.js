@@ -38,6 +38,7 @@ export default class SavedItemsPage extends Component{
                         {this.props.children}
                     </View>
                     <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={0}>
+
                         {this.props.itemList}
                     </KeyboardAvoidingView>
                 </View>

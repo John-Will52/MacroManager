@@ -324,56 +324,56 @@ export default class EditInfoPage extends Component{
 
     newBMI = () =>{
         if(this.state.BMI == null){
-            return this.props.BMI;
+            return parseInt(this.props.BMI);
         }
         else{
-            return this.state.BMI;
+            return parseInt(this.state.BMI);
         }
     }
     newCarbs= () =>{
         if(this.state.allottedCarbs == null && this.state.inputCarbs == null){
-            return this.props.allottedCarbs;
+            return parseInt(this.props.allottedCarbs);
         }
         if(this.state.allottedCarbs == null && this.state.inputCarbs != null){
-            return this.state.inputCarbs;
+            return parseInt(this.state.inputCarbs);
         }
         if(this.state.allottedCarbs != null && this.state.inputCarbs == null){
-            return this.state.allottedCarbs;
+            return parseInt(this.state.allottedCarbs);
         }
     }
     newFats= () =>{
         if(this.state.allottedFats == null && this.state.inputFats == null){
-            return this.props.allottedFats;
+            return parseInt(this.props.allottedFats);
         }
         if(this.state.allottedFats == null && this.state.inputFats != null){
-            return this.state.inputFats;
+            return parseInt(this.state.inputFats);
         }
         if(this.state.allottedFats != null && this.state.inputFats == null){
-            return this.state.allottedFats;
+            return parseInt(this.state.allottedFats);
         }
     }
     newProteins= () =>{
         if(this.state.allottedProteins == null && this.state.inputProteins == null){
-            return this.props.allottedProteins;
+            return parseInt(this.props.allottedProteins);
         }
         if(this.state.allottedProteins == null && this.state.inputProteins != null){
-            return this.state.inputProteins;
+            return parseInt(this.state.inputProteins);
         }
         if(this.state.allottedProteins != null && this.state.inputProteins == null){
-            return this.state.allottedProteins;
+            return parseInt(this.state.allottedProteins);
         }
 
     }
     newTotal= () =>{
         let total = this.state.inputFats + this.state.inputProteins + this.state.inputCarbs;
         if(this.state.inputCarbs != null && this.state.inputProteins != null && this.state.inputFats != null){
-            return total;
+            return parseInt(total);
         }
         else if(this.state.allottedTotal != null){
-            return this.state.allottedTotal;
+            return parseInt(this.state.allottedTotal);
         }
         else{
-            return this.props.allottedTotal
+            return parseInt(this.props.allottedTotal)
         }
     }
       

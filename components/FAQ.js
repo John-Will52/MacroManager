@@ -222,6 +222,24 @@ export default class FAQ extends Component{
                 </View>
             );
         }
+        if(this.props.questionNumber == 9){
+            return(
+                <View>
+                    <Text style={styles.subtitles}>Attribution</Text>
+                    <View style={styles.paragraph}>
+                        <Text style={styles.text}>Thank you! Aren't they great? I got them from flaticon.com! You can even customize them!</Text>
+                        <View style={styles.paragraph}>
+                            <Text style={styles.text}>• "Counters" icon was made by <Text style={styles.emphasis}>Srip</Text> from <Text style={styles.italicizedUnderline}>www.flaticon.com</Text></Text>
+                            <Text style={styles.text}>• "Save" icon was made by <Text style={styles.emphasis}>Freepik</Text> from <Text style={styles.italicizedUnderline}>www.flaticon.com</Text></Text>
+                            <Text style={styles.text}>• "Eat" icon was made by <Text style={styles.emphasis}>Freepik</Text> from <Text style={styles.italicizedUnderline}>www.flaticon.com</Text></Text>
+                            <Text style={styles.text}>• "Edit" icon was made by <Text style={styles.emphasis}>Becris</Text> from <Text style={styles.italicizedUnderline}>www.flaticon.com</Text></Text>
+                            <Text style={styles.text}>• "FAQs" icon was made by <Text style={styles.emphasis}>Freepik</Text> from <Text style={styles.italicizedUnderline}>www.flaticon.com</Text></Text>
+                        </View>
+        
+                    </View>
+                </View>
+            );
+        }
    
      }
 

@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: '100%',
         flex: 1,
-        height: 355,
+        height: 325,
         alignItems: 'flex-end',
         borderColor: 'white',
         borderWidth: 1,
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#d1f7ff',
     },
     text:{
-        fontSize: 30,
+        fontSize: 25,
         textAlign: "center",
         color: Colors.titles
     },
@@ -206,13 +206,13 @@ const styles = StyleSheet.create({
     },
     labels:{
         color: '#fff',
-        width: '25%',
+        width: '20%',
         fontSize: 18,
         textDecorationLine: 'underline',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         textAlign: 'center',
         fontWeight: 'bold',
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-start',
     },
     buttons:{
         backgroundColor: Colors.buttonBackground,
@@ -229,6 +229,7 @@ const styles = StyleSheet.create({
         borderColor:Colors.borders,
         borderWidth: 3,
         padding: 5,
+        // height: '91%'
     },
     display:{
         flexDirection: 'row-reverse',

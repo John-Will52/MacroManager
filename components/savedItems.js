@@ -137,7 +137,9 @@ const styles = StyleSheet.create({
       borderColor: Colors.borders,
       borderWidth: 5,
       marginVertical: 10,
-      padding: 5
+      padding: 5,
+      borderRadius: 10
+
   
     },
     itemName:{

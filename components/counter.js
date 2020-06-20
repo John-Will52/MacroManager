@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     box:{
         width: 85,
         paddingBottom: 20,
-        minHeight: '12%',
+        minHeight: '14%',
         maxHeight: '100%',
     },
     labels:{

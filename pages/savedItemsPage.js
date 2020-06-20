@@ -51,6 +51,7 @@ export default class SavedItemsPage extends Component{
 const styles = StyleSheet.create({
     pageContainer:{
         padding: 10,
+        height:'92%'
     },
     savedItemsBox:{
         backgroundColor: Colors.boxBackground,

@@ -22,7 +22,7 @@ export default class FAQsPage extends Component{
     page = () =>{
         if(this.state.focus == null){
             return(
-                <View>
+                <View style={styles.page}>
                     <Text style={styles.title}>FAQ Page</Text>
                     <View>
                         <View style={styles.buttonBackground}>
@@ -49,13 +49,16 @@ export default class FAQsPage extends Component{
                         <View style={styles.buttonBackground}>
                             <Button title="I identify as transgender, should I have picked what I identify as, or what I was born as?" color={Colors.button2} onPress={() => this.setState({focus: 8})}></Button> 
                         </View>
+                        <View style={styles.buttonBackground}>
+                            <Button title="I love your icons in your navigation, where did you get them?" color={Colors.button2} onPress={() => this.setState({focus: 9})}></Button> 
+                        </View>
                     </View>
                 </View>
             );
         }
         else{
             return(
-                <View>
+                <View style={styles.page}>
                     <Text style={styles.title}>FAQ Page</Text>
                     <View style = {styles.window}>
                         <FAQ return={this.nullifyQuestion} questionNumber={this.state.focus} selectSex={this.props.selectSex} sex={this.props.sex}></FAQ>
@@ -75,6 +78,9 @@ export default class FAQsPage extends Component{
 }
 
 const styles = StyleSheet.create({
+    page:{
+        // height:'91%'
+    },
     title:{
         color: Colors.titles,
         fontSize: 30,

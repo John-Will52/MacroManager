@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, TextInput, Button, Alert, KeyboardAvoidingView} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, TextInput, Button, Alert, KeyboardAvoidingView, ScrollView} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import Errors from '../components/errors';
@@ -963,37 +963,38 @@ export default class EditInfoPage extends Component{
     page = () =>{
         if(this.state.focus == 'Name'){
             return(
-                <View>
-                    <Text style={styles.title}>What would you like to edit?</Text>
-                    <View>
-                        <View style={styles.focus}>
-                            <Text style={styles.text}>Change your name.</Text>
-                            <TextInput style={styles.input} ref={(name) => { this.nameInput = name }} onChangeText={(name)=>{this.setName(name)}} placeholder="Name" placeholderTextColor='black' keyboardType="default"></TextInput>
-                            <View style = {styles.buttons}>
+                <KeyboardAvoidingView  behavior='position' keyboardVerticalOffset={10}>
+                    <View style={styles.editArea}>
+                        <Text style={styles.text}>What would you like to edit?</Text>
+                        <View>
+                            <View style={styles.focus}>
+                                <Text style={styles.text}>Change your name.</Text>
+                                <TextInput style={styles.input} ref={(name) => { this.nameInput = name }} onChangeText={(name)=>{this.setName(name)}} placeholder="Name" placeholderTextColor='black' keyboardType="default"></TextInput>
+                                <View style = {styles.buttons}>
+                                </View>
+                            </View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
+                            </View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
+                            </View>
+                            <View style={styles.buttonBackground}>
+                                    <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
+                            </View>
+                            <View style={styles.buttonBackground}>
+                                <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
                             </View>
                         </View>
-
-                        <View style={styles.buttonBackground}>
-                            <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
-                        </View>
-                        <View style={styles.buttonBackground}>
-                            <Button title="Recalculate BMI" color={Colors.button2} onPress={() => this.setState({focus: 'BMI'})}></Button>
-                        </View>
-                        <View style={styles.buttonBackground}>
-                                <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
-                        </View>
-                        <View style={styles.buttonBackground}>
-                            <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
-                        </View>
                     </View>
-                </View>
+                </KeyboardAvoidingView>
             );
         }
         else if(this.state.focus == 'Goal'){
             if((this.props.goal == 'Gain' && this.state.goal == null) || this.state.goal == 'Gain'){
                 return(
-                    <View>
-                        <Text style={styles.title}>What would you like to edit?</Text>
+                    <View style={styles.editArea}>
+                        <Text style={styles.text}>What would you like to edit?</Text>
                         <View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1019,8 +1020,8 @@ export default class EditInfoPage extends Component{
             }
             if((this.props.goal == 'Lose' && this.state.goal == null) || this.state.goal == 'Lose'){
                 return(
-                    <View>
-                        <Text style={styles.title}>What would you like to edit?</Text>
+                    <View style={styles.editArea}>
+                        <Text style={styles.text}>What would you like to edit?</Text>
                         <View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1049,46 +1050,48 @@ export default class EditInfoPage extends Component{
         else if(this.state.focus == 'BMI'){
             if(this.props.units == "Imperial"){
                 return(
-                    <View>
-                        <Text style={styles.title}>What would you like to edit?</Text>
-                        <View>
-                            <View style={styles.buttonBackground}>
-                                <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
-                            </View>
-                            <View style={styles.buttonBackground}>
-                                <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
-                            </View>
-                            <View style={styles.focus}>
-                                <Text style={styles.BMIText}>Enter your current height and weight.</Text>
-                                <Text style={styles.smallText}>Height</Text>
-                                <View style={styles.vertAlign}>
-                                    <TextInput style={styles.imperialNumInput} ref={(feet) => { this.footInput = feet }} onChangeText= {(feet) =>{this.getFeet(feet)}} placeholder ="Feet" placeholderTextColor='black' keyboardType="number-pad" maxLength={1} ></TextInput>
-                                    <TextInput style={styles.imperialNumInput} ref={(inches) => { this.inchInput = inches }} onChangeText= {(inches) =>{this.getInches(inches)}} placeholder ="Inches" placeholderTextColor='black' keyboardType="number-pad" maxLength={2}></TextInput>
+                    <KeyboardAvoidingView  behavior='position' keyboardVerticalOffset={10}>
+                        <View style={styles.editArea}>
+                            <Text style={styles.text}>What would you like to edit?</Text>
+                            <View>
+                                <View style={styles.buttonBackground}>
+                                    <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
                                 </View>
-                                <View>
-                                    <Text style={styles.smallText}>Weight</Text>
+                                <View style={styles.buttonBackground}>
+                                    <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
+                                </View>
+                                <View style={styles.focus}>
+                                    <Text style={styles.BMIText}>Enter your current height and weight.</Text>
+                                    <Text style={styles.smallText}>Height</Text>
                                     <View style={styles.vertAlign}>
-                                        <TextInput style={styles.numInput} ref={(weight) => { this.weightInput = weight }} onChangeText={text => {this.setState({weight: parseInt(text)})}} placeholder="Lbs." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
+                                        <TextInput style={styles.imperialNumInput} ref={(feet) => { this.footInput = feet }} onChangeText= {(feet) =>{this.getFeet(feet)}} placeholder ="Feet" placeholderTextColor='black' keyboardType="number-pad" maxLength={1} ></TextInput>
+                                        <TextInput style={styles.imperialNumInput} ref={(inches) => { this.inchInput = inches }} onChangeText= {(inches) =>{this.getInches(inches)}} placeholder ="Inches" placeholderTextColor='black' keyboardType="number-pad" maxLength={2}></TextInput>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.smallText}>Weight</Text>
+                                        <View style={styles.vertAlign}>
+                                            <TextInput style={styles.numInput} ref={(weight) => { this.weightInput = weight }} onChangeText={text => {this.setState({weight: parseInt(text)})}} placeholder="Lbs." placeholderTextColor='black' keyboardType="number-pad" maxLength={3}></TextInput>
+                                        </View>
+                                    </View>
+                                    <View style={styles.BMIbuttons}>
+                                        <Button color={Colors.button} title="Get BMI" onPress={ () => this.editBMI((parseInt(this.state.feet) + parseInt(this.state.inches)), parseInt(this.state.weight))} disabled={this.BMIEntries()}></Button>
                                     </View>
                                 </View>
-                                <View style={styles.BMIbuttons}>
-                                    <Button color={Colors.button} title="Get BMI" onPress={ () => this.editBMI((parseInt(this.state.feet) + parseInt(this.state.inches)), parseInt(this.state.weight))} disabled={this.BMIEntries()}></Button>
+                                <View style={styles.buttonBackground}>
+                                    <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
+                                </View>
+                                <View style={styles.buttonBackground}>
+                                    <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
                                 </View>
                             </View>
-                            <View style={styles.buttonBackground}>
-                                <Button title="Change your phase" color={Colors.button2} onPress={() => this.setState({focus: 'Phases'})}></Button> 
-                            </View>
-                            <View style={styles.buttonBackground}>
-                                <Button title="Change caloric numbers" color={Colors.button2} onPress={() => this.setState({focus: 'Numbers'})}></Button> 
-                            </View>
                         </View>
-                    </View>
+                    </KeyboardAvoidingView>
                 );
             }
             else{
                 return(
-                    <View>
-                        <Text style={styles.title}>What would you like to edit?</Text>
+                    <View style={styles.editArea}>
+                        <Text style={styles.text}>What would you like to edit?</Text>
                         <View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1126,8 +1129,8 @@ export default class EditInfoPage extends Component{
         }
         else if(this.state.focus == 'Phases'){
             return(
-                <View>
-                    <Text style={styles.title}>What would you like to edit?</Text>
+                <View style={styles.editArea}>
+                    <Text style={styles.text}>What would you like to edit?</Text>
                     <View>
 
                         <View style={styles.buttonBackground}>
@@ -1157,9 +1160,9 @@ export default class EditInfoPage extends Component{
         }
         else if(this.state.focus == 'Numbers'){
             return(
-                <View>
-                    <KeyboardAvoidingView  behavior='position' keyboardVerticalOffset={100}>
-                    <Text style={styles.title}>What would you like to edit?</Text>
+                <KeyboardAvoidingView  behavior='position'>
+                    <View style={styles.editArea}>
+                    <Text style={styles.text}>What would you like to edit?</Text>
                     <View>
                         <View style={styles.buttonBackground}>
                             <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1190,14 +1193,14 @@ export default class EditInfoPage extends Component{
                                 </View>
                             </View>
                         </View>
-                    </KeyboardAvoidingView>
-                </View>
+                    </View>
+                </KeyboardAvoidingView>
             );
         }
         else{
             return(
-                <View>
-                    <Text style={styles.title}>What would you like to edit?</Text>
+                <View style={styles.editArea}>
+                    <Text style={styles.text}>What would you like to edit?</Text>
                     <View>
                         <View style={styles.buttonBackground}>
                             <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1223,36 +1226,47 @@ export default class EditInfoPage extends Component{
 
     render(){
         return(
-            <View>
-                {this.page()}
-                <View style={styles.container}>
-                    <Text style={styles.text}>Please click the button below to submit your changes.</Text>
-                    <Text style={styles.tableText}>Current Name: {this.changeName()}</Text>
-                    <Text style={styles.tableText}>Current Goal: {this.changeGoal()}</Text>
-                    <Text style={styles.tableText}>Height: {this.newHeight()}</Text>
-                    <Text style={styles.tableText}>Weight: {this.newWeight()}</Text>
-                    <Text style={styles.tableText}>BMI: {this.newBMI()}</Text>
-                    <Text style={styles.tableText}>Current Daily Fat Calories: {this.newFats()}</Text>
-                    <Text style={styles.tableText}>Current Daily Carb Calories: {this.newCarbs()}</Text>
-                    <Text style={styles.tableText}>Current Daily Protein Calories:  {this.newProteins()}</Text>
-                    <Text style={styles.tableText}>Current Total Daily Calories:  {this.newTotal()}</Text>
-                    <View style={styles.buttonBackground}>
-                        <Button title="Submit Changes" color={Colors.button} onPress={() => this.props.editedInfo(this.changeName(), this.changeGoal(), this.newHeight(), this.newWeight(), this.newBMI(),this.newFats(), this.newCarbs(), this.newProteins(), this.newTotal(), this.list().length)}></Button> 
+                <ScrollView style={styles.page}>
+                    <View style={styles.container}>
+                        <Text style={styles.title}>Please click the button below to submit your changes.</Text>
+                        <Text style={styles.tableText}>Current Name: {this.changeName()}</Text>
+                        <Text style={styles.tableText}>Current Goal: {this.changeGoal()}</Text>
+                        <Text style={styles.tableText}>Height: {this.newHeight()}</Text>
+                        <Text style={styles.tableText}>Weight: {this.newWeight()}</Text>
+                        <Text style={styles.tableText}>BMI: {this.newBMI()}</Text>
+                        <Text style={styles.tableText}>Current Daily Fat Calories: {this.newFats()}</Text>
+                        <Text style={styles.tableText}>Current Daily Carb Calories: {this.newCarbs()}</Text>
+                        <Text style={styles.tableText}>Current Daily Protein Calories:  {this.newProteins()}</Text>
+                        <Text style={styles.tableText}>Current Total Daily Calories:  {this.newTotal()}</Text>
+                        <View style={styles.buttonBackground}>
+                            <Button title="Submit Changes" color={Colors.button} onPress={() => this.props.editedInfo(this.changeName(), this.changeGoal(), this.newHeight(), this.newWeight(), this.newBMI(),this.newFats(), this.newCarbs(), this.newProteins(), this.newTotal(), this.list().length)}></Button> 
+                        </View>
+                    {this.page()}
                     </View>
-
-                </View>
-            </View>
+                </ScrollView>
             
         );
     }
 }
 
 const styles = StyleSheet.create({
+    page:{
+        height: '90%'
+    },
+    editArea:{
+        backgroundColor: Colors.background,
+        // backgroundColor: '#d1f7ff',
+        marginTop: 25,
+        padding: 5,
+        borderColor: Colors.borders,
+        borderWidth:2
+    },
     title:{
         color: Colors.titles,
         fontSize: 30,
         alignSelf: 'center',
-        marginBottom: 10
+        textAlign: 'center',
+        marginBottom: 10,
     },
     buttonBackground:{
         backgroundColor: Colors.buttonBackground2,
@@ -1333,13 +1347,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
     },
-
-    navigationButtons:{
-        backgroundColor: Colors.navigatingButtonBackground,
-        width: "70%",
-        alignSelf: 'center',
-        marginTop: 10,
-      },
     container:{
         width: '70%',
         alignSelf: "center",
@@ -1397,10 +1404,13 @@ const styles = StyleSheet.create({
 
     },
     focus:{
-        borderColor: 'white',
+        backgroundColor:Colors.boxBackground,
+        width: '90%',
+        borderColor: Colors.borders,
         borderWidth: 2,
         margin: 5,
-        padding: 5
+        padding: 5,
+        alignSelf: 'center'
     },
     container:{
         backgroundColor:Colors.boxBackground,
@@ -1409,7 +1419,7 @@ const styles = StyleSheet.create({
         borderColor: Colors.borders,
         borderWidth: 2,
         marginTop: 10,
-        width: '90%',
+        width: '100%',
         alignSelf: "center",
       },
       tableText:{

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {AppRegistry, View, StyleSheet, Button} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
+import NavBarIcons from '../components/navBarIcons';
 // AppRegistry is the JS entry point for all ReactNative apps. 
 
 export default class NavBar extends Component{

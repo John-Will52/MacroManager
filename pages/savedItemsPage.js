@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, KeyboardAvoidingView, ScrollView} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 
@@ -13,63 +13,78 @@ export default class SavedItemsPage extends Component{
             type: "All"
         }
     }
-  
+  snackListView=()=>{
+      if(this.props.snackList.length == 0){
+          return(
+            <View style={styles.savedItemsBox}>
+                <Text style={styles.text}>Click the "Save" button to save a snack.</Text>
+            </View>
+          )
+      }
+      else{
+          return(
+            <ScrollView horizontal={true} style={styles.savedItemsBox}>
+                <View style={styles.items}>
+                    {this.props.snackList}
+                </View>
+            </ScrollView>
+          )
+      }
+  }
+  mealListView=()=>{
+      if(this.props.snackList.length == 0){
+          return(
+            <View style={styles.savedItemsBox}>
+                <Text style={styles.text}>Click the "Save" button to save a meal.</Text>
+            </View>
+          )
+      }
+      else{
+          return(
+
+            <ScrollView horizontal={true} style={styles.savedItemsBox}>
+                <View style={styles.items}>
+                    {this.props.mealList}
+                </View>
+            </ScrollView>
+          )
+      }
+  }
 
 
     render(){
-        if(this.props.itemList.length == 0){
-            return(
-                <View style={styles.pageContainer}>
-                    {this.props.children}
-                    <View style={styles.savedItemsBox}>
-                        <Text style={styles.text}>Go to the "Save a Snack or Meal" page to add foods that you eat often.</Text>
-                    </View>
-                    <Text style={styles.OR}>...OR...</Text>
-                    <View style={styles.savedItemsBox}>  
-                        <Text style={styles.text}>If you know that you should have something saved, try pressing the filter buttons.</Text>
-                    </View>
-                </View>
-            );
-        }
-        else{
-            return(
-                <View style={styles.pageContainer}>
-                    <View style={styles.buttonContainer}>
-                        {this.props.children}
-                    </View>
-                    <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={0}>
-
-                        {this.props.itemList}
-                    </KeyboardAvoidingView>
-                </View>
-            );
-        }
+        return(
+            <View style={styles.pageContainer}>
+                <Text style={styles.text}>Your Saved Snacks</Text>
+                {this.snackListView()}
+                <Text style={styles.text}>Your Saved Meals</Text>
+                {this.mealListView()}
+            </View>
+        )
         
     }
 }
 
 const styles = StyleSheet.create({
     pageContainer:{
-        padding: 10,
-        height:'92%'
+        paddingVertical: 15,
+        paddingHorizontal: 10,
     },
     savedItemsBox:{
-        backgroundColor: Colors.boxBackground,
+        // backgroundColor: Colors.boxBackground,
         width: '100%',
         padding: 5,
         borderColor: Colors.borders,
-        borderWidth: 5,
+        // borderWidth: 5,
     },
     text:{
         color: Colors.text,
         fontSize: 25,
-        textAlign: "center",
     },
-    OR:{
-        color: Colors.text,
-        fontSize: 35,
-        textAlign: "center",
-        marginVertical: 10
+    items:{
+        flexDirection: 'row',
+        width: '65%',
+        // marginHorizontal: 20,
     },
   });
 

@@ -132,11 +132,11 @@ export default class SavedItems extends Component{
 const styles = StyleSheet.create({
     itemBox:{
       backgroundColor: Colors.boxBackground,
-      width: '90%',
+      width: '100%',
       alignSelf: 'center',
       borderColor: Colors.borders,
       borderWidth: 5,
-      marginVertical: 10,
+      marginRight: 10,
       padding: 5,
       borderRadius: 10
 

@@ -240,29 +240,19 @@ Protein: ${proteins * servings} grams`,
 
   // Data sent to SavedItemsPage
 
-    list = () => {
-      this.storeData();
-      if(this.state.listFilter == 'Any'){
-        return this.state.savedItems.map((item) => {
-          return(
-            <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
-          );
-        });
-      }
-      if(this.state.listFilter == 'Snack'){
+    snackList = () => {
         return this.state.savedItems.filter((item) => {return item.item == 'Snack';}).map((item) => {
           return(
             <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
           );
-        });
-      }
-      if(this.state.listFilter == 'Meal'){
-        return this.state.savedItems.filter((item) => {return item.item == 'Meal';}).map((item) => {
-          return(
-            <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
-          );
-        });
-      }    
+        }); 
+    };
+    mealList = () => {
+      return this.state.savedItems.filter((item) => {return item.item == 'Meal';}).map((item) => {
+        return(
+          <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems>
+        );
+      });  
     };
 
   //Edit page functions
@@ -455,7 +445,7 @@ Protein: ${proteins * servings} grams`,
         <SafeAreaView style={styles.background}>
           {/* <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar> */}
           <ScrollView>
-            <SavedItemsPage changePage={this.navigator} itemList={this.list()}>
+            <SavedItemsPage changePage={this.navigator} snackList={this.snackList()} mealList={this.mealList()}>
               <View style={styles.filters}>
                 <Button title="All" color={Colors.filter} onPress={()=>{this.setState({listFilter: 'Any'})}}></Button>
                 <Button title="Snacks" color={Colors.filter} onPress={()=>{this.setState({listFilter: 'Snack'})}}></Button>

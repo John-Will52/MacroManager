@@ -56,7 +56,6 @@ export default class SavedItems extends Component{
         if(this.props.item == 'Meal' && this.props.servings > 1){
             return (
               <View style={styles.itemBox}>
-                  <Text style={styles.text}>Item type: {this.props.item}</Text>
                 <View style ={styles.mealHeader}>
                   <Text style={styles.itemName}>{this.props.name}</Text>
                   <View style={styles.servingInfo}>
@@ -96,7 +95,6 @@ export default class SavedItems extends Component{
           else{
             return (
               <View style={styles.itemBox}>
-                <Text style={styles.text}>Item type: {this.props.item}</Text>
                 <Text style={styles.itemName}>{this.props.name}</Text>
                 <View style={styles.macroFactsBox}>
                   <View style={styles.macroFacts}>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, StyleSheet, Image, Text, TouchableHighlight} from 'react-native';
+import {AppRegistry, View, StyleSheet, Image, Text, TouchableHighlight, Platform} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 // AppRegistry is the JS entry point for all ReactNative apps. 
@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 10,
         justifyContent:'flex-end',
+        position: 'absolute',
+        bottom: Platform.OS === 'android' ? 0 : 25
 
 
     },

@@ -1226,7 +1226,7 @@ export default class EditInfoPage extends Component{
 
     render(){
         return(
-                <ScrollView style={styles.page}>
+                <ScrollView>
                     <View style={styles.container}>
                         <Text style={styles.title}>Please click the button below to submit your changes.</Text>
                         <Text style={styles.tableText}>Current Name: {this.changeName()}</Text>
@@ -1250,9 +1250,6 @@ export default class EditInfoPage extends Component{
 }
 
 const styles = StyleSheet.create({
-    page:{
-        height: '90%'
-    },
     editArea:{
         backgroundColor: Colors.background,
         // backgroundColor: '#d1f7ff',

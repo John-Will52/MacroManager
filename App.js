@@ -5,7 +5,6 @@ import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
 import SavedItemsPage from './pages/savedItemsPage';
 import SavedItems from './components/savedItems';
-import NavBar from './components/navBar';
 import NavBarIcons from './components/navBarIcons';
 
 

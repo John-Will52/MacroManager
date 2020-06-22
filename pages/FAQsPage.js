@@ -22,7 +22,7 @@ export default class FAQsPage extends Component{
     page = () =>{
         if(this.state.focus == null){
             return(
-                <View style={styles.page}>
+                <View>
                     <Text style={styles.title}>FAQ Page</Text>
                     <View>
                         <View style={styles.buttonBackground}>
@@ -58,7 +58,7 @@ export default class FAQsPage extends Component{
         }
         else{
             return(
-                <View style={styles.page}>
+                <View>
                     <Text style={styles.title}>FAQ Page</Text>
                     <View style = {styles.window}>
                         <FAQ return={this.nullifyQuestion} questionNumber={this.state.focus} selectSex={this.props.selectSex} sex={this.props.sex}></FAQ>
@@ -78,9 +78,6 @@ export default class FAQsPage extends Component{
 }
 
 const styles = StyleSheet.create({
-    page:{
-        // height:'91%'
-    },
     title:{
         color: Colors.titles,
         fontSize: 30,

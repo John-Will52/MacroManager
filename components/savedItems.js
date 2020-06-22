@@ -151,8 +151,6 @@ const styles = StyleSheet.create({
       width: '90%',
       flexDirection: 'row',
       justifyContent: 'space-evenly',
-
-
     },
     macroFacts:{
       marginHorizontal: 5,

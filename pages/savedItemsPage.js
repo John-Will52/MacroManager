@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     },
     items:{
         flexDirection: 'row',
-        width: 315,
+        width: 300,
 
     },
     frames:{

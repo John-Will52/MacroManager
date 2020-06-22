@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
         padding: 5,
         borderColor: Colors.borders,
         // borderWidth: 5,
+        alignSelf: "center"
     },
     text:{
         color: Colors.text,
@@ -91,9 +92,8 @@ const styles = StyleSheet.create({
     },
     items:{
         flexDirection: 'row',
-        // width: '45%',
-        width: 267,
-        // marginHorizontal: 20,
+        width: 315,
+
     },
     frames:{
         marginVertical: 25

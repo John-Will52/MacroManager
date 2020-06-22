@@ -17,7 +17,7 @@ export default class SavedItemsPage extends Component{
       if(this.props.snackList.length == 0){
           return(
             <View style={styles.savedItemsBox}>
-                <Text style={styles.text}>Click the "Save" button to save a snack.</Text>
+                <Text style={styles.text}>Save a snack by clicking the "Save" button.</Text>
             </View>
           )
       }
@@ -32,10 +32,10 @@ export default class SavedItemsPage extends Component{
       }
   }
   mealListView=()=>{
-      if(this.props.snackList.length == 0){
+      if(this.props.mealList.length == 0){
           return(
             <View style={styles.savedItemsBox}>
-                <Text style={styles.text}>Click the "Save" button to save a meal.</Text>
+                <Text style={styles.text}>Save a meal by clicking the "Save" button.</Text>
             </View>
           )
       }
@@ -55,10 +55,14 @@ export default class SavedItemsPage extends Component{
     render(){
         return(
             <View style={styles.pageContainer}>
-                <Text style={styles.text}>Your Saved Snacks</Text>
-                {this.snackListView()}
-                <Text style={styles.text}>Your Saved Meals</Text>
-                {this.mealListView()}
+                <View style={styles.frames}>
+                    <Text style={styles.titles}>Your Saved Snacks</Text>
+                    {this.snackListView()}
+                </View>
+                <View style={styles.frames}>
+                    <Text style={styles.titles}>Your Saved Meals</Text>
+                    {this.mealListView()}
+                </View>
             </View>
         )
         
@@ -79,13 +83,21 @@ const styles = StyleSheet.create({
     },
     text:{
         color: Colors.text,
-        fontSize: 25,
+        fontSize: 20,
+    },
+    titles:{
+        color: Colors.text,
+        fontSize: 30,
     },
     items:{
         flexDirection: 'row',
-        width: '65%',
+        // width: '45%',
+        width: 267,
         // marginHorizontal: 20,
     },
+    frames:{
+        marginVertical: 25
+    }
   });
 
 AppRegistry.registerComponent(appName, () => SavedItemsPage);

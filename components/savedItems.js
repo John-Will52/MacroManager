@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   
     },
     itemName:{
-      fontSize: 25,
+      fontSize: 30,
       fontWeight: 'bold',
       color: Colors.subtitles
     },
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
       justifyContent: 'space-evenly'
     },
     text:{
-      fontSize: 15,
+      fontSize: 20,
       color: 'white'
     } 
   });

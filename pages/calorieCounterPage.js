@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
         borderColor:Colors.borders,
         borderWidth: 3,
         padding: 5,
-        // height: '91%'
+        height: '100%'
     },
     display:{
         flexDirection: 'row-reverse',

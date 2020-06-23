@@ -56,13 +56,13 @@ export default class NavBarIcons extends Component{
 const styles = StyleSheet.create({
     navBar:{
         flexDirection: 'row',
-        alignSelf: 'flex-end',
         alignItems: 'center',
         width: '100%',
         borderRadius: 10,
         justifyContent:'flex-end',
         position: 'absolute',
-        bottom: Platform.OS === 'android' ? 0 : 25
+        bottom: Platform.OS === 'android' ? 0 : 25,
+        // bottom: 0
 
 
     },

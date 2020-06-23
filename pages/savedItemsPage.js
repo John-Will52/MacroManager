@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
 
     },
     frames:{
-        marginVertical: 25
+        marginBottom: 25
     }
   });
 

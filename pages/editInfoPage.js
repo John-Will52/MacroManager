@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, TextInput, Button, Alert, KeyboardAvoidingView, ScrollView} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, TextInput, Button, Alert, KeyboardAvoidingView, ScrollView, Platform} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 import Errors from '../components/errors';
@@ -963,7 +963,7 @@ export default class EditInfoPage extends Component{
     page = () =>{
         if(this.state.focus == 'Name'){
             return(
-                <KeyboardAvoidingView  behavior='position' keyboardVerticalOffset={10}>
+                
                     <View style={styles.editArea}>
                         <Text style={styles.text}>What would you like to edit?</Text>
                         <View>
@@ -987,7 +987,7 @@ export default class EditInfoPage extends Component{
                             </View>
                         </View>
                     </View>
-                </KeyboardAvoidingView>
+                
             );
         }
         else if(this.state.focus == 'Goal'){
@@ -1050,7 +1050,7 @@ export default class EditInfoPage extends Component{
         else if(this.state.focus == 'BMI'){
             if(this.props.units == "Imperial"){
                 return(
-                    <KeyboardAvoidingView  behavior='position' keyboardVerticalOffset={10}>
+                    
                         <View style={styles.editArea}>
                             <Text style={styles.text}>What would you like to edit?</Text>
                             <View>
@@ -1085,7 +1085,7 @@ export default class EditInfoPage extends Component{
                                 </View>
                             </View>
                         </View>
-                    </KeyboardAvoidingView>
+                    
                 );
             }
             else{
@@ -1160,7 +1160,7 @@ export default class EditInfoPage extends Component{
         }
         else if(this.state.focus == 'Numbers'){
             return(
-                <KeyboardAvoidingView  behavior='position'>
+                
                     <View style={styles.editArea}>
                     <Text style={styles.text}>What would you like to edit?</Text>
                     <View>
@@ -1194,7 +1194,7 @@ export default class EditInfoPage extends Component{
                             </View>
                         </View>
                     </View>
-                </KeyboardAvoidingView>
+                
             );
         }
         else{
@@ -1223,10 +1223,20 @@ export default class EditInfoPage extends Component{
         }
     }
 
+    behavior=()=>{
+        if(Platform.OS == "ios"){
+            return "position"
+        }
+        else{
+            return "padding"
+        }
+    }
+
 
     render(){
         return(
-                <ScrollView>
+                <ScrollView style={styles.page}>
+                    <KeyboardAvoidingView  behavior={this.behavior()}>
                     <View style={styles.container}>
                         <Text style={styles.title}>Please click the button below to submit your changes.</Text>
                         <Text style={styles.tableText}>Current Name: {this.changeName()}</Text>
@@ -1238,11 +1248,12 @@ export default class EditInfoPage extends Component{
                         <Text style={styles.tableText}>Current Daily Carb Calories: {this.newCarbs()}</Text>
                         <Text style={styles.tableText}>Current Daily Protein Calories:  {this.newProteins()}</Text>
                         <Text style={styles.tableText}>Current Total Daily Calories:  {this.newTotal()}</Text>
-                        <View style={styles.buttonBackground}>
+                        <View style={styles.submitButtonBackground}>
                             <Button title="Submit Changes" color={Colors.button} onPress={() => this.props.editedInfo(this.changeName(), this.changeGoal(), this.newHeight(), this.newWeight(), this.newBMI(),this.newFats(), this.newCarbs(), this.newProteins(), this.newTotal(), this.list().length)}></Button> 
                         </View>
-                    {this.page()}
+                        {this.page()}
                     </View>
+                    </KeyboardAvoidingView>
                 </ScrollView>
             
         );
@@ -1250,23 +1261,34 @@ export default class EditInfoPage extends Component{
 }
 
 const styles = StyleSheet.create({
+    page:{
+        height: '90%'
+    },
     editArea:{
         backgroundColor: Colors.background,
         // backgroundColor: '#d1f7ff',
-        marginTop: 25,
+        marginTop: 10,
         padding: 5,
         borderColor: Colors.borders,
         borderWidth:2
     },
     title:{
         color: Colors.titles,
-        fontSize: 30,
+        fontSize: 25,
         alignSelf: 'center',
         textAlign: 'center',
         marginBottom: 10,
     },
     buttonBackground:{
         backgroundColor: Colors.buttonBackground2,
+        borderWidth: 2,
+        borderColor: Colors.boxBackground,
+        margin: 5,
+        width:'60%',
+        alignSelf:'center'
+    },
+    submitButtonBackground:{
+        backgroundColor: Colors.buttonBackground,
         borderWidth: 2,
         borderColor: Colors.boxBackground,
         margin: 5,
@@ -1284,7 +1306,7 @@ const styles = StyleSheet.create({
 
     },
     smallText:{
-        fontSize: 30,
+        fontSize: 20,
         color: Colors.subtitles,
     },
     numInput:{
@@ -1375,7 +1397,7 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 25,
         textAlign:'center',
-        marginBottom: 15,
+        marginBottom: 10,
         color: Colors.titles
     },
     numbersText:{
@@ -1385,7 +1407,7 @@ const styles = StyleSheet.create({
         color: Colors.titles
     },
     BMIText:{
-        fontSize: 30,
+        fontSize: 20,
         textAlign:'center',
         marginBottom: 10,
         color: Colors.titles
@@ -1421,7 +1443,7 @@ const styles = StyleSheet.create({
       },
       tableText:{
         color: Colors.text,
-        fontSize: 20
+        fontSize: 15
       },
       phaseButtonsContainer:{
           flexDirection: 'row',

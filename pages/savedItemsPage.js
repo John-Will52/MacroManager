@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, StyleSheet, KeyboardAvoidingView, ScrollView} from 'react-native';
+import {AppRegistry, View, Text, StyleSheet, KeyboardAvoidingView, FlatList} from 'react-native';
 import {name as appName} from '../app.json';
+import SavedItems from '../components/savedItems';
 import Colors from '../styling/colors';
 
 
@@ -23,11 +24,7 @@ export default class SavedItemsPage extends Component{
       }
       else{
           return(
-            <ScrollView horizontal={true} style={styles.savedItemsBox}>
-                <View style={styles.items}>
-                    {this.props.snackList}
-                </View>
-            </ScrollView>
+            <FlatList data={this.props.snackList} renderItem={({ item }) => <SavedItems id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems>} keyExtractor={item => item.id} horizontal={true}/>
           )
       }
   }
@@ -42,11 +39,7 @@ export default class SavedItemsPage extends Component{
       else{
           return(
 
-            <ScrollView horizontal={true} style={styles.savedItemsBox}>
-                <View style={styles.items}>
-                    {this.props.mealList}
-                </View>
-            </ScrollView>
+            <FlatList data={this.props.mealList} renderItem={({ item }) => <SavedItems id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems>} keyExtractor={item => item.id} horizontal={true}/>
           )
       }
   }
@@ -54,16 +47,18 @@ export default class SavedItemsPage extends Component{
 
     render(){
         return(
-            <View style={styles.pageContainer}>
-                <View style={styles.frames}>
-                    <Text style={styles.titles}>Your Saved Snacks</Text>
-                    {this.snackListView()}
+            <KeyboardAvoidingView behavior="position">
+                <View style={styles.pageContainer}>
+                    <View style={styles.frames}>
+                        <Text style={styles.titles}>Your Saved Snacks</Text>
+                        {this.snackListView()}
+                    </View>
+                    <View style={styles.frames}>
+                        <Text style={styles.titles}>Your Saved Meals</Text>
+                        {this.mealListView()}
+                    </View>
                 </View>
-                <View style={styles.frames}>
-                    <Text style={styles.titles}>Your Saved Meals</Text>
-                    {this.mealListView()}
-                </View>
-            </View>
+            </KeyboardAvoidingView>
         )
         
     }

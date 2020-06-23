@@ -241,16 +241,12 @@ Protein: ${proteins * servings} grams`,
 
     snackList = () => {
         return this.state.savedItems.filter((item) => {return item.item == 'Snack';}).map((item) => {
-          return(
-            <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems> 
-          );
+          return item
         }); 
     };
     mealList = () => {
       return this.state.savedItems.filter((item) => {return item.item == 'Meal';}).map((item) => {
-        return(
-          <SavedItems key={item.id}  id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems>
-        );
+        return item
       });  
     };
 

@@ -965,13 +965,11 @@ export default class EditInfoPage extends Component{
             return(
                 
                     <View style={styles.editArea}>
-                        <Text style={styles.text}>What would you like to edit?</Text>
+                        <Text style={styles.title}>What would you like to edit?</Text>
                         <View>
                             <View style={styles.focus}>
                                 <Text style={styles.text}>Change your name.</Text>
                                 <TextInput style={styles.input} ref={(name) => { this.nameInput = name }} onChangeText={(name)=>{this.setName(name)}} placeholder="Name" placeholderTextColor='black' keyboardType="default"></TextInput>
-                                <View style = {styles.buttons}>
-                                </View>
                             </View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Goal" color={Colors.button2} onPress={() => this.setState({focus: 'Goal'})}></Button> 
@@ -994,7 +992,7 @@ export default class EditInfoPage extends Component{
             if((this.props.goal == 'Gain' && this.state.goal == null) || this.state.goal == 'Gain'){
                 return(
                     <View style={styles.editArea}>
-                        <Text style={styles.text}>What would you like to edit?</Text>
+                        <Text style={styles.title}>What would you like to edit?</Text>
                         <View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1021,7 +1019,7 @@ export default class EditInfoPage extends Component{
             if((this.props.goal == 'Lose' && this.state.goal == null) || this.state.goal == 'Lose'){
                 return(
                     <View style={styles.editArea}>
-                        <Text style={styles.text}>What would you like to edit?</Text>
+                        <Text style={styles.title}>What would you like to edit?</Text>
                         <View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1052,7 +1050,7 @@ export default class EditInfoPage extends Component{
                 return(
                     
                         <View style={styles.editArea}>
-                            <Text style={styles.text}>What would you like to edit?</Text>
+                            <Text style={styles.title}>What would you like to edit?</Text>
                             <View>
                                 <View style={styles.buttonBackground}>
                                     <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1091,7 +1089,7 @@ export default class EditInfoPage extends Component{
             else{
                 return(
                     <View style={styles.editArea}>
-                        <Text style={styles.text}>What would you like to edit?</Text>
+                        <Text style={styles.title}>What would you like to edit?</Text>
                         <View>
                             <View style={styles.buttonBackground}>
                                 <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1130,7 +1128,7 @@ export default class EditInfoPage extends Component{
         else if(this.state.focus == 'Phases'){
             return(
                 <View style={styles.editArea}>
-                    <Text style={styles.text}>What would you like to edit?</Text>
+                    <Text style={styles.title}>What would you like to edit?</Text>
                     <View>
 
                         <View style={styles.buttonBackground}>
@@ -1162,7 +1160,7 @@ export default class EditInfoPage extends Component{
             return(
                 
                     <View style={styles.editArea}>
-                    <Text style={styles.text}>What would you like to edit?</Text>
+                    <Text style={styles.title}>What would you like to edit?</Text>
                     <View>
                         <View style={styles.buttonBackground}>
                             <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1200,7 +1198,7 @@ export default class EditInfoPage extends Component{
         else{
             return(
                 <View style={styles.editArea}>
-                    <Text style={styles.text}>What would you like to edit?</Text>
+                    <Text style={styles.title}>What would you like to edit?</Text>
                     <View>
                         <View style={styles.buttonBackground}>
                             <Button title="Name" color={Colors.button2} onPress={() => this.setState({focus: 'Name'})}></Button>
@@ -1395,7 +1393,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
     },
     text:{
-        fontSize: 25,
+        fontSize: 20,
         textAlign:'center',
         marginBottom: 10,
         color: Colors.titles

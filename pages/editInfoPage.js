@@ -1260,7 +1260,7 @@ export default class EditInfoPage extends Component{
 
 const styles = StyleSheet.create({
     page:{
-        height: '90%'
+        // height: '90%',
     },
     editArea:{
         backgroundColor: Colors.background,
@@ -1364,11 +1364,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
     },
-    container:{
-        width: '70%',
-        alignSelf: "center",
-
-    },
     buttons1:{
         backgroundColor: Colors.buttonBackground,
         width: "90%",
@@ -1435,7 +1430,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         borderColor: Colors.borders,
         borderWidth: 2,
-        marginTop: 10,
         width: '100%',
         alignSelf: "center",
       },

@@ -415,7 +415,6 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 0){
       return(
         <SafeAreaView style={styles.background}>
-          {/* <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar> */}
           <ScrollView contentInsetAdjustmentBehavior="automatic">
             <CalorieCounterPage clear={this.reset} addCalories={this.calorieCounterStateTransfer} percentOfCarbs={this.state.percentOfCarbs} percentOfProteins={this.state.percentOfProteins} percentOfFats={this.state.percentOfFats} percentOfTotalCalories={this.state.percentOfTotalCalories} remainingCarbCals={this.state.allottedCarbs - this.state.currentCarbs} remainingProteinCals={this.state.allottedProteins - this.state.currentProteins} remainingFatCals={this.state.allottedFats - this.state.currentFats} remainingTotalCals={this.state.allottedTotal - this.state.currentTotal} remainingCarbGrams={(this.state.allottedCarbs - this.state.currentCarbs)/4} remainingProteinGrams={(this.state.allottedProteins - this.state.currentProteins)/4} remainingFatGrams={(this.state.allottedFats - this.state.currentFats)/9} remainingTotalCals={this.state.allottedTotal - this.state.currentTotal}></CalorieCounterPage>
           </ScrollView>
@@ -427,7 +426,6 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 1){
       return(
         <SafeAreaView style={styles.background}>
-          {/* <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar> */}
           <ScrollView contentInsetAdjustmentBehavior="automatic">
             <AddSnacksAndMealsPage changePage={this.navigator} saveItem={this.saveItems}></AddSnacksAndMealsPage>
           </ScrollView>
@@ -438,8 +436,7 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 2){
       return(
         <SafeAreaView style={styles.background}>
-          {/* <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar> */}
-          <ScrollView>
+          <ScrollView contentInsetAdjustmentBehavior="automatic">
             <SavedItemsPage changePage={this.navigator} snackList={this.snackList()} mealList={this.mealList()}>
               <View style={styles.filters}>
                 <Button title="All" color={Colors.filter} onPress={()=>{this.setState({listFilter: 'Any'})}}></Button>
@@ -455,10 +452,9 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 3){
       return(
         <SafeAreaView style={styles.background}>
-          {/* <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar> */}
-          <View>
+          <ScrollView contentInsetAdjustmentBehavior="automatic">
             <EditInfoPage editedInfo={this.submitEditedInfo} units={this.state.units} sex={this.state.sex} goal={this.state.goal} name={this.state.name} BMI={this.state.BMI} height={this.state.height} weight={this.state.weight} allottedFats={this.state.allottedFats} allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedTotal={this.state.allottedTotal}></EditInfoPage>
-          </View>
+          </ScrollView>
           <NavBarIcons currentPage={this.state.pageNumber} changePage={this.navigator}></NavBarIcons>
         </SafeAreaView>
       );
@@ -466,10 +462,9 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 4){
       return(
         <SafeAreaView style={styles.background}>
-          <View>
-            {/* <NavBar currentPage={this.state.pageNumber} changePage={this.navigator}></NavBar> */}
+          <ScrollView contentInsetAdjustmentBehavior="automatic">
             <FAQsPage sex={this.state.sex} selectSex={this.selectSex}></FAQsPage>
-          </View>
+          </ScrollView>
           <NavBarIcons currentPage={this.state.pageNumber} changePage={this.navigator}></NavBarIcons>
         </SafeAreaView>
       );

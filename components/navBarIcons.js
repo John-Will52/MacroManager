@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent:'flex-end',
         position: 'absolute',
-        bottom: Platform.OS === 'android' ? 0 : 25,
+        bottom: 0,
         // bottom: 0
 
 

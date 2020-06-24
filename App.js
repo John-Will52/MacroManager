@@ -445,7 +445,7 @@ Protein: ${proteins * servings} grams`,
     if(this.state.allottedTotal != null && this.state.pageNumber === 3){
       return(
         <SafeAreaView style={styles.background}>
-          <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <ScrollView>
             <EditInfoPage editedInfo={this.submitEditedInfo} units={this.state.units} sex={this.state.sex} goal={this.state.goal} name={this.state.name} BMI={this.state.BMI} height={this.state.height} weight={this.state.weight} allottedFats={this.state.allottedFats} allottedCarbs={this.state.allottedCarbs} allottedProteins={this.state.allottedProteins} allottedTotal={this.state.allottedTotal}/>
           </ScrollView>
           <NavBarIcons currentPage={this.state.pageNumber} changePage={this.navigator}/>
@@ -479,8 +479,4 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     height: '100%',
   },
-  filters:{
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-  }
 });

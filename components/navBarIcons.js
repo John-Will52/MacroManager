@@ -12,7 +12,8 @@ export default class NavBarIcons extends Component{
     }
 
     screenHeight = Math.round(Dimensions.get('window').height);
-
+    screenWidth = Math.round(Dimensions.get('window').width);
+    
     render(){
         return(
             <View style={styles.navBar}>
@@ -59,9 +60,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         borderRadius: 10,
-        justifyContent:'flex-end',
-        position: 'absolute',
-        bottom: (this.screenHeight > 896) ? 0 : 25
+        alignSelf:'flex-end',
+
 
 
     },
@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
         width: '20%',
         alignContent: 'center',
         padding: 5,
-        borderRadius: 10,
+        borderRadius: 10
     },
     icon:{
-        height: 45,
-        width: 45,
+        height: 40,
+        width: 40,
         alignSelf: 'center'
     },
     caption:{

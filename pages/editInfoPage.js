@@ -1233,26 +1233,26 @@ export default class EditInfoPage extends Component{
 
     render(){
         return(
-                <ScrollView style={styles.page}>
-                    <KeyboardAvoidingView  behavior={this.behavior()}>
+            <View style={styles.page}>
+                <KeyboardAvoidingView  behavior={this.behavior()}>
                     <View style={styles.container}>
                         <Text style={styles.title}>Please click the button below to submit your changes.</Text>
-                        <Text style={styles.tableText}>Current Name: {this.changeName()}</Text>
-                        <Text style={styles.tableText}>Current Goal: {this.changeGoal()}</Text>
-                        <Text style={styles.tableText}>Height: {this.newHeight()}</Text>
-                        <Text style={styles.tableText}>Weight: {this.newWeight()}</Text>
-                        <Text style={styles.tableText}>BMI: {this.newBMI()}</Text>
-                        <Text style={styles.tableText}>Current Daily Fat Calories: {this.newFats()}</Text>
-                        <Text style={styles.tableText}>Current Daily Carb Calories: {this.newCarbs()}</Text>
-                        <Text style={styles.tableText}>Current Daily Protein Calories:  {this.newProteins()}</Text>
-                        <Text style={styles.tableText}>Current Total Daily Calories:  {this.newTotal()}</Text>
+                        <Text style={styles.tableText}>• Current Name: {this.changeName()}</Text>
+                        <Text style={styles.tableText}>• Current Goal: {this.changeGoal()}</Text>
+                        <Text style={styles.tableText}>• Height: {this.newHeight()}</Text>
+                        <Text style={styles.tableText}>• Weight: {this.newWeight()}</Text>
+                        <Text style={styles.tableText}>• BMI: {this.newBMI()}</Text>
+                        <Text style={styles.tableText}>• Current Daily Fat Calories: {this.newFats()}</Text>
+                        <Text style={styles.tableText}>• Current Daily Carb Calories: {this.newCarbs()}</Text>
+                        <Text style={styles.tableText}>• Current Daily Protein Calories:  {this.newProteins()}</Text>
+                        <Text style={styles.tableText}>• Current Total Daily Calories:  {this.newTotal()}</Text>
                         <View style={styles.submitButtonBackground}>
                             <Button title="Submit Changes" color={Colors.button} onPress={() => this.props.editedInfo(this.changeName(), this.changeGoal(), this.newHeight(), this.newWeight(), this.newBMI(),this.newFats(), this.newCarbs(), this.newProteins(), this.newTotal(), this.list().length)}></Button> 
                         </View>
                         {this.page()}
                     </View>
-                    </KeyboardAvoidingView>
-                </ScrollView>
+                </KeyboardAvoidingView>
+            </View>
             
         );
     }
@@ -1441,7 +1441,7 @@ const styles = StyleSheet.create({
       },
       tableText:{
         color: Colors.text,
-        fontSize: 15
+        fontSize: 20
       },
       phaseButtonsContainer:{
           flexDirection: 'row',

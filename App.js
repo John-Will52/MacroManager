@@ -4,7 +4,6 @@ import SurveyPage from './pages/surveyPage';
 import CalorieCounterPage from './pages/calorieCounterPage';
 import AddSnacksAndMealsPage from './pages/addSnacksAndMealsPage';
 import SavedItemsPage from './pages/savedItemsPage';
-import SavedItems from './components/savedItems';
 import NavBarIcons from './components/navBarIcons';
 
 
@@ -437,7 +436,7 @@ Protein: ${proteins * servings} grams`,
       return(
         <SafeAreaView style={styles.background}>
           <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <SavedItemsPage changePage={this.navigator} snackList={this.snackList()} mealList={this.mealList()}/>
+            <SavedItemsPage changePage={this.navigator} snackList={this.snackList()} mealList={this.mealList()} deleteItems={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories}/>
           </ScrollView>
           <NavBarIcons currentPage={this.state.pageNumber} changePage={this.navigator}/>
         </SafeAreaView>

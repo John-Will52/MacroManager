@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   
     },
     itemName:{
-      fontSize: 30,
+      fontSize: 25,
       fontWeight: 'bold',
       color: Colors.subtitles
     },

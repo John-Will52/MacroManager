@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, StyleSheet, Image, Text, TouchableHighlight, Platform} from 'react-native';
+import {AppRegistry, View, StyleSheet, Image, Text, TouchableHighlight, Platform, Dimensions} from 'react-native';
 import {name as appName} from '../app.json';
 import Colors from '../styling/colors';
 // AppRegistry is the JS entry point for all ReactNative apps. 
@@ -11,7 +11,7 @@ export default class NavBarIcons extends Component{
         }
     }
 
-
+    screenHeight = Math.round(Dimensions.get('window').height);
 
     render(){
         return(
@@ -61,8 +61,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent:'flex-end',
         position: 'absolute',
-        bottom: 0,
-        // bottom: 0
+        bottom: (this.screenHeight > 896) ? 0 : 25
 
 
     },

@@ -24,7 +24,7 @@ export default class SavedItemsPage extends Component{
       }
       else{
           return(
-            <FlatList data={this.props.snackList} renderItem={({ item }) => <SavedItems id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems>} keyExtractor={item => item.id} horizontal={true}/>
+            <FlatList data={this.props.snackList} renderItem={({ item }) => <SavedItems id={item.id} delete={this.props.deleteItems} areYouSure={this.props.areYouSure} addItemCalories={this.props.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems>} keyExtractor={item => item.id} horizontal={true}/>
           )
       }
   }
@@ -39,7 +39,7 @@ export default class SavedItemsPage extends Component{
       else{
           return(
 
-            <FlatList data={this.props.mealList} renderItem={({ item }) => <SavedItems id={item.id} delete={this.deleteItems} areYouSure={this.areYouSure} addItemCalories={this.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems>} keyExtractor={item => item.id} horizontal={true}/>
+            <FlatList data={this.props.mealList} renderItem={({ item }) => <SavedItems id={item.id} delete={this.props.deleteItems} areYouSure={this.props.areYouSure} addItemCalories={this.props.addItemCalories} carbs={item.carbs} proteins={item.proteins} fats={item.fats} servings={item.servings} name={item.name} item={item.item}></SavedItems>} keyExtractor={item => item.id} horizontal={true}/>
           )
       }
   }
